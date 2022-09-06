@@ -22,12 +22,12 @@ class ApplicationsController < ApplicationController
   def destroy
     @application = Application.find(params[:id])
     @pet = @application.pet
-    @pet.destroy
+    @application.destroy
     redirect_to pet_path(@pet), status: :see_other
   end
 
   def index
-
+    @application = Application.all
   end
 
   private
@@ -37,6 +37,6 @@ class ApplicationsController < ApplicationController
   end
 
   def set_pet
-    @pet = Pet.find(params[:pet_id])
+    @pet = Pet.find(params[:id])
   end
 end

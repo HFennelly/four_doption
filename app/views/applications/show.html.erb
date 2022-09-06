@@ -11,7 +11,7 @@
                       </tr>
                       <tr>
                         <th scope="row">Pet</th>
-                        <td><%= @application.pet.name%></td>
+                        <td><%= @application.pet.id%></td>
                       </tr>
                       <tr>
                         <th scope="row">More about you</th>
@@ -19,5 +19,12 @@
                       </tr>
                     </tbody>
                   </table>
+      </div>
+      <li class="list-group-item" >
+        <%= link_to application_path(@application) %>
+        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn btn-ghost" %>
+      </li>
+      <div>
+
       </div>
 </div>
