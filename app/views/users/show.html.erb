@@ -1,51 +1,149 @@
 <div class="container">
-<br>
-<h1>Welcome, <%= current_user.name %>!</h1>
-  <p> <%= button_to("Edit your details", edit_user_registration_path(current_user), method: :get, :class => "btn btn-ghost") %>
-    </p>
-      <br>
-        <% if @pets.any? %>
-          <h2>Your pets listed for adoption:</h2>
-            <br>
-              <ul class="list-group mb-3">
-                  <div class="row">
-                    <% @pets.each do |pet| %>
-                    <div class="col-md-4">
-                      <%= link_to pet_path(pet) do%>
-                        <div class="card card-01">
-                          <% if pet.photo.attached? %>
-                          <%=cl_image_tag pet.photo.key %>
-                          <% else %>
-                          <%= image_tag "#{pet.category.parameterize}.jpg", class: "card-img-top" %>
-                          <% end %>
-                          <div class="card-body">
-                            <h4 class="card-title">Name: <%= pet.name %></h4>
-                            <p class="card-text">Species: <%= pet.species %></p>
-                            <p class="card-text">Breed: <%= pet.breed %></p>
-                            <p class="card-text">Age: <%= pet.age %></p>
-                            <p class="card-text">
-                            </p>
-                            <div align="right">
-                            <%= link_to pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
-                                <i class="fa-solid fa-trash-can" ></i>
-                                  <% end %>
+  <br>
+  <h1>Welcome, <%= current_user.name %>!</h1>
+    <p> <%= button_to("Edit your details", edit_user_registration_path(current_user), method: :get, :class => "btn btn-ghost") %>
+      </p>
+        <br>
+          <% if @user.pets.any? %>
+            <h2>Your pets listed for adoption:</h2>
+              <br>
+                <ul class="list-group mb-3">
+                    <div class="row">
+                      <% @user.pets.each do |pet| %>
+                      <div class="col-md-4">
+                        <%= link_to pet_path(pet) do%>
+                          <div class="card card-01">
+                            <% if pet.photo.attached? %>
+                            <%=cl_image_tag pet.photo.key %>
+                            <% else %>
+                            <%= image_tag "default-image.png", class: "card-img-top" %>
+                            <% end %>
+                            <div class="card-body">
+                              <h4 class="card-title">Name: <%= pet.name %></h4>
+                              <p class="card-text">Species: <%= pet.species %></p>
+                              <p class="card-text">Breed: <%= pet.breed %></p>
+                              <p class="card-text">Age: <%= pet.age %></p>
+                              <p class="card-text">
+                              </p>
+                              <div align="right">
+                              <%= link_to pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
+                                  <i class="fa-solid fa-trash-can" ></i>
+                                    <% end %>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <% end %>
+                        <% end %>
                       </div>
-                      <% end %>
-                      <% end %>
                     </div>
-                  </div>
-                <% else %>
-                <h2> You currently don't have any pets listed for adoption!</h2>
-                <% end %>
-          </ul>
-        <br>
-        <div align="center">
-          <%= link_to "Add a new pet for adoption", new_pet_path, class: 'btn btn-ghost' %>
-          </div>
-        <br>
+                  <% else %>
+                  <h2> You currently don't have any pets listed for adoption!</h2>
+                  <% end %>
+            </ul>
+          <br>
+          <div align="center">
+            <%= link_to "Add a new pet for adoption", new_pet_path, class: 'btn btn-ghost' %>
+            </div>
+          <br>
+        </div>
       </div>
-    </div>
-  </div>
+      <br>
+          <% if @user.favourites.any? %>
+            <% unless @user.rescue? %>
+            <h2>Your favourite pets:</h2>
+              <br>
+                <ul class="list-group mb-3">
+                    <div class="row">
+                      <% @user.favourites.each do |favourite| %>
+                      <div class="col-md-4">
+                        <%= link_to pet_path(favourite.pet) do%>
+                          <div class="card card-01">
+                            <% if favourite.pet.photo.attached? %>
+                            <%=cl_image_tag favourite.pet.photo.key %>
+                            <% else %>
+                            <%= image_tag "default-image.png", class: "card-img-top" %>
+                            <% end %>
+                            <div class="card-body">
+                              <h4 class="card-title">Name: <%= favourite.pet.name %></h4>
+                              <p class="card-text">Species: <%= favourite.pet.species %></p>
+                              <p class="card-text">Breed: <%= favourite.pet.breed %></p>
+                              <p class="card-text">Age: <%= favourite.pet.age %></p>
+                              <p class="card-text">
+                              </p>
+                              <div align="right">
+                              <%= link_to pet_path(favourite.pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} do %>
+                                  <i class="fa-solid fa-trash-can" ></i>
+                                    <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% else %>
+                  <h2> You currently don't have any favourite pets!</h2>
+                  <% end %>
+                <% end %>
+            </ul>
+          <br>
+          <div align="center">
+            <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'btn btn-ghost' %>
+            </div>
+          <br>
+        </div>
+      </div>
+  <br>
+          <% if @user.applications.any? %>
+            <h2>You currently have applications pending!</h2>
+              <br>
+                <ul class="list-group mb-3">
+                    <div class="row">
+                      <% @user.applications.each do |application| %>
+                      <div class="col-md-4">
+                        <%= link_to pet_path(application.pet) do%>
+                          <div class="card card-01">
+                            <% if application.pet.photo.attached? %>
+                            <%=cl_image_tag application.pet.photo.key %>
+                            <% else %>
+                            <%= image_tag "default-image.png", class: "card-img-top" %>
+                            <% end %>
+                            <div class="card-body">
+                              <h4 class="card-title">Name: <%= application.pet.name %></h4>
+                              <p class="card-text">Species: <%= application.pet.species %></p>
+                              <p class="card-text">Breed: <%= application.pet.breed %></p>
+                              <p class="card-text">Age: <%= application.pet.age %></p>
+                              <p class="card-text">
+                              </p>
+                              <div align="right">
+                              <% if @user.rescue?  %>
+                              <div align="center">
+                                  <%= link_to "Review pending applications for this pet", application_path, class: 'btn btn-ghost' %>
+                                  </div>
+                              <% else %>
+                              <%= link_to pet_path(application.pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"} do %>
+                                  <i class="fa-solid fa-trash-can" ></i>
+                                    <% end %>
+                              <div align="center">
+                                  <%= link_to "Review your application", application_path, class: 'btn btn-ghost' %>
+                                  </div>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% else %>
+                  <h2> You currently don't have any applications pending!</h2>
+                  <% end %>
+            </ul>
+          <br>
+          <br>
+        </div>
+      </div>
+ </div>
