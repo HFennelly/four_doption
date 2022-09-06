@@ -1,0 +1,13 @@
+<h3>Add an animal for adoption:</h3>
+        <%= simple_form_for @pet do |f| %>
+          <%= f.input :name, required: true, placeholder: '' %>
+          <%= f.input :species, :collection => ["Cat", "Dog", "Rabbit", "Hamster", "Bird"], prompt: "Add a category" %>
+          <%= f.input :breed, required: true, placeholder: '' %>
+          <%= f.input :age, required: true, label: "Age" %>
+          <%= f.input :location, required: true, placeholder: '' %>
+          <%= f.input :sex, required: true, placeholder: '' %>
+          <%= f.input :size, required: true %>
+          <%= f.input :needs_garden, label: "Needs a garden?" %>
+          <%= f.input :adopted %>
+          <%= f.submit class: 'btn btn-ghost' %>
+        <% end %>

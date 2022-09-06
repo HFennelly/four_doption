@@ -1,0 +1,15 @@
+<h1>Check out our available pets...</h1>
+<div class="main">
+  <div class="filter">
+  </div>
+  <div class="index-cards">
+  <% @pets.each do |pet| %>
+      <div class="index-card">
+        <h4 class="card-title">Name: <%= pet.name %></h4>
+        <p class="card-text">Species: <%= pet.species %></p>
+        <p class="card-text">Breed: <%= pet.breed %></p>
+        <p class="card-text">Age: <%= pet.age %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
