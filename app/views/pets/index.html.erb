@@ -1,15 +1,28 @@
 <h1>Check out our available pets...</h1>
-<div class="main">
-  <div class="filter">
-  </div>
-  <div class="index-cards">
-  <% @pets.each do |pet| %>
-      <div class="index-card">
-        <h4 class="card-title">Name: <%= pet.name %></h4>
-        <p class="card-text">Species: <%= pet.species %></p>
-        <p class="card-text">Breed: <%= pet.breed %></p>
-        <p class="card-text">Age: <%= pet.age %></p>
-      </div>
-    <% end %>
-  </div>
+
+<div class="cards">
+<% @pets.each do |pet| %>
+  <%= link_to pet_path(pet), class: "card" do %>
+      <% if pet.species == "" %>
+        <%= image_tag "dog.jpg", class: "card__image" %>
+      <% else %>
+        <%= image_tag "#{pet.species.parameterize}.jpg", class: "card__image" %>
+      <% end %>
+      <div class="card__overlay">
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+          <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+           <div class="card__header-text">
+              <h3 class="card__title"><% pet.name %></h3>
+              <%# <i class="fa-solid fa-user-tie"></i> %>
+              <p><%= pet.breed %></p>
+              <span class="card__status"><%= pet.location %></span>
+          </div>
+        </div>
+          <p class="card__description"><p class="card-text">Breed: <%= pet.breed %></p>
+          <p class="card-text">Age: <%= pet.age %></p></p>
+          <p class="card-text">Size: <%= pet.size %></p></p>
+        </div>
+  <% end %>
+<% end %>
 </div>
