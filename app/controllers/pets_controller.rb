@@ -17,4 +17,8 @@ class PetsController < ApplicationController
     @pet.save
     redirect_to pets_path
   end
+
+  def pet_params
+    params.require(:pet).permit(:name, :species, :breed, :age, :location, :sex, :size, :needs_garden, :adopted)
+  end
 end
