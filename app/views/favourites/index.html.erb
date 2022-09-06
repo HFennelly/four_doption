@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1>All Favourites</h1>
+      <ul class="list-group mb-3">
+        <% @favourites.each do |favourite| %>
+          <li class="list-group-item">
+            <%= favourite.pet.name %>
+            <li class="list-group-item" >
+              <%= button_to("Delete favourite", favourite_path(favourite) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn btn-ghost") %>
+            </li>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
