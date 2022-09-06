@@ -26,6 +26,7 @@
   </div>
 </div>
 <% else %>
-<p>you have already applied to adopt <%= @pet.name %></p>
-<%= link_to "Available pets", pets_path %>
+  <p>you have already applied to adopt <%= @pet.name %></p>
+  <%= link_to "Available pets", pets_path %>
+  <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
 <% end %>

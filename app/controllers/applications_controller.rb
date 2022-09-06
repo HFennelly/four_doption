@@ -13,11 +13,16 @@ class ApplicationsController < ApplicationController
   end
 
   def edit
-
+    @application = Application.find(params[:id])
   end
 
   def update
-
+    @application = Application.find(params[:id])
+    if @application.update(application_params)
+      redirect_to pet_path(@pet), notice: "Your application has been updated!"
+    else
+      render :edit, status: :unprocessible_entity
+    end
   end
 
   def show
