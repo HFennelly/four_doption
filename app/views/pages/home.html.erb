@@ -1,2 +1,25 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="banner-homepage">
+    <h1> 4Doption</h1>
+    <p> Find Your Pet</p>
+     <%= link_to "Search Now", pets_path, class: "btn btn-primary" %>
+  </div>
+
+          <div class="row">
+          <% @pets.each do |pet| %>
+            <div class="col-md-3">
+            <%= link_to pet_path(pet) do %>
+              <div class="card card-01">
+                <%= image_tag "#{pet.species.parameterize}.jpg", class: "card-img-top" %>
+                  <div class="card-body">
+                    <h4 class="card-title">Name: <%= pet.name %></h4>
+                    <p class="card-text">Species: <%= pet.species %></p>
+                    <p class="card-text">Age: <%= pet.age %></p>
+                    <p class="card-text">Sex: <%= pet.sex %></p>
+                    <p class="card-text">
+                  </div>
+              </div>
+            <% end %>
+            </div>
+          <% end %>
+</div>
