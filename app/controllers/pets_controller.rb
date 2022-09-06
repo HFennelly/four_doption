@@ -1,7 +1,15 @@
 class PetsController < ApplicationController
   def index
-    @pets = Pet.all
+    if params[:query].present?
+      sql_query = <<~SQL
+        pets.location @@ :query
+      SQL
+      @pets = Pet.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @pets = Pet.all
+    end
   end
+
 
   def show
     @pet = Pet.find(params[:id])
