@@ -15,7 +15,7 @@ class PetsController < ApplicationController
     @pet = Pet.new(pet_params)
     @pet.user = current_user
     @pet.save
-    redirect_to pets_path
+    redirect_to pet_path(@pet)
   end
 
   def edit
@@ -31,7 +31,11 @@ class PetsController < ApplicationController
     end
   end
 
-
+  def destroy
+    @pet = Pet.find(params[:id])
+    @pet.destroy
+    redirect_to pets_path, status: :see_other
+  end
 
   private
 
