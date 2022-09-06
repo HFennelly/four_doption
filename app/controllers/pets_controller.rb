@@ -18,6 +18,23 @@ class PetsController < ApplicationController
     redirect_to pets_path
   end
 
+  def edit
+    @pet = Pet.find(params[:id])
+  end
+
+  def update
+    @pet = Pet.find(params[:id])
+    if @pet.update(pet_params)
+      redirect_to pet_path(@pet)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
+
+  private
+
   def pet_params
     params.require(:pet).permit(:name, :species, :breed, :age, :location, :sex, :size, :needs_garden, :adopted)
   end
