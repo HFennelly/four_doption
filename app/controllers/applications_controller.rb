@@ -15,6 +15,21 @@ class ApplicationsController < ApplicationController
 
   end
 
+  def show
+    @application = Application.find(params[:id])
+  end
+
+  def destroy
+    @application = Application.find(params[:id])
+    @pet = @application.pet
+    @pet.destroy
+    redirect_to pet_path(@pet), status: :see_other
+  end
+
+  def index
+
+  end
+
   private
 
   def booking_params
