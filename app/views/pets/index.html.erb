@@ -14,14 +14,18 @@
           <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
            <div class="card__header-text">
               <h3 class="card__title"><% pet.name %></h3>
-              <%# <i class="fa-solid fa-user-tie"></i> %>
-              <p><%= pet.breed %></p>
+              <p><%= pet.breed.capitalize %></p>
               <span class="card__status"><%= pet.location %></span>
           </div>
         </div>
-          <p class="card__description"><p class="card-text">Breed: <%= pet.breed %></p>
-          <p class="card-text">Age: <%= pet.age %></p></p>
-          <p class="card-text">Size: <%= pet.size %></p></p>
+        <div class="ps-3">
+        <p class="card-details-header"><strong>Details</strong></p>
+          <p class="card-text">Breed: <%= pet.breed %></p>
+          <p class="card-text">Sex: <%= pet.sex %></p>
+          <p class="card-text">Age: <%= pet.age %></p>
+          <p class="card-text">Size: <%= pet.size %></p>
+          <p class="card-text-bottom">Needs a garden? <%= pet.needs_garden ? "Yes" : "No" %></p>
+          </div>
         </div>
   <% end %>
 <% end %>

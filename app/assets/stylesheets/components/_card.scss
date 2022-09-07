@@ -1,4 +1,5 @@
 
+// pets index page card
 
 .cards {
   display: grid;
@@ -8,8 +9,6 @@
   padding: 0;
   list-style-type: none;
 }
-
-// repeat(auto-fit, minmax(300px, 1fr));
 
 .card {
   position: relative;
@@ -84,33 +83,57 @@
 .card__title {
   font-size: 1em;
   margin: 0 0 .3em;
-  color: #6A515E;
-}
-
-.card-text {
-  padding: 15px;
+  color: #2EC0F9;
 }
 
 .card__tagline {
   display: block;
   margin: 1em 0;
-  font-family: "MockFlowFont";
+  font-family: 'Quicksand', sans-serif;
   font-size: .8em;
-  color: #D7BDCA;
+  color: #2EC0F9;
 }
 
 .card__status {
   font-size: .8em;
-  color: #D7BDCA;
+  color: #2EC0F9;
 }
 
-.card__description {
-  padding: 0 2em 2em;
-  margin: 0px;
-  color: #D7BDCA;
-  font-family: "MockFlowFont";
+.card-text {
+  color: #2EC0F9;
+  font-family: 'Quicksand', sans-serif;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+  padding: 1px;
+  margin-left: 20px;
+}
+
+.card-text-bottom {
+  color: #2EC0F9;
+  font-family: 'Quicksand', sans-serif;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  padding: 1px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.card-details-header {
+  margin-left: 20px;
+  padding: 1px;
+  color: #000000;
+  font-weight: bold;
+  font-family: 'Quicksand', sans-serif;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.card__header-text {
+  color: #67AAF9;
 }
