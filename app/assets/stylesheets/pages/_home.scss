@@ -29,6 +29,10 @@
   margin-top: 25px;
 }
 
+.title form {
+  margin-top: 25px;
+}
+
 .home-row {
   margin: 16px;
 }
@@ -47,12 +51,13 @@
 
 .landing-page-card {
   width: 250px;
-  transition: all 1s ease;
   border-radius: 10px;
+  color: rgb(6, 54, 82);
 }
 
 .landing-page-card:hover {
   transform: scale(1.05);
+  transition: all 1s ease;
 }
 
 .card-body {
