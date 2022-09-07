@@ -20,11 +20,14 @@ u = User.create(email: Faker::Internet.email, password: "123456", name: Faker::F
       name: Faker::TvShows::BojackHorseman.character,
       species: ['cat', 'dog'].sample,
       age: [1, 2, 3, 4, 5, 6, 7].sample,
-      breed: ['cat', 'dog'].sample,
+      breed: ['chow chow', 'labrador'].sample,
       size: ['big', 'medium', 'small'].sample,
       needs_garden: [true, false].sample,
-      adopted: false
+      adopted: false,
+      adoption_fee: [100, 200, 300, 400, 500].sample,
+      location: Faker::Address.city
     )
+
     application = Application.create!(
       user: u,
       pet: pet,
