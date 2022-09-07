@@ -13,6 +13,17 @@
               <i class="fa-solid fa-trash-can"></i>
             <% end %>
           <% end %>
+
+<% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
+        <% if current_user.favourites.where(pet: @pet).count > 0 %>
+          <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
+          <br>
+          <%= link_to "Unfavourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} %>
+        <% else %> <%#if no favourites, show the create favourite button %>
+          <%= simple_form_for [@pet, @favourite] do |f| %>
+            <%= f.submit class: 'button-2' %>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
@@ -45,3 +56,11 @@
   </div>
 
 </div>
+
+<% elsif @pet.user != current_user %>
+  <p>You have already applied to adopt <%= @pet.name %></p>
+  <%= link_to "Available pets", pets_path %>
+  <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
+<% else  %>
+ <P>ADD SHOW APPLICATIONS HERE</P>
+<% end %>

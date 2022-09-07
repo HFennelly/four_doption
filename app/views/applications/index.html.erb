@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1>Your current applications</h1>
+      <ul class="list-group mb-3">
+        <% @applications.each do |application| %>
+          <li class="list-group-item">
+          <% if application.approved?  %>
+            <h3>Your approved applications</h3>
+            <%= application.requirements %>
+            <br>
+            <%= link_to "See your application", application_path(application) %>
+          <% else %>
+            <h3>Your pending applications</h3>
+            <%= application.requirements %>
+            <br>
+            <%= link_to "See your application", application_path(application) %>
+           <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

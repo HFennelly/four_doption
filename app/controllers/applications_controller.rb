@@ -37,7 +37,7 @@ class ApplicationsController < ApplicationController
   end
 
   def index
-    @application = Application.all
+    @applications = Application.all
   end
 
   private
