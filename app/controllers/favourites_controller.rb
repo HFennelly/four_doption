@@ -7,7 +7,7 @@ class FavouritesController < ApplicationController
     @favourite = Favourite.find(params[:id])
     @pet = @favourite.pet
     @favourite.destroy
-    if request.referrer.include?("/favourites")
+    if request.referrer.include?("/favourites") # if on favourites index page
       redirect_to favourites_path, status: :see_other
     else
       redirect_to pet_path(@pet), status: :see_other
@@ -25,7 +25,4 @@ class FavouritesController < ApplicationController
   end
 
   private
-
-  # for tommorow
-  # need to be able to delete a favourite from a list of favourites (there is no favourites show page here)
 end
