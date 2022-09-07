@@ -10,8 +10,17 @@
     <% end %>
   <% end %>
 
-<%# pet application form  %>
 <% if @pet.applications.where(user: current_user).count == 0 %>
+        <% if current_user.favourites.where(pet: @pet).count > 0 %>
+          <%= link_to "Check out your favourite pets!", favourites_path %>
+          <br>
+          <%= link_to "Unfavourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} %>
+        <% else %>
+          <%= simple_form_for [@pet, @favourite] do |f| %>
+            <%= f.submit class: 'btn btn-ghost' %>
+          <% end %>
+        <% end %>
+<%# pet application form  %>
 <div class="container py-5">
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3">
