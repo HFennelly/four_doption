@@ -1,48 +1,90 @@
-<button type="button" class="btn btn-light"
-        data-controller="filter-search"
+<div data-controller="filter-search">
+
+      <button type="button" class="btn btn-light"
         data-action="click->filter-search#show"
-        data-filter-search-target="hideButton"> Filter Search </button>
+        data-filter-search-target="hideButton"> Filter Search
+     </button>
 
     <div class="filter-search-dropdown-form d-none"
-          data-controller="filter-search"
           data-filter-search-target="dropdown">
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Quas delectus deleniti ducimus, asperiores unde aliquam nihil
-          praesentium ad ea repellendus aperiam alias optio officia quis
-          consectetur mollitia, esse suscipit! Soluta!</p>
 
-          <button type="button" class=" close btn btn-link" data-controller="filter-search"
-          data-action="click->filter-search#hide">
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Sex</label>
+              <select class="custom-select my-1 mr-sm-2" id="Sex" data-filter-search-target="sex"
+              data-action="change->filter-search#refine">
+                <option selected>Choose...</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Species</label>
+              <select class="custom-select my-1 mr-sm-2" id="Species" data-filter-search-target="species"
+              data-action="change->filter-search#refine">
+                <option selected>Choose...</option>
+                <option value="Dog">Male</option>
+                <option value="Cat">Female</option>
+              </select>
+
+
+            <div class="btn-group">
+              <button class="sexButton btn btn-secondary btn-sm dropdown-toggle"
+              type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Sex
+              </button>
+              <div class="dropdown-menu">
+                <a id="male" class="dropdown-item"  data-action="click->filter-search#refine">Male</a>
+                <a id="female" class="dropdown-item"  data-action="click->filter-search#refine">Female</a>
+              </div>
+            </div>
+
+
+
+
+          <button type="button" class=" close btn btn-link" data-action="click->filter-search#hide">
           close </button>
     </div>
+            <%# <div data-controller="filter-search">
+                <%= form_with url: pets_path, method: :get, html: { class:
+            "mb-4", data: { filter_search_target: "form"} } do |f| %>
+            <%# <%= f.text_field :query,
+                            class: "form-control",
+                            placeholder: "Breed",
+                            value: params[:query],
+                            data: {filter_search_target: "pets"} %>
+                            <%# <% end %>
 
 
-<h1>Check out our available pets...</h1>
 
-<div class="cards">
-<% @pets.each do |pet| %>
-  <%= link_to pet_path(pet), class: "card" do %>
-      <% if pet.species == "" %>
-        <%= image_tag "dog.jpg", class: "card__image" %>
-      <% else %>
-        <%= image_tag "#{pet.species.parameterize}.jpg", class: "card__image" %>
-      <% end %>
-      <div class="card__overlay">
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-          <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
-           <div class="card__header-text">
-              <h3 class="card__title"><% pet.name %></h3>
-              <%# <i class="fa-solid fa-user-tie"></i> %>
-              <p><%= pet.breed %></p>
-              <span class="card__status"><%= pet.location %></span>
+
+
+
+  <h1>Check out our available pets...</h1>
+
+  <div class="cards">
+  <% @pets.each do |pet| %>
+    <%= link_to pet_path(pet), class: "card", data: {filter_search_target: "pet", sex: pet.sex} do %>
+        <% if pet.species == "" %>
+          <%= image_tag "dog.jpg", class: "card__image" %>
+        <% else %>
+          <%= image_tag "#{pet.species.parameterize}.jpg", class: "card__image" %>
+        <% end %>
+        <div class="card__overlay">
+          <div class="card__header">
+            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+            <div class="card__header-text">
+                <h3 class="card__title"><% pet.name %></h3>
+                <%# <i class="fa-solid fa-user-tie"></i> %>
+                <p><%= pet.breed %></p>
+                <span class="card__status"><%= pet.location %></span>
+            </div>
           </div>
-        </div>
-          <p class="card__description"><p class="card-text">Breed: <%= pet.breed %></p>
-          <p class="card-text">Age: <%= pet.age %></p></p>
-          <p class="card-text">Size: <%= pet.size %></p></p>
-        </div>
+            <p class="card__description"><p class="card-text">Breed: <%= pet.breed %></p>
+            <p class="card-text">Age: <%= pet.age %></p></p>
+            <p class="card-text">Size: <%= pet.size %></p></p>
+          </div>
+    <% end %>
   <% end %>
-<% end %>
+  </div>
+
 </div>
