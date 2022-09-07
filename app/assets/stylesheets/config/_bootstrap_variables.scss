@@ -23,3 +23,21 @@ $border-radius-lg: 2px;
 $border-radius-sm: 2px;
 
 // Override other variables below!
+.home-container {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background-color: #c4e0f9;
+  margin: 5px;
+}
+
+.container {
+  background-color: #c4e0f9;
+  border-radius: 15px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  margin: 5px;
+}
