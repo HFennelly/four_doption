@@ -1,3 +1,23 @@
+<button type="button" class="btn btn-light"
+        data-controller="filter-search"
+        data-action="click->filter-search#show"
+        data-filter-search-target="hideButton"> Filter Search </button>
+
+    <div class="filter-search-dropdown-form d-none"
+          data-controller="filter-search"
+          data-filter-search-target="dropdown">
+
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Quas delectus deleniti ducimus, asperiores unde aliquam nihil
+          praesentium ad ea repellendus aperiam alias optio officia quis
+          consectetur mollitia, esse suscipit! Soluta!</p>
+
+          <button type="button" class=" close btn btn-link" data-controller="filter-search"
+          data-action="click->filter-search#hide">
+          close </button>
+    </div>
+
+
 <h1>Check out our available pets...</h1>
 
 <div class="cards">
