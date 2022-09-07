@@ -20,7 +20,7 @@
 
       <% if @pet.applications.where(user: current_user).count == 0 %>
         <div class="pet-details" style="color: black;">
-          <h3>Apply to adopt this pet!</h3>
+          <h3 class="pet-show-name-header">Apply to adopt this pet!</h3>
           <%= simple_form_for [@pet, @application] do |f| %>
             <%= f.input :requirements, required: true %>
             <%= f.submit class: 'button-2' %>
