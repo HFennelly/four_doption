@@ -50,7 +50,7 @@
 }
 
 .landing-page-card {
-  width: 250px;
+  width: 243px;
   border-radius: 10px;
   color: rgb(6, 54, 82);
 }
@@ -63,4 +63,8 @@
 .card-body {
   color: black;
   text-decoration: none;
+}
+
+.landing-page-card .card-body {
+  height: 138px;
 }
