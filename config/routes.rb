@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   resources :favourites, only: [:index, :destroy]
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users, only: [:show, :destroy, :index]
+  resources :users, only: [:show, :destroy, :edit, :update]
 end
