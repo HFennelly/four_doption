@@ -6,7 +6,7 @@
       <% if pet.species == "" %>
         <%= image_tag "dog.jpg", class: "card__image" %>
       <% else %>
-        <%= image_tag "#{pet.species.parameterize}.jpg", class: "card__image" %>
+        <%= image_tag "default-image.png", class: "card-img-top" %>
       <% end %>
       <div class="card__overlay">
         <div class="card__header">
