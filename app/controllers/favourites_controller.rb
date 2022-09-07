@@ -7,7 +7,7 @@ class FavouritesController < ApplicationController
     @favourite = Favourite.find(params[:id])
     # @pet = @favourite.pet
     @favourite.destroy
-    # redirect_to pet_path(@pet), status: :see_other
+    redirect_to favourites_path, status: :see_other
   end
 
   def favourite_params
