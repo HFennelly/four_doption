@@ -6,7 +6,7 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg:                 $light-gray;
+$body-bg:                 $beaublue;
 $font-size-base: 1rem;
 
 // Colors
@@ -22,7 +22,7 @@ $capri: #2EC0F9;
 $frenchskyblue: #67AAF9;
 $babyblueeyes: #9BBDF9;
 $beaublue: #c4e0f9;
-$gray: #222934;
+$gray: #343d4c;
 $light-gray: #d2e6f7;
 
 // Buttons & inputs' radius
@@ -52,7 +52,7 @@ $border-radius-sm: 15px;
 .center {
   margin: auto;
   width: 40%;
-  }
+}
 
 .home-container {
   width: 100%;
@@ -61,4 +61,52 @@ $border-radius-sm: 15px;
   min-height: 100vh;
   background-color: #e9f3fc;
   padding: 5px;
+}
+
+a {
+  color: #343d4c;
+  text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+  color: #343d4c;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #67AAF9;
+  text-decoration: none;
+}
+
+.btn-ghost {
+  color: #343d4c;
+  background-color: #9BBDF9;
+  border: 2px solid #9BBDF9;
+  padding: 8px 24px;
+  border-radius: 50px;
+  opacity: 0.9;
+  transition: 0.3s ease;
+  margin: 4px;
+}
+
+.btn-ghost:hover {
+  opacity: 0.8;
+  background-color: rgb(217, 236, 247);
+}
+
+.profile-container {
+  background-color: #e9f3fc;
+  border-radius: 15px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  padding: 30px;
+}
+
+.card__title {
+  color: #343d4c;
 }

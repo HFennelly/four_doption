@@ -10,7 +10,7 @@
             <%= fav.id %>
             <li class="list-group-item" >
               <%= link_to "Go to your favourite pet", pet_path(fav.pet) %>
-              <%= button_to("Delete favourite", favourite_path(fav) ,  method: "delete", :class => "btn btn-ghost") %>
+              <%= button_to("Delete favourite", favourite_path(fav) ,  method: "delete", :class => "btn-ghost") %>
             </li>
           </li>
         <% end %>

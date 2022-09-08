@@ -21,7 +21,7 @@
                   </table>
       </div>
       <li class="list-group-item" >
-        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn btn-ghost", notice: "your application has been cancelled" %>
+        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn-ghost", notice: "your application has been cancelled" %>
         <br>
         <%= link_to "See All Of Your Applications", applications_path %>
       </li>
