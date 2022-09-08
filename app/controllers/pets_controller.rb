@@ -15,6 +15,14 @@ class PetsController < ApplicationController
     @pet = Pet.find(params[:id])
     @application = Application.new
     @favourite = Favourite.new
+    @pets = Pet.all
+    # The `geocoded` scope filters only pets with coordinates
+    @markers = [
+      {
+        lat: @pet.latitude,
+        lng: @pet.longitude
+      }
+    ]
   end
 
   def new
