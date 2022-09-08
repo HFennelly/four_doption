@@ -8,23 +8,33 @@ class PetsController < ApplicationController
     else
       @pets = Pet.all
     end
+
     if params[:sex] != "" && params[:sex].present?
       @pets = @pets.where(sex: params[:sex])
     end
-    if params[:species]
+
+    if params[:species] != "" && params[:species].present?
       @pets = @pets.where(species: params[:species])
     end
+
     if params[:breed] != "" && params[:breed].present?
       @pets = @pets.where(breed: params[:breed])
     end
+
     if params[:age] != "" && params[:age].present?
       @pets = @pets.where(age: params[:age])
     end
+
     if params[:size] != "" && params[:size].present?
       @pets = @pets.where(size: params[:size])
     end
-  end
 
+    if params.keys.count > 2
+      @searching = true
+    else
+      @searching = false
+    end
+  end
 
   def show
     @pet = Pet.find(params[:id])
