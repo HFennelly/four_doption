@@ -106,9 +106,10 @@
 
 }
 
-// .search-btn:hover {
-//   opacity: 1;
-// }
+.search-btn:hover {
+  opacity: 1;
+  color: #2EC0F9;
+}
 
 // .browse-btn:hover {
 //   opacity: 1;
@@ -117,5 +118,7 @@
 .browse-btn {
   margin: 0;
   margin-left: 15px;
+  color: black;
+  text-decoration: none;
   // border-left: 1px solid;
 }
