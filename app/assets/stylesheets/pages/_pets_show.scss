@@ -1,0 +1,171 @@
+.main-show-details {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pet-details {
+  background-color: #9BBDF9;
+  margin: 20px;
+  height: 600px;
+  border-radius: 30px;
+  padding: 20px;
+  // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+
+}
+
+.pet-details-container {
+  flex-grow: 1;
+}
+
+.adoption-details {
+  width: 400px;
+  background-color: #9BBDF9;
+  height: 600px;
+  align-items: center;
+  margin: 20px;
+  border-radius: 30px;
+}
+
+.pet-show-name-header {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.pet-infos {
+  margin-left: 20px;
+  margin-top: 20px;
+  line-height: 0.5;
+}
+
+.pet-infos p {
+  padding: 0px;
+}
+
+.new_application {
+  margin-left: 20px;
+  margin-right:20px;
+}
+
+
+/* CSS for buttons*/
+.button-2 {
+  appearance: button;
+  margin: auto;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round,sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 2px 20px 20px 20px;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.button-2:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.button-2:main,
+.button-2:focus {
+  user-select: auto;
+}
+
+.button-2:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.button-2:disabled {
+  cursor: auto;
+}
+
+
+
+.button-1 {
+  appearance: button;
+  background-color: #1899D6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round,sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 20px 20px 15px 20px;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.button-1:after {
+  background-clip: padding-box;
+  background-color: #1CB0F6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.button-1:main,
+.button-1:focus {
+  user-select: auto;
+}
+
+
+.button-1:disabled {
+  cursor: auto;
+}

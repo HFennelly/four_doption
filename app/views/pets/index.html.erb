@@ -1,3 +1,4 @@
+
 <div data-controller="filter-search">
 
       <button type="button" class="btn btn-light"
@@ -28,34 +29,35 @@
     </div>
           <p> <%= link_to "refresh search", pets_path %> </p>
 
+<h1>Check out our available pets...</h1>
 
-  <h1>Check out our available pets...</h1>
-
-  <div class="cards">
-  <% @pets.each do |pet| %>
-    <%= link_to pet_path(pet), class: "card", data: {filter_search_target: "pet", sex: pet.sex, species: pet.species, size: pet.size} do %>
-        <% if pet.species == "" %>
-          <%= image_tag "dog.jpg", class: "card__image" %>
-        <% else %>
-          <%= image_tag "#{pet.species.parameterize}.jpg", class: "card__image" %>
-        <% end %>
-        <div class="card__overlay">
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
-            <div class="card__header-text">
-                <h3 class="card__title"><% pet.name %></h3>
-                <%# <i class="fa-solid fa-user-tie"></i> %>
-                <p><%= pet.species %></p>
-                <p> <%= pet.sex %> </p>
-                <span class="card__status"><%= pet.location %></span>
-            </div>
+<div class="cards">
+<% @pets.each do |pet| %>
+  <%= link_to pet_path(pet), class: "card" do %>
+      <% if pet.species == "" %>
+        <%= image_tag "dog.jpg", class: "card__image" %>
+      <% else %>
+        <%= image_tag "default-image.png", class: "card-img-top" %>
+      <% end %>
+      <div class="card__overlay">
+        <div class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+          <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+           <div class="card__header-text">
+              <h3 class="card__title"><% pet.name %></h3>
+              <p><%= pet.breed.capitalize %></p>
+              <span class="card__status"><%= pet.location %></span>
           </div>
-            <p class="card__description"><p class="card-text">Breed: <%= pet.breed %></p>
-            <p class="card-text">Age: <%= pet.age %></p></p>
-            <p class="card-text">Size: <%= pet.size %></p></p>
+        </div>
+        <div class="ps-3">
+        <p class="card-details-header"><strong>Details</strong></p>
+          <p class="card-text">Breed: <%= pet.breed %></p>
+          <p class="card-text">Sex: <%= pet.sex %></p>
+          <p class="card-text">Age: <%= pet.age %></p>
+          <p class="card-text">Size: <%= pet.size %></p>
+          <p class="card-text-bottom">Needs a garden? <%= pet.needs_garden ? "Yes" : "No" %></p>
           </div>
-    <% end %>
+        </div>
   <% end %>
   </div>
 

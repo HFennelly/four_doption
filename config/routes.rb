@@ -6,11 +6,11 @@ Rails.application.routes.draw do
     resources :favourites, only: [:create]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :applications, only: [:show, :destroy] do
+  resources :applications, only: [:show, :destroy, :index] do
     resources :messages
   end
   resources :favourites, only: [:index, :destroy]
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users, only: [:show, :destroy, :index]
+  resources :users, only: [:show, :destroy, :edit, :update]
 end

@@ -33,11 +33,15 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
     @pet = @application.pet
     @application.destroy
-    redirect_to pet_path(@pet), status: :see_other
+    if request.referrer.include?("/applications/") # if on applications show page
+      redirect_to pet_path(@pet), status: :see_other
+    else # if on applications index page
+      redirect_to applications_path, status: :see_other
+    end
   end
 
   def index
-    @application = Application.all
+    @applications = Application.all
   end
 
   private

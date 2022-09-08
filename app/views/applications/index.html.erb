@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <% if @applications.count >= 1 %>
+      <h1>Your current applications</h1>
+      <h5> <%= "You currently have #{@applications.count} applications" %></h5>
+      <ul class="list-group mb-3">
+        <% @applications.each do |application| %>
+          <li class="list-group-item">
+          <% if application.approved?  %>
+            <h3>Your approved applications</h3>
+            <%= application.requirements %>
+            <br>
+            <%= link_to "See your application", application_path(application) %>
+            <br>
+          <% else %>
+            <h3>Your pending applications</h3>
+            <%= application.requirements %>
+            <br>
+            <%= link_to "See your application", application_path(application) %>
+            <br>
+            <%= link_to "Delete application", application_path(application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn btn-ghost", notice: "your application has been cancelled" %>
+           <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h1>You currently don't have any applications</h1>
+    <% end %>
+    </div>
+  </div>
+</div>

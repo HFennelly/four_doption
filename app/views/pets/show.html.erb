@@ -1,32 +1,72 @@
-      <h2><%= @pet.name  %></h2>
-      <h2> <i> <%= @pet.species %> </i></h2>
-      <p> Breed: <%= @pet.breed %></p>
-      <p> Age: <%= @pet.age %></p>
-      <p> Location: <%= @pet.location %></p>
-  <% if @pet.user == current_user %>
-      <%= link_to "Edit", edit_pet_path(@pet), class: "btn btn-ghost" %>
-      <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
-      <i class="fa-solid fa-trash-can"></i>
-    <% end %>
-  <% end %>
+<div class="main-show-details">
+  <div class="pet-details-container">
+    <div class="pet-details">
 
-<%# pet application form  %>
-<% if @pet.applications.where(user: current_user).count == 0 %>
-<div class="container py-5">
-  <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
-      <div class="bg-white rounded p-3 shadow" style="color: black;">
-        <h3>Apply to adopt this pet!</h3>
-        <%= simple_form_for [@pet, @application] do |f| %>
-          <%= f.input :requirements, required: true %>
-          <%= f.submit class: 'btn btn-ghost' %>
+      <h2 class="pet-show-name-header"><%= @pet.name.capitalize %></h2>
+      <div class="pet-infos">
+          <p> <%= @pet.breed.capitalize %></p>
+          <p> Age: <%= @pet.age %></p>
+          <p> Location: <%= @pet.location %></p>
+              <% if @pet.user == current_user %>
+              <%= link_to "Edit", edit_pet_path(@pet), class: "btn btn-ghost" %>
+              <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
+              <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+          <% end %>
+
+<% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
+        <% if current_user.favourites.where(pet: @pet).count > 0 %>
+          <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
+          <br>
+          <%= link_to "Unfavourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} %>
+        <% else %> <%#if no favourites, show the create favourite button %>
+          <%= simple_form_for [@pet, @favourite] do |f| %>
+            <%= f.submit class: 'button-2' %>
+          <% end %>
         <% end %>
       </div>
     </div>
+
+    <div class="adoption-form">
+
+      <% if @pet.applications.where(user: current_user).count == 0 %>
+        <div class="pet-details" style="color: black;">
+          <h3 class="pet-show-name-header">Apply to adopt this pet!</h3>
+          <%= simple_form_for [@pet, @application] do |f| %>
+            <%= f.input :requirements, required: true %>
+            <%= f.submit class: 'button-2' %>
+          <% end %>
+        </div>
+      <% else %>
+        <p>You have already applied to adopt <%= @pet.name %></p>
+        <%= link_to "Available pets", pets_path %>
+        <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
+      <% end %>
+    </div>
   </div>
+  <div class="adoption-details">
+    <div class="price-button">
+        <button class="button-1">Adoption Fee: £<%= @pet.adoption_fee %></button>
+    </div>
+    <div class="apply-button">
+        <a href= "#new_application"> <button class="button-2" role="button">Apply to Adopt</button></a>
+    </div>
+    <div class="rescue-profile">
+    </div>
+  </div>
+
+  <div style="width: 500px; height: 500px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
 </div>
-<% else %>
-  <p>you have already applied to adopt <%= @pet.name %></p>
+
+<% elsif @pet.user != current_user %>
+  <p>You have already applied to adopt <%= @pet.name %></p>
   <%= link_to "Available pets", pets_path %>
   <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
+<% else  %>
+ <P>ADD SHOW APPLICATIONS HERE</P>
 <% end %>

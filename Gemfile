@@ -11,6 +11,9 @@ gem "pg_search"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+# geocoding
+gem "geocoder"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 

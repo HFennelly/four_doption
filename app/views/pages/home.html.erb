@@ -2,33 +2,39 @@
   <div class="banner-homepage">
       <div class="title">
     <h1> 4Doption</h1>
-    <p> Find Your Pet</p>
-     <%= link_to "See All Pets", pets_path, class: "btn btn-primary" %>
+    <p> Find a Pet their Perfect Home.</p>
+    <div class="d-flex align-items-center search-bar-btns">
      <%= form_with url: pets_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control",
+        class: "form-control search-btn",
         placeholder: "Search by location"
       %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
+      <%= submit_tag "Search", class: "search-btn center" %>
+      <% end %>
+      <%= link_to "Browse All Pets", pets_path, class: "browse-btn" %>
+      </div>
       </div>
   </div>
 
   <div class="row justify-content-center px-5">
-    <% @pets.each do |pet| %>
-      <div class="col-md-3 my-3 landing-page-card">
-        <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
-          <div class="card card-01">
-            <%= image_tag "#{pet.species.parameterize}.jpg", class: "card-img-top" %>
-            <div class="card-body">
-              <h4 class="card-title"> <%= pet.name %></h4>
-              <p class="card-text">Species: <%= pet.species %></p>
-              <p class="card-text">
-            </div>
+    <div align=center>
+      <br>
+        <h2>Take a look at some of our pets available for adoption...</h2>
           </div>
-        <% end %>
+            <% @pets.each do |pet| %>
+              <div class="col-md-3 my-3 landing-page-card">
+                <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
+                  <div class="card card-01">
+                    <%= image_tag "#{pet.species.parameterize}.jpg", class: "card-img-top" %>
+                    <div class="card-body">
+                      <h4 class="card-title"> <%= pet.name %></h4>
+                      <p class="card-text">Species: <%= pet.species %></p>
+                      <p class="card-text">
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          <% end %>
       </div>
-    <% end %>
-  </div>
 </div>

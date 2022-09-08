@@ -9,11 +9,26 @@ require 'faker'
 
 Message.delete_all
 Application.delete_all
+Favourite.delete_all
 Pet.delete_all
 User.delete_all
 
+User.create!(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address)
+ Pet.create!(
+  user: User.last,
+  name: Faker::TvShows::BojackHorseman.character,
+  species: ['cat', 'dog'].sample,
+  age: [1, 2, 3, 4, 5, 6, 7].sample,
+  breed: ['chow chow', 'labrador'].sample,
+  size: ['big', 'medium', 'small'].sample,
+  needs_garden: [true, false].sample,
+  adopted: false,
+  adoption_fee: [100, 200, 300, 400, 500].sample,
+  location: Faker::Address.city
+)
+
 10.times do
-u = User.create(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address)
+u = User.create!(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address)
   2.times do
     pet = Pet.create!(
       user: u,
@@ -21,15 +36,22 @@ u = User.create(email: Faker::Internet.email, password: "123456", name: Faker::F
       name: Faker::TvShows::BojackHorseman.character,
       species: ['cat', 'dog'].sample,
       age: [1, 2, 3, 4, 5, 6, 7].sample,
-      breed: ['cat', 'dog'].sample,
+      breed: ['chow chow', 'labrador'].sample,
       size: ['big', 'medium', 'small'].sample,
       needs_garden: [true, false].sample,
-      adopted: false
+      adopted: false,
+      adoption_fee: [100, 200, 300, 400, 500].sample,
+      location: ["16 Villa Gaudelet, Paris", "97-99 Kings Rd, Brighton", "200 Santa Monica Pier, Santa Monica"].sample
     )
+
     application = Application.create!(
       user: u,
-      pet: pet,
+      pet: Pet.where.not(user: u).sample,
       requirements: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    )
+    favourite = Favourite.create!(
+      user: u,
+      pet: Pet.where.not(user: u).sample
     )
     puts pet.name
   end

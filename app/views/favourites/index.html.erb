@@ -1,0 +1,27 @@
+<% if @favourites.count >= 1 %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <h1>All Favourites</h1>
+      <ul class="list-group mb-3">
+        <% @favourites.each do |fav| %>
+          <li class="list-group-item">
+            <%= fav.pet.name %>
+            <%= fav.id %>
+            <li class="list-group-item" >
+              <%= link_to "Go to your favourite pet", pet_path(fav.pet) %>
+              <%= button_to("Delete favourite", favourite_path(fav) ,  method: "delete", :class => "btn btn-ghost") %>
+            </li>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<% else %>
+  <div>
+  <h1>You currently don't have any Favourites </h1>
+  </div>
+<% end %>
+
+<%# data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true} %>
