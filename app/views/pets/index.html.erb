@@ -1,64 +1,60 @@
-
 <div data-controller="filter-search">
+  <h1 class="index_title">Check out our available pets...</h1>
 
-      <button type="button" class="btn btn-light"
-        data-action="click->filter-search#show"
-        data-filter-search-target="hideButton"> Filter Search
-     </button>
+      <button type="button" class="formButton btn btn-light <%= @searching ? "d-none" : "" %>" data-action="click->filter-search#show" data-filter-search-target="hideButton"> Filter Search </button>
 
-    <div class="filter-search-dropdown-form d-none"
+    <div class="filter-search-dropdown-form <%= @searching ? "" : "d-none" %>"
           data-filter-search-target="dropdown">
 
-          <%= form_with url: "/pets", method: :get do |form| %>
+          <div class="filter">
+          <%= form_with url: "/pets", class:"form", method: :get do |form| %>
             <%= form.label  :species, "species" %>
-            <%= form.select :species, Pet.select(:species).distinct.pluck(:species).unshift(""), id: "tom-select-it" %>
+            <%= form.select :species, Pet.select(:species).distinct.pluck(:species).unshift(""), id: "tom-select-it", selected: params[:species]  %>
             <%= form.label  :breed, "breed" %>
-            <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).unshift(""), id: "tom-select-it" %>
+            <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).unshift(""), id: "tom-select-it", selected: params[:breed] %>
             <%= form.label  :age, "age" %>
-            <%= form.select :age, Pet.select(:age).distinct.pluck(:age).sort.unshift("") %>
+            <%= form.select :age, Pet.select(:age).distinct.pluck(:age).sort.unshift(""), selected: params[:age] %>
             <%= form.label  :size, "size" %>
-            <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift("") %>
+            <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift(""), selected: params[:size] %>
             <%= form.label  :sex, "sex" %>
-            <%= form.select :sex, ["", "female", "male" ] %>
+            <%= form.select :sex, ["", "female", "male" ], selected: params[:sex] %>
             <%= form.submit "Search" %>
           <% end %>
-
-
-          <button type="button" class=" close btn btn-link" data-action="click->filter-search#hide">
-          close </button>
+          <button type="button" class=" close btn btn-link" data-action="click->filter-search#hide"> <i class="fa-solid fa-square-xmark"></i> </button>
+          </div>
     </div>
-          <p> <%= link_to "refresh search", pets_path %> </p>
 
-<h1>Check out our available pets...</h1>
+  <p class="clearSearch <%= @searching ? "" : "d-none"%>" > <%= link_to "clear search", pets_path %> </p>
 
-<div class="cards">
-<% @pets.each do |pet| %>
-  <%= link_to pet_path(pet), class: "card" do %>
-      <% if pet.species == "" %>
-        <%= image_tag "dog.jpg", class: "card__image" %>
-      <% else %>
-        <%= image_tag "default-image.png", class: "card-img-top" %>
+
+  <div class="cards">
+    <% @pets.each do |pet| %>
+      <%= link_to pet_path(pet), class: "card" do %>
+        <% if pet.species == "" %>
+          <%= image_tag "dog.jpg", class: "card__image" %>
+        <% else %>
+          <%= image_tag "default-image.png", class: "card-img-top" %>
+        <% end %>
+        <div class="card__overlay">
+          <div class="card__header">
+            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+            <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+            <div class="card__header-text">
+                <h3 class="card__title"><% pet.name %></h3>
+                <p><%= pet.breed.capitalize %></p>
+                <span class="card__status"><%= pet.location %></span>
+            </div>
+          </div>
+          <div class="ps-3">
+            <p class="card-details-header"><strong>Details</strong></p>
+            <p class="card-text">Breed: <%= pet.breed %></p>
+            <p class="card-text">Sex: <%= pet.sex %></p>
+            <p class="card-text">Age: <%= pet.age %></p>
+            <p class="card-text">Size: <%= pet.size %></p>
+            <p class="card-text-bottom">Needs a garden? <%= pet.needs_garden ? "Yes" : "No" %></p>
+          </div>
+        </div>
       <% end %>
-      <div class="card__overlay">
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-          <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
-           <div class="card__header-text">
-              <h3 class="card__title"><% pet.name %></h3>
-              <p><%= pet.breed.capitalize %></p>
-              <span class="card__status"><%= pet.location %></span>
-          </div>
-        </div>
-        <div class="ps-3">
-        <p class="card-details-header"><strong>Details</strong></p>
-          <p class="card-text">Breed: <%= pet.breed %></p>
-          <p class="card-text">Sex: <%= pet.sex %></p>
-          <p class="card-text">Age: <%= pet.age %></p>
-          <p class="card-text">Size: <%= pet.size %></p>
-          <p class="card-text-bottom">Needs a garden? <%= pet.needs_garden ? "Yes" : "No" %></p>
-          </div>
-        </div>
-  <% end %>
+    <% end %>
   </div>
-
 </div>

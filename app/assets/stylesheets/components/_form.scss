@@ -1,0 +1,38 @@
+.filter {
+  margin-left: 16px;
+  height: 58px;
+  width: 838px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.formButton {
+  margin-left: 16px;
+}
+
+.close {
+
+  margin: 0px;
+  align-self: flex-start;
+  padding: 0px;
+  display: flex;
+  align-items: flex-start;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.form input {
+  margin-right: 16px;
+}
+
+.clearSearch {
+  margin-left: 16px;
+}
+
+.clearSearch a {
+  text-decoration: none;
+}
+
+.index_title {
+  margin: 16px;
+}
