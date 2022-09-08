@@ -19,7 +19,7 @@
             <br>
             <%= link_to "See your application", application_path(application) %>
             <br>
-            <%= link_to "Delete application", application_path(application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn btn-ghost", notice: "your application has been cancelled" %>
+            <%= link_to "Delete application", application_path(application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn-ghost", notice: "your application has been cancelled" %>
            <% end %>
           </li>
         <% end %>
