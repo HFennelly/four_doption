@@ -8,61 +8,32 @@
     <div class="filter-search-dropdown-form d-none"
           data-filter-search-target="dropdown">
 
-
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Sex</label>
-              <select class="custom-select my-1 mr-sm-2" id="Sex" data-filter-search-target="sex"
-              data-action="change->filter-search#refine">
-                <option selected>Choose...</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Species</label>
-              <select class="custom-select my-1 mr-sm-2" id="Species" data-filter-search-target="species"
-              data-action="change->filter-search#refine">
-                <option selected>Choose...</option>
-                <option value="Dog">Male</option>
-                <option value="Cat">Female</option>
-              </select>
-
-
-            <div class="btn-group">
-              <button class="sexButton btn btn-secondary btn-sm dropdown-toggle"
-              type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               Sex
-              </button>
-              <div class="dropdown-menu">
-                <a id="male" class="dropdown-item"  data-action="click->filter-search#refine">Male</a>
-                <a id="female" class="dropdown-item"  data-action="click->filter-search#refine">Female</a>
-              </div>
-            </div>
-
-
+          <%= form_with url: "/pets", method: :get do |form| %>
+            <%= form.label  :species, "species" %>
+            <%= form.select :species, Pet.select(:species).distinct.pluck(:species).unshift(""), id: "tom-select-it" %>
+            <%= form.label  :breed, "breed" %>
+            <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).unshift(""), id: "tom-select-it" %>
+            <%= form.label  :age, "age" %>
+            <%= form.select :age, Pet.select(:age).distinct.pluck(:age).sort.unshift("") %>
+            <%= form.label  :size, "size" %>
+            <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift("") %>
+            <%= form.label  :sex, "sex" %>
+            <%= form.select :sex, ["", "female", "male" ] %>
+            <%= form.submit "Search" %>
+          <% end %>
 
 
           <button type="button" class=" close btn btn-link" data-action="click->filter-search#hide">
           close </button>
     </div>
-            <%# <div data-controller="filter-search">
-                <%= form_with url: pets_path, method: :get, html: { class:
-            "mb-4", data: { filter_search_target: "form"} } do |f| %>
-            <%# <%= f.text_field :query,
-                            class: "form-control",
-                            placeholder: "Breed",
-                            value: params[:query],
-                            data: {filter_search_target: "pets"} %>
-                            <%# <% end %>
-
-
-
-
+          <p> <%= link_to "refresh search", pets_path %> </p>
 
 
   <h1>Check out our available pets...</h1>
 
   <div class="cards">
   <% @pets.each do |pet| %>
-    <%= link_to pet_path(pet), class: "card", data: {filter_search_target: "pet", sex: pet.sex} do %>
+    <%= link_to pet_path(pet), class: "card", data: {filter_search_target: "pet", sex: pet.sex, species: pet.species, size: pet.size} do %>
         <% if pet.species == "" %>
           <%= image_tag "dog.jpg", class: "card__image" %>
         <% else %>
@@ -75,7 +46,8 @@
             <div class="card__header-text">
                 <h3 class="card__title"><% pet.name %></h3>
                 <%# <i class="fa-solid fa-user-tie"></i> %>
-                <p><%= pet.breed %></p>
+                <p><%= pet.species %></p>
+                <p> <%= pet.sex %> </p>
                 <span class="card__status"><%= pet.location %></span>
             </div>
           </div>

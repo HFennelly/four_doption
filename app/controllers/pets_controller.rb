@@ -8,6 +8,21 @@ class PetsController < ApplicationController
     else
       @pets = Pet.all
     end
+    if params[:sex] != "" && params[:sex].present?
+      @pets = @pets.where(sex: params[:sex])
+    end
+    if params[:species]
+      @pets = @pets.where(species: params[:species])
+    end
+    if params[:breed] != "" && params[:breed].present?
+      @pets = @pets.where(breed: params[:breed])
+    end
+    if params[:age] != "" && params[:age].present?
+      @pets = @pets.where(age: params[:age])
+    end
+    if params[:size] != "" && params[:size].present?
+      @pets = @pets.where(size: params[:size])
+    end
   end
 
 
