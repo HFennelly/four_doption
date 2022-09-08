@@ -11,18 +11,49 @@ $font-size-base: 1rem;
 
 // Colors
 $body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+$primary:    $capri;
+$success:    $mulberry;
+$info:       $frenchskyblue;
+$danger:     $capri;
+$warning:    $mulberry;
+
+$mulberry: #B95F89;
+$capri: #2EC0F9;
+$frenchskyblue: #67AAF9;
+$babyblueeyes: #9BBDF9;
+$beaublue: #c4e0f9;
+$gray: #222934;
+$light-gray: #d2e6f7;
 
 // Buttons & inputs' radius
-$border-radius:    2px;
-$border-radius-lg: 2px;
-$border-radius-sm: 2px;
+$border-radius:    15px;
+$border-radius-lg: 15px;
+$border-radius-sm: 15px;
 
 // Override other variables below!
+.container {
+  background-color: #e9f3fc;
+  border-radius: 15px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 10px;
+  padding: 0px;
+}
+
+.sign-up-container {
+  background-color: #e9f3fc;
+  width: 400px;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 0px;
+}
+
+.center {
+  margin: auto;
+  width: 40%;
+  }
+
 .home-container {
   width: 100%;
   display: grid;
@@ -30,14 +61,4 @@ $border-radius-sm: 2px;
   min-height: 100vh;
   background-color: #e9f3fc;
   padding: 5px;
-}
-
-.container {
-  background-color: #e9f3fc;
-  border-radius: 15px;
-  width: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-  margin: 5px;
 }
