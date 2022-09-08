@@ -35,7 +35,9 @@ class PetsController < ApplicationController
     @markers = [
       {
         lat: @pet.latitude,
-        lng: @pet.longitude
+        lng: @pet.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {pet: @pet}),
+        image_url: helpers.asset_url("paw_print.png")
       }
     ]
   end
