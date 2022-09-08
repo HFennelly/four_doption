@@ -1,0 +1,34 @@
+.footer {
+  background: #D4E6F7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 50px;
+  color: rgba(28, 92, 155, 0.865);
+  opacity: 0.9;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-links {
+  display: flex;
+  color: rgba(28, 92, 155, 0.865);
+  align-items: center;
+}
+.footer-links a {
+  color: rgb(18, 112, 140);
+  opacity: 0.7;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.footer-copyright {
+  margin-right: 1200px;
+}

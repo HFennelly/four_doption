@@ -12,33 +12,40 @@
 
 .title {
   margin-left: 100px;
+  color: #222934;
 }
 
 .title-navbar {
   margin: 0px;
+  color: #222934;
 }
 
 .title h1 {
   font-size: 60px;
   font-weight: bold;
   margin: 0px;
+  color: #222934;
 }
 
 .title p {
   font-size: 30px;
   margin: 0px;
+  color: #222934;
 }
 
 .title a {
   margin-top: 25px;
+  color: #222934;
 }
 
 .title form {
   margin-top: 25px;
+  color: #222934;
 }
 
 .home-row {
   margin: 16px;
+  color: #222934;
 }
 
 // .card {
@@ -50,13 +57,13 @@
 .card-img-top {
   height: 150px;
   text-decoration: none;
-  color: black;
+  color: #222934;
 }
 
 .landing-page-card {
   width: 243px;
   border-radius: 10px;
-  color: rgb(6, 54, 82);
+  color: #222934;
 }
 
 .landing-page-card:hover {
@@ -65,7 +72,7 @@
 }
 
 .card-body {
-  color: black;
+  color: #222934;
   text-decoration: none;
 }
 
@@ -121,4 +128,8 @@
   color: black;
   text-decoration: none;
   // border-left: 1px solid;
+}
+
+body {
+  background-color: #E9F3FC !important;
 }

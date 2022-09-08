@@ -1,8 +1,9 @@
 <div class="home-container">
   <div class="banner-homepage">
       <div class="title">
-    <h1> 4Doption</h1>
-    <p> Find a Pet their Perfect Home.</p>
+    <h1 class="text-success"> 4Doption</h1>
+    <p class="text-body"> Find your new best friend...</p>
+     <%= link_to "See All Pets", pets_path, class: "btn btn-primary" %>
     <div class="d-flex align-items-center search-bar-btns">
      <%= form_with url: pets_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
@@ -25,10 +26,10 @@
             <% @pets.each do |pet| %>
               <div class="col-md-3 my-3 landing-page-card">
                 <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
-                  <div class="card card-01">
+                  <div class="card">
                     <%= image_tag "#{pet.species.parameterize}.jpg", class: "card-img-top" %>
                     <div class="card-body">
-                      <h4 class="card-title"> <%= pet.name %></h4>
+                      <h4 class="card-text"> <%= pet.name %></h4>
                       <p class="card-text">Species: <%= pet.species %></p>
                       <p class="card-text">
                     </div>

@@ -18,7 +18,9 @@
   overflow: hidden;
   text-decoration: none;
   border-radius: 5%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 20px #9BBDF9;
+  background-color: #e0e9f9;
+  opacity: 0.9;
 }
 
 .card__image {
@@ -34,7 +36,7 @@
   right: 0;
   z-index: 1;
   border-radius: calc(var(--curve) * 1px);
-  background-color: white;
+  background-color: #c4e0f9;
   transform: translateY(100%);
   transition: .2s ease-in-out;
 }
@@ -50,7 +52,7 @@
   gap: 2em;
   padding: 1em 2em;
   border-radius: calc(var(--curve) * 1px) 0 0 0;
-  background-color: white;
+  background-color: #c4e0f9;
   transform: translateY(-100%);
   transition: .2s ease-in-out;
 }
@@ -65,7 +67,7 @@
 }
 
 .card__arc path {
-  fill: white;
+  fill: #c4e0f9;
   d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
 }
 
@@ -80,42 +82,35 @@
   border-radius: 50%;
 }
 
-.card__title {
-  font-size: 1em;
-  margin: 0 0 .3em;
-  color: #2EC0F9;
-}
-
 .card__tagline {
   display: block;
   margin: 1em 0;
   font-family: 'Quicksand', sans-serif;
   font-size: .8em;
-  color: #2EC0F9;
+  color: #343d4c;
 }
 
 .card__status {
   font-size: .8em;
-  color: #2EC0F9;
+  color: #343d4c;
 }
 
 .card-text {
-  color: #2EC0F9;
-  font-family: 'Quicksand', sans-serif;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  color: #343d4c;
+  overflow: hidden;
+  padding: 1px;
+  margin-left: 20px;
+}
+
+.card-h4 {
+  color: #343d4c;
   overflow: hidden;
   padding: 1px;
   margin-left: 20px;
 }
 
 .card-text-bottom {
-  color: #2EC0F9;
-  font-family: 'Quicksand', sans-serif;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  color: #343d4c;
   overflow: hidden;
   padding: 1px;
   margin-left: 20px;
@@ -125,15 +120,11 @@
 .card-details-header {
   margin-left: 20px;
   padding: 1px;
-  color: #000000;
+  color: #343d4c;
   font-weight: bold;
-  font-family: 'Quicksand', sans-serif;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
   overflow: hidden;
 }
 
 .card__header-text {
-  color: #67AAF9;
+  color: #343d4c;
 }

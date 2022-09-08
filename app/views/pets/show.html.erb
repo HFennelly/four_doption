@@ -8,7 +8,7 @@
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
               <% if @pet.user == current_user %>
-              <%= link_to "Edit", edit_pet_path(@pet), class: "btn btn-ghost" %>
+              <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost" %>
               <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
               <i class="fa-solid fa-trash-can"></i>
             <% end %>
