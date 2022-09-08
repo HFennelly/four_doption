@@ -2,16 +2,18 @@
   <div class="banner-homepage">
       <div class="title">
     <h1> 4Doption</h1>
-    <p> Find Your Pet</p>
-     <%= link_to "See All Pets", pets_path, class: "btn btn-primary" %>
+    <p> Find a Pet their Perfect Home.</p>
+    <div class="d-flex align-items-center search-bar-btns">
      <%= form_with url: pets_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
         params[:query],
-        class: "form-control",
+        class: "form-control search-btn",
         placeholder: "Search by location"
       %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
+      <%= submit_tag "Search", class: "search-btn center" %>
+      <% end %>
+      <%= link_to "Browse All Pets", pets_path, class: "browse-btn" %>
+      </div>
       </div>
   </div>
 
