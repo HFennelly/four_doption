@@ -79,3 +79,53 @@
 .landing-page-card .card-body {
   height: 138px;
 }
+
+.banner-homepage .btn {
+  margin-right: 20px;
+}
+
+.banner-homepage {
+  margin-top: -5px;
+}
+
+.search-bar-btns {
+  border: none;
+  color: black;
+  background-color: #9ABDF9;
+  border-radius: 30px;
+  opacity: 0.5;
+  padding: 15px 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  * {
+    margin-top: 0 !important;
+  }
+}
+
+.search-btn {
+  border: none;
+  background: transparent;
+  color: black;
+  padding: 0;
+  border-color: #6A85B3;
+  margin-right: 15px;
+  // border-left: 1px solid;
+
+}
+
+.search-btn:hover {
+  opacity: 1;
+  color: #2EC0F9;
+}
+
+// .browse-btn:hover {
+//   opacity: 1;
+// }
+
+.browse-btn {
+  margin: 0;
+  margin-left: 15px;
+  color: black;
+  text-decoration: none;
+  // border-left: 1px solid;
+}
