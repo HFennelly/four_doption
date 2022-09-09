@@ -13,7 +13,7 @@
             <%= form.label  :breed, "breed" %>
             <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).unshift(""), id: "tom-select-it", selected: params[:breed] %>
             <%= form.label  :age, "age" %>
-            <%= form.select :age, Pet.select(:age).distinct.pluck(:age).sort.unshift(""), selected: params[:age] %>
+            <%= form.select :age, Pet.select(:age).distinct.pluck(:age).compact.sort.unshift(""), selected: params[:age] %>
             <%= form.label  :size, "size" %>
             <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift(""), selected: params[:size] %>
             <%= form.label  :sex, "sex" %>
@@ -33,7 +33,7 @@
     <% @pets.each do |pet| %>
       <%= link_to pet_path(pet), class: "card" do %>
         <% if pet.photo.attached? %>
-          <%= cl_image_tag pet.photo.key class: "card__image" %>
+          <%= cl_image_tag pet.photo.key, class: "card-img-top" %>
         <% else %>
           <%= image_tag "#{pet.species.parameterize}.jpg", class: "card-img-top" %>
         <% end %>

@@ -10,7 +10,7 @@
           <p> Location: <%= @pet.location %></p>
 
         <% if @pet.species == "" %>
-          <%= image_tag "dog.jpg", class: "card__image" %>
+          <%= image_tag "dog.jpg", class: "card-img-top" %>
         <% else %>
           <%= image_tag "default-image.png", class: "card-img-top" %>
         <% end %>
