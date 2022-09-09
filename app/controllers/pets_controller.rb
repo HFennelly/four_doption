@@ -29,6 +29,14 @@ class PetsController < ApplicationController
       @pets = @pets.where(size: params[:size])
     end
 
+    if params[:location] != "" && params[:location].present?
+      sql_query = <<~SQL
+        location Ilike :location
+      SQL
+      @pets = @pets.where(sql_query, location: "%#{params[:location]}%")
+    end
+
+
     if params.keys.count > 2
       @searching = true
     else
@@ -85,6 +93,6 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :species, :breed, :age, :location, :sex, :size, :needs_garden, :adopted, :photo)
+    params.require(:pet).permit(:name, :email, :address, :password, :photo)
   end
 end

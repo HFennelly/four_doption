@@ -2,8 +2,9 @@
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3" >
       <div class="bg-beaublue rounded p-3" >
-        <h2>Sign up</h2>
-
+        <h2 align="center">Thanks for your interest!</h2>
+        <h4 align="center">Please sign up below</h4>
+        <br>
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
             <%= f.error_notification %>
 
@@ -33,15 +34,22 @@
                           required: true,
                           input_html: { autocomplete: "new-password" } %>
               <%= f.input :photo,
-                          label: "Would you like to upload a photo for your profile? If not, our default photo will be applied for you.",
+                          label: "If you would like to upload a photo for your profile, you can do this below. Otherwise, our default profile picture will be applied. This can be changed at any time.",
                           as: :file %>
-            </div>
-
-            <div class="form-actions">
+               <%= f.input :description,
+                          label: "Please provide a brief description of yourself.",
+                          placeholder: "For example, if you are a rescue, we suggest a summary of your work including your website/social media links. If you are a potential adopter, include a brief summary of your current situation and lifestyle. This will help to find a perfect match for each pet! Please note that if you are a rescue, or an individual listing your own pet for adoption, this description will appear on each pet advert.",
+                          required: true,
+                          autofocus: true,
+                          input_html: { rows: 8 }%>
+              <div class="btn-ghost" align="center">
               <%= f.button :submit, "Sign up" %>
-            </div>
+              </div>
           <% end %>
-      <%= render "devise/shared/links" %>
+          <br>
+              <div class='btn-ghost' align="center">
+          <%= render "devise/shared/links" %>
+              </div>
       </div>
     </div>
   </div>

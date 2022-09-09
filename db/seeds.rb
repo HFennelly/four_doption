@@ -34,7 +34,7 @@ u = User.create!(email: Faker::Internet.email, password: "123456", name: Faker::
       user: u,
       sex: ['male', 'female'].sample,
       name: Faker::TvShows::BojackHorseman.character,
-      species: ['cat', 'dog'].sample,
+      species: ['cat', 'dog', 'bird', 'hamster','rabbit'].sample,
       age: [1, 2, 3, 4, 5, 6, 7].sample,
       breed: ['chow chow', 'labrador'].sample,
       size: ['big', 'medium', 'small'].sample,

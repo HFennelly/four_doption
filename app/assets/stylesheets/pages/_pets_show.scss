@@ -2,10 +2,11 @@
   display: flex;
   max-width: 1100px;
   margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .pet-details {
-  background-color: #9BBDF9;
+  background-color: #DDE7F9;
   margin: 20px;
   height: 600px;
   border-radius: 30px;
@@ -20,18 +21,21 @@
 
 .adoption-details {
   width: 400px;
-  background-color: #9BBDF9;
+  background-color: #DDE7F9;
   height: 600px;
   align-items: center;
   margin: 20px;
   border-radius: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .pet-show-name-header {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Nanum Pen Script", "Helvetica", "sans-serif";
   font-weight: bold;
   margin-left: 20px;
   margin-top: 20px;
+  color: #5E6771;
 }
 
 .pet-infos {
@@ -54,7 +58,7 @@
 .button-2 {
   appearance: button;
   margin: auto;
-  background-color: #1899D6;
+  background-color: #9BBDF9;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -80,7 +84,7 @@
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  width: 90%;
+  width: 50%;
 }
 
 .button-2:after {
@@ -116,7 +120,7 @@
 
 .button-1 {
   appearance: button;
-  background-color: #1899D6;
+  background-color: #67AAF9;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -147,7 +151,7 @@
 
 .button-1:after {
   background-clip: padding-box;
-  background-color: #1CB0F6;
+  background-color: #9BBDF9;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -168,4 +172,94 @@
 
 .button-1:disabled {
   cursor: auto;
+}
+
+.price-button {
+  button {
+    appearance: button;
+    // background-color: #67AAF9;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 20px 20px 15px 20px;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 90%;
+    background-color: #9BBDF9;
+  }
+
+  button:after {
+    background-clip: padding-box;
+    background-color: #9BBDF9;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  .button-1:main,
+  .button-1:focus {
+    user-select: auto;
+  }
+
+
+  .button-1:disabled {
+    cursor: auto;
+  }
+
+}
+
+.button-1-hover {
+  width: unset;
+
+  &:hover {
+    color: #FFF !important;
+    border-color: #67AAF9 !important;
+  }
+}
+
+
+.price-button {
+  span {
+    position: relative;
+  }
+  span:after {
+    background-color: #9bbdf9;
+    border-radius: 1px;
+    content: "";
+    display: block;
+    height: 24px;
+    position: absolute;
+    top: 16px;
+    transform: rotate(-315deg);
+    width: 24px;
+    left: 14px;
+    top:  2px;
+    z-index: 1;
+  }
 }
