@@ -41,7 +41,7 @@ class ApplicationsController < ApplicationController
   end
 
   def index
-    @applications = Application.all
+    @applications = current_user.applications
   end
 
   private
