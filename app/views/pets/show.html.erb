@@ -63,12 +63,27 @@
         <span>
           <button>Adoption Fee: £<%= @pet.adoption_fee %></button>
         </span>
-      </div>
+
+        <div class="profile-card">
+          <div class="card-trip-infos">
+            <div>
+              <h2>Listed by <%=@pet.user.name %></h2>
+              <p><%= @pet.user.description  %></p>
+            </div>
+            <h2 class="card-trip-pricing"><%= @pet.user.address %></h2>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          </div>
+        </div>
+            <%= @pet.user.name %>
+        </div>
+
+
       <div class="apply-button">
           <a href= "#new_application"> <button class="button-1" role="button">Apply to Adopt</button></a>
       </div>
       <div class="rescue-profile">
       </div>
+    </div>
     </div>
 
     <div class="pet-details" style="width: 400px; height: 500px;"
