@@ -1,8 +1,8 @@
-<div class="container py-5">
+<div class="sign-up-container py-5 center">
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3" >
-      <div class="bg-white rounded p-3 shadow"  %>
-        <h2>Edit <%= resource_name.to_s.humanize %></h2>
+      <div class="bg-beaublue rounded p-3" >
+        <h2 align="center">Edit your details</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -15,6 +15,14 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <%= f.input :name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "name" }%>
+    <%= f.input :address,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "address" }%>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
@@ -26,9 +34,18 @@
                 hint: "we need your current password to confirm your changes",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :photo,
+                label: "If you would like to upload a photo for your profile, you can do this below. Otherwise, our default profile picture will be applied. This can be changed at any time.",
+                as: :file %>
+      <%= f.input :description,
+                label: "Please provide a brief description of yourself.",
+                placeholder: "For example, if you are a rescue, we suggest a summary of your work including your website/social media links. If you are a potential adopter, include a brief summary of your current situation and lifestyle. This will help to find a perfect match for each pet! Please note that if you are a rescue, or an individual listing your own pet for adoption, this description will appear on each pet advert.",
+                required: true,
+                autofocus: true,
+                input_html: { rows: 8 }%>
   </div>
 
-    <div class="btn-ghost">
+    <div class="btn-ghost" align="center">
       <%= f.button :submit, "Update" %>
     </div>
   <% end %>
@@ -37,17 +54,18 @@
 </div>
 </div>
 
-<div class="container py-5">
+<div class="sign-up-container py-5 center">
   <div class="row">
     <div class="col-12 col-md-6 offset-lg-3" >
-      <div class="bg-white rounded p-3 shadow"  %>
-        <h3>Cancel my account</h3>
-          <div class="d-flex align-items-center">
-            <p>Unhappy? Sorry to see you go...</p>
-            <br>
+      <div class="bg-beaublue rounded p-3" >
+        <h3 align="center">Cancel my account</h3>
+            <p align="center">Unhappy? Sorry to see you go...</p>
+              <div class="btn-ghost" align="center">
             <%= button_to "Click here to cancel your account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+              </div>
+              <div class="btn-ghost" align="center">
+            <%= link_to "Back", :back %>
           </div>
-        <%= link_to "Back", :back %>
 </div>
 </div>
 </div>

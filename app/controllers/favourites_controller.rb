@@ -1,6 +1,6 @@
 class FavouritesController < ApplicationController
   def index
-    @favourites = Favourite.all
+    @favourites = current_user.favourites
   end
 
   def destroy
