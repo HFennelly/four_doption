@@ -1,5 +1,5 @@
 <% if @favourites.count >= 1 %>
-<div class="container">
+<div class="sign-up-container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <h1>All Favourites</h1>
@@ -19,9 +19,18 @@
   </div>
 </div>
 <% else %>
-  <div>
-  <h1>You currently don't have any Favourites </h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+  <h1 align="center">You currently don't have any favourite pets! </h1>
+  <br>
+      <div align="center">
+        <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'btn-ghost' %>
+      </div>
+      <br>
+   </div>
   </div>
+</div>
 <% end %>
 
 <%# data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true} %>

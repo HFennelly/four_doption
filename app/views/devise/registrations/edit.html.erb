@@ -15,18 +15,6 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "name" }%>
-    <%= f.input :address,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "address" }%>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
@@ -35,7 +23,7 @@
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
     <%= f.input :photo,
-                label: "If you would like to upload a photo for your profile, you can do this below. Otherwise, our default profile picture will be applied. This can be changed at any time.",
+                label: "If you would like to upload a photo for your profile, you can do this below. Otherwise, our default profile picture will be applied.",
                 as: :file %>
       <%= f.input :description,
                 label: "Please provide a brief description of yourself.",
