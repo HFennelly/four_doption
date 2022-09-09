@@ -3,7 +3,6 @@
       <div class="title">
     <h1 class="text-success"> 4Doption</h1>
     <p class="text-body"> Find your new best friend...</p>
-     <%= link_to "See All Pets", pets_path, class: "btn btn-primary" %>
     <div class="d-flex align-items-center search-bar-btns">
      <%= form_with url: pets_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
