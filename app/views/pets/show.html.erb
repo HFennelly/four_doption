@@ -71,23 +71,33 @@
   <%# <%= "Owner show: if the pet shown is the current users!" %>
 <% else  %>
   <%# <%= "Owner show: This will only show if you own this pet" %>
-  <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost" %>
+  <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost", style: "display: block;" %>
   <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
   <i class="fa-solid fa-trash-can"></i>
   <% end %>
-  <br>
-  <% if @pet.applications == 0 %>
+  <% if @pet.applications.count == 0 %>
     <p> "there are currently no applications for this pet"</p>
   <% else %>
-  <%= @pet.applications.each do |application| %>
-    <li class="list-group-item">
-      <% if application.approved?  %>
-        <h3>Your approved applications</h3>
-        <%= application.requirements %>
-      <% else %>
-        <h3>Your pending applications</h3>
-        <%= application.requirements %>
+    <h3> <%= "You currently have #{@pet.applications.count} application(s) for your pet" %></h3>
+    <ul class="list-group mb-3">
+      <% @pet.applications.each do |application| %>
+        <li class="list-group-item">
+        <% if application.approved?  %>
+          <h3>Your approved applications</h3>
+          <%= application.user.name %>
+          <br>
+          <br>
+          <%= application.requirements %>
+        <% else %>
+          <h3>Your pending applications</h3>
+          <%= application.user.name %>
+          <br>
+          <br>
+          <%= application.requirements %>
+        <% end %>
+        </li>
       <% end %>
-    </li>
+    </ul>
   <% end %>
+
 <% end %>
