@@ -2,7 +2,7 @@
   <div class="pet-details-container">
     <div class="pet-details">
 
-      <h2 class="pet-show-name-header"><%= @pet.name.capitalize %></h2>
+      <h1 class="pet-show-name-header"><%= @pet.name.capitalize %></h1>
       <div class="pet-infos">
           <p> <%= @pet.breed.capitalize %></p>
           <p> Age: <%= @pet.age %></p>
@@ -23,7 +23,7 @@
             <% end %>
           <% end %>
 
-<% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
+  <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
         <% if current_user.favourites.where(pet: @pet).count > 0 %>
           <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
           <br>
@@ -64,26 +64,26 @@
           <button>Adoption Fee: £<%= @pet.adoption_fee %></button>
         </span>
 
-        <div class="profile-card">
+      <div class="profile-card">
           <div class="card-trip-infos">
             <div>
               <h2>Listed by <%=@pet.user.name %></h2>
               <p><%= @pet.user.description  %></p>
             </div>
-            <h2 class="card-trip-pricing"><%= @pet.user.address %></h2>
-            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              <h2 class="card-trip-pricing"><%= @pet.user.address %></h2>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            </div>
           </div>
-        </div>
             <%= @pet.user.name %>
-        </div>
+      </div>
 
 
       <div class="apply-button">
           <a href= "#new_application"> <button class="button-1" role="button">Apply to Adopt</button></a>
       </div>
-      <div class="rescue-profile">
+        <div class="rescue-profile">
+        </div>
       </div>
-    </div>
     </div>
 
     <div class="pet-details" style="width: 400px; height: 500px;"
