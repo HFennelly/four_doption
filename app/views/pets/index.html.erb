@@ -18,6 +18,8 @@
             <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift(""), selected: params[:size] %>
             <%= form.label  :sex, "sex" %>
             <%= form.select :sex, ["", "female", "male" ], selected: params[:sex] %>
+            <%= form.label :location, "location" %>
+            <%= form.text_field :location, id: "tom-select-it", value: params[:location] %>
             <%= form.submit "Search" %>
           <% end %>
           <button type="button" class=" close btn btn-link" data-action="click->filter-search#hide"> <i class="fa-solid fa-square-xmark"></i> </button>
