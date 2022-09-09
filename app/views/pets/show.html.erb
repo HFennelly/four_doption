@@ -2,11 +2,13 @@
   <div class="pet-details-container">
     <div class="pet-details">
 
+      <%# <%="Universal show: this wil show for all types of users!" %>
       <h2 class="pet-show-name-header"><%= @pet.name.capitalize %></h2>
       <div class="pet-infos">
           <p> <%= @pet.breed.capitalize %></p>
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
+          <%# <%= "Owner show: This will only show if you own this pet" %>
               <% if @pet.user == current_user %>
               <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost" %>
               <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
@@ -14,6 +16,7 @@
             <% end %>
           <% end %>
 
+<%# <%= "Adopter not applied show: current user has no applications for this pet and current user does not own this pet" %>
 <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
         <% if current_user.favourites.where(pet: @pet).count > 0 %>
           <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
@@ -29,6 +32,7 @@
 
     <div class="adoption-form">
 
+      <%# <%= "Adopter applied or not applied show: current user has not applied for this pet, or current user has applied for this pet " %>
       <% if @pet.applications.where(user: current_user).count == 0 %>
         <div class="pet-details" style="color: black;">
           <h3 class="pet-show-name-header">Apply to adopt this pet!</h3>
@@ -63,10 +67,12 @@
 
 </div>
 
+<%# <%= "Adopter applied show: if the pet shown is not the current user's, but they have previously applied to adopt it" %>
 <% elsif @pet.user != current_user %>
   <p>You have already applied to adopt <%= @pet.name %></p>
   <%= link_to "Available pets", pets_path %>
   <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
+  <%# <%= "Owner show: if the pet shown is the current users!" %>
 <% else  %>
  <P>ADD SHOW APPLICATIONS HERE</P>
 <% end %>
