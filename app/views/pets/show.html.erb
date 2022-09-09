@@ -18,7 +18,7 @@
         <% if current_user.favourites.where(pet: @pet).count > 0 %>
           <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
           <br>
-          <%= link_to "Unfavourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} %>
+          <%= link_to "Remove as favourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
         <% else %> <%#if no favourites, show the create favourite button %>
           <%= simple_form_for [@pet, @favourite] do |f| %>
             <%= f.submit class: 'button-2' %>
