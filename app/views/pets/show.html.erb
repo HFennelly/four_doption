@@ -8,13 +8,6 @@
           <p> <%= @pet.breed.capitalize %></p>
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
-          <%# <%= "Owner show: This will only show if you own this pet" %>
-              <% if @pet.user == current_user %>
-              <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost" %>
-              <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
-              <i class="fa-solid fa-trash-can"></i>
-            <% end %>
-          <% end %>
 
 <%# <%= "Adopter not applied show: current user has no applications for this pet and current user does not own this pet" %>
 <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
@@ -67,12 +60,34 @@
 
 </div>
 
+<%# <%= "outside of main show details div also outside of mapbox html rendering currently" %>
 <%# <%= "Adopter applied show: if the pet shown is not the current user's, but they have previously applied to adopt it" %>
 <% elsif @pet.user != current_user %>
   <p>You have already applied to adopt <%= @pet.name %></p>
   <%= link_to "Available pets", pets_path %>
   <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
+
+
   <%# <%= "Owner show: if the pet shown is the current users!" %>
 <% else  %>
- <P>ADD SHOW APPLICATIONS HERE</P>
+  <%# <%= "Owner show: This will only show if you own this pet" %>
+  <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost" %>
+  <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
+  <i class="fa-solid fa-trash-can"></i>
+  <% end %>
+  <br>
+  <% if @pet.applications == 0 %>
+    <p> "there are currently no applications for this pet"</p>
+  <% else %>
+  <%= @pet.applications.each do |application| %>
+    <li class="list-group-item">
+      <% if application.approved?  %>
+        <h3>Your approved applications</h3>
+        <%= application.requirements %>
+      <% else %>
+        <h3>Your pending applications</h3>
+        <%= application.requirements %>
+      <% end %>
+    </li>
+  <% end %>
 <% end %>
