@@ -27,7 +27,7 @@
                 <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
                   <div class="card">
                   <% if pet.photo.attached? %>
-                    <%= cl_image_tag pet.photo.key class: "card__image" %>
+                    <%= cl_image_tag pet.photo.key, class: "card-img-top" %>
                   <% else %>
                     <%= image_tag "#{pet.species.parameterize}.jpg", class: "card-img-top" %>
                   <% end %>
