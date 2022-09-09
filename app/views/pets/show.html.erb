@@ -2,11 +2,20 @@
   <div class="pet-details-container">
     <div class="pet-details">
 
-      <h2 class="pet-show-name-header"><%= @pet.name.capitalize %></h2>
+      <h1 class="pet-show-name-header"><%= @pet.name.capitalize %></h1>
       <div class="pet-infos">
           <p> <%= @pet.breed.capitalize %></p>
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
+
+
+        <% if @pet.species == "" %>
+          <%= image_tag "dog.jpg", class: "card__image" %>
+        <% else %>
+          <%= image_tag "default-image.png", class: "card-img-top" %>
+        <% end %>
+
+
               <% if @pet.user == current_user %>
               <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost" %>
               <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
@@ -14,14 +23,16 @@
             <% end %>
           <% end %>
 
-<% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
+  <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
         <% if current_user.favourites.where(pet: @pet).count > 0 %>
           <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
           <br>
           <%= link_to "Unfavourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} %>
         <% else %> <%#if no favourites, show the create favourite button %>
           <%= simple_form_for [@pet, @favourite] do |f| %>
-            <%= f.submit class: 'button-2' %>
+          <div class="d-flex justify-content-center">
+            <%= f.button :button, class: 'button-1 button-1-hover' %>
+          </div>
           <% end %>
         <% end %>
       </div>
@@ -34,7 +45,9 @@
           <h3 class="pet-show-name-header">Apply to adopt this pet!</h3>
           <%= simple_form_for [@pet, @application] do |f| %>
             <%= f.input :requirements, required: true %>
-            <%= f.submit class: 'button-2' %>
+            <div class="d-flex justify-content-center">
+              <%= f.button :button, class: 'button-1 button-1-hover' %>
+            </div>
           <% end %>
         </div>
       <% else %>
@@ -44,23 +57,41 @@
       <% end %>
     </div>
   </div>
-  <div class="adoption-details">
-    <div class="price-button">
-        <button class="button-1">Adoption Fee: £<%= @pet.adoption_fee %></button>
+  <div>
+    <div class="adoption-details">
+      <div class="price-button">
+        <span>
+          <button>Adoption Fee: £<%= @pet.adoption_fee %></button>
+        </span>
+
+      <div class="profile-card">
+          <div class="card-trip-infos">
+            <div>
+              <h2>Listed by <%=@pet.user.name %></h2>
+              <p><%= @pet.user.description  %></p>
+            </div>
+              <h2 class="card-trip-pricing"><%= @pet.user.address %></h2>
+              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            </div>
+          </div>
+            <%= @pet.user.name %>
+      </div>
+
+
+      <div class="apply-button">
+          <a href= "#new_application"> <button class="button-1" role="button">Apply to Adopt</button></a>
+      </div>
+        <div class="rescue-profile">
+        </div>
+      </div>
     </div>
-    <div class="apply-button">
-        <a href= "#new_application"> <button class="button-2" role="button">Apply to Adopt</button></a>
-    </div>
-    <div class="rescue-profile">
+
+    <div class="pet-details" style="width: 400px; height: 500px;"
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-
-  <div style="width: 500px; height: 500px;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-
 </div>
 
 <% elsif @pet.user != current_user %>
