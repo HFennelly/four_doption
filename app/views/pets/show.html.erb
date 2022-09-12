@@ -5,7 +5,7 @@
       <h2 class="pet-show-name-header"><%= @pet.name.capitalize %></h2>
 
       <div class="pet-infos">
-          <p> <%= @pet.breed.capitalize %></p>
+          <strong><p> <%= @pet.breed.capitalize %></p></strong>
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
 
@@ -22,8 +22,11 @@
               <i class="fa-solid fa-circle-xmark"></i>
             <% end %>
         </div>
+          <p> Size: <%= @pet.size %></p>
           <p> <%= @pet.description %></p>
           <p> Pet description here .....................................</p>
+          <p> ...........................................................</p>
+          <p> ...........................................................</p>
 
   <%# <%= "Adopter not applied show: current user has no applications for this pet and current user does not own this pet" %>
   <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
