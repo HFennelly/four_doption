@@ -1,6 +1,5 @@
 .filter {
   select {
-  background-color: none;
   border: none;
   background-color: white;
   border-radius: 16px;
@@ -17,9 +16,10 @@
   background-color: white;
   border-radius: 16px;
   height: 42px;
-  box-shadow: 2px 2px 4px #9BBDF9;
+  box-shadow: 1px 1px 3px #9BBDF9;
   min-width: 140px;
   padding-left: 6px;
+  color: #414F52;
   }
 }
 .form {
