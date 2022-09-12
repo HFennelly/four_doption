@@ -39,7 +39,7 @@ html_doc.search(".c-pet-card").first(24).each do |element|
     sex = dog_info[2]
     description = dog_html_doc.search(".c-hero--pet-single-details p").text.strip
     dog_image = dog_html_doc.search(".swiper-slide img").attribute("src")
-    pet = Pet.create(age: age, breed: breed, location: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", sex: sex, species: "dog", name: name, needs_garden: true, size: ["small", "medium", "large"].sample, adopted: adopted, description: description, user: woodgreen)
+    pet = Pet.create(age: age, breed: breed, location: "Kings Bush Farm, Godmanchester, UK", sex: sex, species: "dog", name: name, needs_garden: true, size: ["small", "medium", "large"].sample, adopted: adopted, description: description, user: woodgreen)
     file = URI.open(dog_image)
     pet.photo.attach(io: file, filename: "#{name}.png", content_type: "image/png")
     puts pet.name
@@ -72,7 +72,7 @@ cat_first_html_doc.search(".c-pet-card").first(15).each do |element|
     # takes a description from the bottom of the page, it's in a different place the one used in dog scrape.
     cat_image = cat_html_doc.search(".swiper-slide img").attribute("src")
     # takes the first image from the webpage
-    pet = Pet.create(age: cat_age, breed: cat_breed, location: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", sex: cat_sex, species: "cat", name: cat_name, needs_garden: true, size: ["small", "medium", "large"].sample, description: description, adopted: adopted, user: woodgreen)
+    pet = Pet.create(age: cat_age, breed: cat_breed, location: "Kings Bush Farm, Godmanchester, UK", sex: cat_sex, species: "cat", name: cat_name, needs_garden: true, size: ["small", "medium", "large"].sample, description: description, adopted: adopted, user: woodgreen)
     file = URI.open(cat_image)
     pet.photo.attach(io: file, filename: "#{cat_name}.png", content_type: "image/png")
     puts pet.name
