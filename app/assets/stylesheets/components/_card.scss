@@ -24,10 +24,10 @@
 }
 
 .card__image {
-  min-width: 100%;
+  border-radius: 15px;
   height: 300px;
+  width: 100%;
   object-fit: cover;
-  border-radius: 5%;
 }
 
 .card__overlay {
