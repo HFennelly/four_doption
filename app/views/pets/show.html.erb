@@ -5,7 +5,7 @@
       <h2 class="pet-show-name-header"><%= @pet.name.capitalize %></h2>
 
       <div class="pet-infos">
-          <p> <%= @pet.breed.capitalize %></p>
+          <strong><p> <%= @pet.breed.capitalize %></p></strong>
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
           <p> Summary: <%= @pet.description %></p>
@@ -15,22 +15,41 @@
         <% else %>
           <%= image_tag "#{@pet.species}.jpg", class: "card-img-top" %>
         <% end %>
+        <div class="align-needs-garden-items" style="display: flex;">
+          <p> Needs a garden? </p>
+            <% if @pet.needs_garden == true %>
+              <i class="fa-solid fa-circle-check"></i>
+            <% else %>
+              <i class="fa-solid fa-circle-xmark"></i>
+            <% end %>
+        </div>
+          <p> Size: <%= @pet.size %></p>
+          <p> <%= @pet.description %></p>
+          <p> Pet description here .....................................</p>
+          <p> ...........................................................</p>
+          <p> ...........................................................</p>
 
   <%# <%= "Adopter not applied show: current user has no applications for this pet and current user does not own this pet" %>
   <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
         <% if current_user.favourites.where(pet: @pet).count > 0 %>
           <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
           <br>
-          <%= link_to "Remove as favourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
+          <%= link_to favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"}, class: 'favourite-btn' do%>
+            <i class="fa-solid fa-star"></i>
+          <% end %>
         <% else %> <%#if no favourites, show the create favourite button %>
           <%= simple_form_for [@pet, @favourite] do |f| %>
-          <div class="d-flex justify-content-center">
-            <%= f.button :button, class: 'button-1 button-1-hover' %>
+          <div>
+          <%= button_tag(type: 'submit', class: 'favourite-btn')  do %>
+            <i class="fa-regular fa-star"></i>
+          <% end %>
           </div>
           <% end %>
         <% end %>
       </div>
     </div>
+
+    <%# d-flex justify-content-center %>
 
     <div class="adoption-form">
 
@@ -74,16 +93,24 @@
           <div class="card-trip-infos">
             <div>
               <h2>Listed by <%=@pet.user.name %></h2>
-              <p><%= @pet.user.description  %></p>
             </div>
               <h2 class="card-trip-pricing"><%= @pet.user.address %></h2>
-              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              <% if @pet.user.photo.attached? %>
+                <%=cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+              <% else %>
+                <%= image_tag "default-user-icon.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% end %>
             </div>
           </div>
             <%= @pet.user.name %>
+            <p><%= @pet.user.description  %></p>
+            <p>User description here .............................................................................</p>
+            <p>.............................................................................</p>
+            <p>.............................................................................</p>
+            <p>.............................................................................</p>
       </div>
 
-
+    <div class="apply-btn-map">
       <div class="apply-button">
           <a href= "#new_application"> <button class="button-1" role="button">Apply to Adopt</button></a>
       </div>
@@ -92,12 +119,13 @@
       </div>
     </div>
 
-    <div class="pet-details" style="width: 400px; height: 500px;"
+    <div class="pet-details" style="width: 400px; height: 600px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
+</div>
 </div>
 
 <%# <%= "outside of main show details div also outside of mapbox html rendering currently" %>
@@ -132,18 +160,30 @@
     <ul class="list-group mb-3">
       <% @pet.applications.each do |application| %>
         <li class="list-group-item">
-        <% if application.approved?  %>
-          <h3>Your approved applications</h3>
+        <% if application.validated %>
+          <h3> <%= application.approved ? "Applications you have approved" : "Applications you have denied" %> </h3>
           <%= application.user.name %>
+          <br>
+          <p>Click here to start messaging your pet's future owner!</p>
           <br>
           <br>
           <%= application.requirements %>
         <% else %>
+          <%= application.validated ? "true" : "false" %>
           <h3>Your pending applications</h3>
           <%= application.user.name %>
           <br>
           <br>
           <%= application.requirements %>
+          <h3><%= "Approve or deny #{application.user.name}'s application below!" %></h3>
+          <%= simple_form_for [@pet, application] do |f| %>
+            <%= f.input :approved, :as => :hidden, required: true, class: 'btn-ghost', :input_html=> {:value => true} %>
+            <%= f.submit class: 'btn-ghost', value: "Accept" %>
+          <% end %>
+          <%= simple_form_for [@pet, application] do |f| %>
+            <%= f.input :approved, :as => :hidden, required: true, class: 'btn-ghost', :input_html=> {:value => false} %>
+            <%= f.submit class: 'btn-ghost', value: "Decline" %>
+          <% end %>
         <% end %>
         </li>
       <% end %>

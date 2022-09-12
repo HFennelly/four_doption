@@ -2,6 +2,7 @@ class Application < ApplicationRecord
   belongs_to :user
   belongs_to :pet
   has_many :messages
+  # validates :approved, presence: true
   validate :user_id_cant_apply_for_own_pet
 
   def user_id_cant_apply_for_own_pet
