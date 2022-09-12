@@ -12,7 +12,7 @@
                   <ul class="list-group mb-3">
                       <div class="row">
                         <% @user.pets.each do |pet| %>
-                        <div class="col-md-6 my-6">
+                        <div class="col-md-3 my-3 landing-page-card">
                           <%= link_to pet_path(pet) do%>
                             <div class="card">
                               <% if pet.photo.attached? %>
@@ -52,7 +52,7 @@
                   <ul class="list-group mb-3">
                       <div class="row">
                         <% @user.favourites.each do |favourite| %>
-                          <div class="col-md-6 my-6">
+                          <div class="col-md-3 my-3 landing-page-card">
                             <%= link_to pet_path(favourite.pet) do%>
                               <div class="card">
                                 <% if favourite.pet.photo.attached? %>
@@ -92,7 +92,7 @@
                 <br>
                 <h2>The following pets have applications for your review:</h2>
                   <% @user.owned_pet_applications.each do | pet_app | %>
-                    <div class="col-md-6 my-6">
+                    <div class="col-md-3 my-3 landing-page-card">
                                     <%= link_to pet_path(pet_app.pet) do%>
                                       <div class="card">
                                         <% if pet_app.pet.photo.attached? %>
@@ -121,13 +121,13 @@
                           <ul class="list-group mb-3">
                               <div class="row">
                                 <% @user.applications.each do |pet_app| %>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3 my-3 landing-page-card">
                                     <%= link_to pet_path(pet_app.pet) do%>
                                       <div class="card">
                                         <% if pet_app.pet.photo.attached? %>
                                         <%=cl_image_tag pet_app.pet.photo.key %>
                                         <% else %>
-                                        <%= image_tag "default-image.png", class: "card-img-top" %>
+                                        <%= image_tag "#{pet_app.pet.species.downcase}.jpg", class: "card-img-top" %>
                                         <% end %>
                                         <div class="card-body">
                                           <h4 class="card-text">Name: <%= pet_app.pet.name %></h4>

@@ -9,18 +9,12 @@
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
 
-        <% if @pet.species == "" %>
-          <%= image_tag "dog.jpg", class: "card-img-top" %>
+        <% if @pet.photo.attached? %>
+          <%= cl_image_tag @pet.photo.key, class: "card-img-top" %>
         <% else %>
-          <%= image_tag "default-image.png", class: "card-img-top" %>
+          <%= image_tag "#{@pet.species.downcase}.jpg", class: "card-img-top" %>
         <% end %>
 
-        <% if @pet.user == current_user %>
-          <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost" %>
-          <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
-            <i class="fa-solid fa-trash-can"></i>
-          <% end %>
-        <% end %>
   <%# <%= "Adopter not applied show: current user has no applications for this pet and current user does not own this pet" %>
   <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
         <% if current_user.favourites.where(pet: @pet).count > 0 %>
@@ -105,12 +99,22 @@
   <%# <%= "Owner show: if the pet shown is the current users!" %>
 <% else  %>
   <%# <%= "Owner show: This will only show if you own this pet" %>
-  <%= link_to "Edit", edit_pet_path(@pet), class: "btn-ghost", style: "display: block;" %>
-  <%= link_to pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
-  <i class="fa-solid fa-trash-can"></i>
-  <% end %>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <%= link_to "Edit this pet", edit_pet_path(@pet), class: "btn-ghost" %>
+  <%= link_to "Delete this pet", pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "btn-ghost" %>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div align="center">
   <% if @pet.applications.count == 0 %>
-    <p> "there are currently no applications for this pet"</p>
+    <h3>There are currently no pending applications for this pet</h3>
   <% else %>
     <h3> <%= "You currently have #{@pet.applications.count} application(s) for your pet" %></h3>
     <ul class="list-group mb-3">
@@ -133,5 +137,6 @@
       <% end %>
     </ul>
   <% end %>
+</div>
 
 <% end %>
