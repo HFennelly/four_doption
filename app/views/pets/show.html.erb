@@ -14,7 +14,12 @@
         <% else %>
           <%= image_tag "#{@pet.species.downcase}.jpg", class: "card-img-top" %>
         <% end %>
-
+          <p> Needs a garden? </p>
+            <% if @pet.needs_garden == true %>
+              <i class="fa-solid fa-circle-check"></i>
+            <% else %>
+              <i class="fa-solid fa-circle-xmark"></i>
+            <% end %>
           <p> <%= @pet.description %></p>
           <p> Pet description here .....................................</p>
 
@@ -28,7 +33,7 @@
           <% end %>
         <% else %> <%#if no favourites, show the create favourite button %>
           <%= simple_form_for [@pet, @favourite] do |f| %>
-          <div class="">
+          <div>
           <%= button_tag(type: 'submit', class: 'favourite-btn')  do %>
             <i class="fa-regular fa-star"></i>
           <% end %>
