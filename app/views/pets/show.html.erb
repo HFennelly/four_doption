@@ -64,6 +64,7 @@
           <% end %>
         </div>
       <% else %>
+        <h3>Your application has been actioned by the owner</h3>
         <p>You have already applied to adopt <%= @pet.name %></p>
         <%= link_to "Available pets", pets_path %>
         <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
@@ -122,6 +123,17 @@
   <p>You have already applied to adopt <%= @pet.name %></p>
   <%= link_to "Available pets", pets_path %>
   <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
+  <% if @pet.applications.where(user: current_user).first.validated %>
+
+    <% if @pet.applications.where(user: current_user).first.approved %>
+      <h3>Your application has been accepted!!! Please click here to talk to the owner and discuss collection dates etc</h3>
+    <% else %>
+      <h3>We are sorry, but your application has not been accepted by the pet's owner, thank for your interest</h3>
+    <% end %>
+
+  <% else %>
+    <h3>Your application is awaiting approval from its owner</h3>
+  <% end %>
 
 
   <%# <%= "Owner show: if the pet shown is the current users!" %>
