@@ -149,13 +149,22 @@
       <% @pet.applications.each do |application| %>
         <li class="list-group-item">
         <% if application.validated %>
-          <h3> <%= application.approved ? "Applications you have approved" : "Applications you have denied" %> </h3>
-          <%= application.user.name %>
-          <br>
-          <p>Click here to start messaging your pet's future owner!</p>
-          <br>
-          <br>
-          <%= application.requirements %>
+          <% if application.approved %>
+            <h3> Your approved applications</h3>
+            <h4><%= application.user.name %></h4>
+            <h5><%= application.requirements %></h5>
+            <br>
+            <br>
+            <p>Click here to start messaging your pet's future owner!</p>
+            <br>
+            <p>Let us know when this pet has been adopted!</p>
+            <br>
+          <% else %>
+            <h3>Applications you have denied</h3>
+            <h4><%= application.user.name %></h4>
+            <h5><%= application.requirements %></h5>
+            <br>
+          <% end %>
         <% else %>
           <%= application.validated ? "true" : "false" %>
           <h3>Your pending applications</h3>
