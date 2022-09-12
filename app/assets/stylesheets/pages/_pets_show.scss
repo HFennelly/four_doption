@@ -11,6 +11,7 @@
   height: 600px;
   border-radius: 30px;
   padding: 20px;
+
   // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
 }
@@ -28,6 +29,7 @@
   border-radius: 30px;
   display: flex;
   flex-direction: column;
+  padding: 30px;
 }
 
 .pet-show-name-header {
@@ -147,6 +149,8 @@
   vertical-align: middle;
   white-space: nowrap;
   width: 90%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .button-1:after {
