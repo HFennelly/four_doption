@@ -23,16 +23,22 @@
         <% if current_user.favourites.where(pet: @pet).count > 0 %>
           <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
           <br>
-          <%= link_to "Remove as favourite", favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
+          <%= link_to favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"}, class: 'favourite-btn' do%>
+            <i class="fa-solid fa-star"></i>
+          <% end %>
         <% else %> <%#if no favourites, show the create favourite button %>
           <%= simple_form_for [@pet, @favourite] do |f| %>
-          <div class="d-flex justify-content-center">
-            <%= f.button :button, class: 'button-1 button-1-hover' %>
+          <div class="">
+          <%= button_tag(type: 'submit', class: 'favourite-btn')  do %>
+            <i class="fa-regular fa-star"></i>
+          <% end %>
           </div>
           <% end %>
         <% end %>
       </div>
     </div>
+
+    <%# d-flex justify-content-center %>
 
     <div class="adoption-form">
 
@@ -87,7 +93,7 @@
       </div>
     </div>
 
-    <div class="pet-details" style="width: 400px; height: 500px;"
+    <div class="pet-details" style="width: 400px; height: 600px;"
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
