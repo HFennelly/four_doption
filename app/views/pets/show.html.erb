@@ -13,7 +13,7 @@
         <% if @pet.photo.attached? %>
           <%= cl_image_tag @pet.photo.key, class: "img" %>
         <% else %>
-          <%= image_tag "#{@pet.species}.jpg", class: "img" %>
+          <%= image_tag "#{@pet.species.downcase}.jpg", class: "img" %>
         <% end %>
         <div class="align-needs-garden-items" style="display: flex;">
           <p> Needs a garden? </p>
