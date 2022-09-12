@@ -19,13 +19,28 @@
                       </tr>
                     </tbody>
                   </table>
-      </div>
       <li class="list-group-item" >
         <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn-ghost", notice: "your application has been cancelled" %>
         <br>
         <%= link_to "See All Of Your Applications", applications_path %>
       </li>
-      <div>
 
+      <%# <% "Approved application chatbox" %>
+      <div class="container chatroom">
+        <h1>#<%= "Application id: #{@application.id}" %></h1>
+
+        <div class="messages">
+          <% @application.messages.each do |message| %>
+            <div id="message-<%= message.id %>">
+              <small>
+                <strong><%= message.user.name %></strong>
+                <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+              </small>
+              <p><%= message.content %></p>
+            </div>
+          <% end %>
+        </div>
       </div>
+
+    </div>
 </div>
