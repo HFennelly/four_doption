@@ -25,7 +25,6 @@ User.create!(email: Faker::Internet.email, password: "123456", name: Faker::Funn
   adopted: false,
   adoption_fee: [100, 200, 300, 400, 500].sample,
   location: Faker::Address.city,
-  description: Faker::Quotes::Shakespeare.hamlet_quote
 ) # one pet created, belonging to this user (no applications, no favourites belonging to this user)
 
 10.times do

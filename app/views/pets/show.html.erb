@@ -73,7 +73,11 @@
               <h2>Listed by <%=@pet.user.name %></h2>
             </div>
               <h2 class="card-trip-pricing"><%= @pet.user.address %></h2>
-              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+              <% if @pet.user.photo.attached? %>
+                <%=cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+              <% else %>
+                <%= image_tag "default-user-icon.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <% end %>
             </div>
           </div>
             <%= @pet.user.name %>
