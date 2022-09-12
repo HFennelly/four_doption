@@ -11,6 +11,8 @@
   height: 600px;
   border-radius: 30px;
   padding: 20px;
+  position: relative;
+
   // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
 }
@@ -28,6 +30,7 @@
   border-radius: 30px;
   display: flex;
   flex-direction: column;
+  padding: 30px;
 }
 
 .pet-show-name-header {
@@ -36,6 +39,7 @@
   margin-left: 20px;
   margin-top: 20px;
   color: #5E6771;
+  font-size: 35px;
 }
 
 .pet-infos {
@@ -147,6 +151,8 @@
   vertical-align: middle;
   white-space: nowrap;
   width: 90%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .button-1:after {
@@ -262,4 +268,36 @@
     top:  2px;
     z-index: 1;
   }
+}
+
+
+.apply-btn-map {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+
+.favourite-btn {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  left: 550px;
+  bottom: 545px;
+  font-size: 25px;
+}
+
+.card-img-top {
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+
+.align-needs-garden-elements {
+  display: flex;
+
 }
