@@ -1,36 +1,55 @@
 .main-show-details {
   display: flex;
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: 1250px;
+  margin: auto;
   flex-wrap: wrap;
 }
 
 .pet-details {
   background-color: #DDE7F9;
   margin: 20px;
-  height: 600px;
+  height: 650px;
   border-radius: 30px;
   padding: 20px;
-  position: relative;
-
+  text-decoration: none;
+  background-color: #e0e9f9;
+  flex-direction: row;
+  overflow-y: scroll;
+  flex: 2 2 auto;
+  align-items: stretch;
   // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
 }
 
 .pet-details-container {
-  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .adoption-details {
-  width: 400px;
   background-color: #DDE7F9;
-  height: 600px;
-  align-items: center;
+  margin: 20px;
+  height: 650px;
+  border-radius: 30px;
+  display: flex;
+  padding: 30px;
+  overflow-y: scroll;
+  flex: 1 1 0;
+  align-items: stretch;
+}
+
+.adoption-details-map {
+  background-color: #DDE7F9;
   margin: 20px;
   border-radius: 30px;
   display: flex;
-  flex-direction: column;
   padding: 30px;
+  height: 500px;
+  width: 50%;
+  overflow-y: scroll;
+  flex: 1 1 0;
+  align-items: stretch;
 }
 
 .pet-show-name-header {
@@ -54,7 +73,7 @@
 
 .new_application {
   margin-left: 20px;
-  margin-right:20px;
+  margin-right: 20px;
 }
 
 
@@ -282,8 +301,8 @@
   background-color: transparent;
   border: none;
   position: absolute;
-  left: 550px;
-  bottom: 545px;
+  left: 800px;
+  bottom: 685px;
   font-size: 25px;
 }
 
@@ -300,4 +319,9 @@
 .align-needs-garden-elements {
   display: flex;
 
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
