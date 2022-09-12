@@ -47,7 +47,7 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:requirements)
+    params.require(:application).permit(:applicant_name, :applicant_age, :applicant_address, :applicant_household, :applicant_pets, :applicant_home, :applicant_hours, :applicant_garden, :applicant_information)
   end
 
   def set_pet

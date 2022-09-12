@@ -96,7 +96,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    # update to "photos: []"" when doing has many attached photos
-    params.require(:pet).permit(:name, :age, :breed, :age, :location, :sex, :size, :needs_garden, :photo)
+    #change to "photos: []"" for has many photos
+    params.require(:pet).permit(:name, :age, :breed, :age, :location, :sex, :size, :needs_garden, )
   end
 end
