@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_08_130610) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_12_113527) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,12 +43,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_130610) do
   end
 
   create_table "applications", force: :cascade do |t|
-    t.boolean "approved"
+    t.boolean "approved", default: false
     t.text "requirements"
     t.bigint "user_id", null: false
     t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "applicant_name"
+    t.string "applicant_age"
+    t.string "applicant_address"
+    t.text "applicant_household"
+    t.text "applicant_pets"
+    t.string "applicant_home"
+    t.string "applicant_hours"
+    t.string "applicant_garden"
+    t.text "additional_information"
+    t.boolean "validated"
     t.index ["pet_id"], name: "index_applications_on_pet_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
   end

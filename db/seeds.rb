@@ -91,7 +91,7 @@ User.create!(email: Faker::Internet.email, password: "123456", name: Faker::Funn
   adopted: false,
   adoption_fee: [100, 200, 300, 400, 500].sample,
   location: Faker::Address.city)
-# one pet created, belonging to this user (no applications, no favourites belonging to this user)
+# one pet created, belonging to this user (no applications, no favourites belonging to this user
 
 5.times do
 u = User.create!(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address) # 10 fake users created

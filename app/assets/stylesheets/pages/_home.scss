@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 .banner-homepage {
   background-image: url('Banner-no-text');
-  height: 800px;
+  height: 700px;
   background-size: cover;
   position: center;
   background-position: center;
@@ -13,6 +13,7 @@
 .title {
   margin-left: 100px;
   color: #222934;
+  position: center;
 }
 
 .title-navbar {
@@ -55,9 +56,12 @@
 // }
 
 .card-img-top {
-  height: 300px;
   text-decoration: none;
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
   color: #222934;
+  border-radius: 5%;
 }
 
 
