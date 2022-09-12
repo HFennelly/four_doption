@@ -1,6 +1,7 @@
 class ApplicationsController < ApplicationController
   before_action :set_pet, only: [:create, :edit, :update]
 
+
   def create
     @application = Application.new(application_params)
     @application.pet = @pet
@@ -18,10 +19,11 @@ class ApplicationsController < ApplicationController
 
   def update
     @application = Application.find(params[:id])
+      @application.validated = true
     if @application.update(application_params)
       redirect_to pet_path(@pet), notice: "Your application has been updated!"
     else
-      render :edit, status: :unprocessible_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -47,7 +49,7 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:requirements)
+    params.require(:application).permit(:requirements, :approved, :validated)
   end
 
   def set_pet
