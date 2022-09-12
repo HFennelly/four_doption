@@ -16,6 +16,7 @@
         <% end %>
 
           <p> <%= @pet.description %></p>
+          <p> Pet description here .....................................</p>
 
   <%# <%= "Adopter not applied show: current user has no applications for this pet and current user does not own this pet" %>
   <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
