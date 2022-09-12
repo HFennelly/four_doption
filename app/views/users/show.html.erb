@@ -127,7 +127,7 @@
                                         <% if pet_app.pet.photo.attached? %>
                                         <%=cl_image_tag pet_app.pet.photo.key %>
                                         <% else %>
-                                        <%= image_tag "#{pet_app.pet.species.downcase}.jpg", class: "card-img-top" %>
+                                        <%= image_tag "#{pet_app.pet.species}.jpg", class: "card-img-top" %>
                                         <% end %>
                                         <div class="card-body">
                                           <h4 class="card-text">Name: <%= pet_app.pet.name %></h4>

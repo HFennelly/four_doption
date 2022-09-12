@@ -8,11 +8,12 @@
           <strong><p> <%= @pet.breed.capitalize %></p></strong>
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
+          <p> Summary: <%= @pet.description %></p>
 
         <% if @pet.photo.attached? %>
           <%= cl_image_tag @pet.photo.key, class: "card-img-top" %>
         <% else %>
-          <%= image_tag "#{@pet.species.downcase}.jpg", class: "card-img-top" %>
+          <%= image_tag "#{@pet.species}.jpg", class: "card-img-top" %>
         <% end %>
         <div class="align-needs-garden-items" style="display: flex;">
           <p> Needs a garden? </p>
@@ -54,14 +55,25 @@
 
       <%# <%= "Adopter applied or not applied show: current user has not applied for this pet, or current user has applied for this pet " %>
       <% if @pet.applications.where(user: current_user).count == 0 %>
-        <div class="pet-details" style="color: black;">
+        <div>
           <h3 class="pet-show-name-header">Apply to adopt this pet!</h3>
-          <%= simple_form_for [@pet, @application] do |f| %>
-            <%= f.input :requirements, required: true %>
-            <div class="d-flex justify-content-center">
-              <%= f.button :button, class: 'button-1 button-1-hover' %>
-            </div>
-          <% end %>
+              <p class="mg"><strong>Interested in adopting? Great news!</strong></p>
+                  <p class="mg">Please fill out your details in the form below, and we will send your application to the rescue/owner for review.</p>
+                <br>
+                    <%= simple_form_for [@pet, @application] do |f| %>
+                    <%= f.input :applicant_name, required: true, label: "Name" %>
+                    <%= f.input :applicant_age, required: true, label: "Age" %>
+                    <%= f.input :applicant_address, required: true, label: "Address" %>
+                    <%= f.input :applicant_household, required: true, label: "Please provide an overview of your household members." %>
+                    <%= f.input :applicant_pets, required: true, label: "Do you have any existing pets? If so, please provide details." %>
+                    <%= f.input :applicant_home, required: true, label: "Are you in rented accommodation or do you own your home? If rented, do you have your landlord's permission to adopt a pet?" %>
+                    <%= f.input :applicant_hours, required: true, label: "Please confirm your typical working hours, and the amount of time any pet would be left at home unattended." %>
+                    <%= f.input :applicant_garden, required: true, label: "Does your home have a private garden? Please provide details." %>
+                    <%= f.input :additional_information, required: false, label: "You can use the below space to tell us a bit more about yourself and why you wish to adopt this pet.", placeholder: "This is your chance to sell yourself! Any extra information you can give here will help us determine if this is a good match. For example, to increase your changes of being selected for a homecheck, we advise including details of any past experience you have which may help with the animal you are applying to adopt.", input_html: { rows: 8 } %>
+                      <div class="d-flex justify-content-center">
+                        <%= f.button :button, "APPLY TO ADOPT #{@pet.name.capitalize}", class: 'button-1 button-1-hover' %>
+                      </div>
+                    <% end %>
         </div>
       <% else %>
         <p>You have already applied to adopt <%= @pet.name %></p>
