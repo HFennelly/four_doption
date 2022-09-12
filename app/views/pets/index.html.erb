@@ -8,19 +8,13 @@
 
           <div class="filter">
           <%= form_with url: "/pets", class:"form", method: :get do |form| %>
-            <%= form.label  :species, "species" %>
-            <%= form.select :species, Pet.select(:species).distinct.pluck(:species).unshift(""), id: "tom-select-it", selected: params[:species]  %>
-            <%= form.label  :breed, "breed" %>
-            <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).unshift(""), id: "tom-select-it", selected: params[:breed] %>
-            <%= form.label  :age, "age" %>
-            <%= form.select :age, Pet.select(:age).distinct.pluck(:age).compact.sort.unshift(""), selected: params[:age] %>
-            <%= form.label  :size, "size" %>
-            <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift(""), selected: params[:size] %>
-            <%= form.label  :sex, "sex" %>
-            <%= form.select :sex, ["", "female", "male" ], selected: params[:sex] %>
-            <%= form.label :location, "location" %>
-            <%= form.text_field :location, id: "tom-select-it", value: params[:location] %>
-            <%= form.submit "Search" %>
+            <%= form.select :species, Pet.select(:species).distinct.pluck(:species).unshift(""), prompt: "Species", id: "tom-select-it", selected: params[:species]  %>
+            <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).unshift(""), prompt: "Breed", id: "tom-select-it", selected: params[:breed] %>
+            <%= form.select :age, Pet.select(:age).distinct.pluck(:age).compact.sort.unshift(""), prompt: "Age", selected: params[:age] %>
+            <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift(""), prompt: "Size", selected: params[:size] %>
+            <%= form.select :sex, ["", "female", "male" ], prompt: "Sex", selected: params[:sex] %>
+            <%= form.text_field :location, placeholder: "Location", id: "tom-select-it", value: params[:location] %>
+            <%= form.button "Search", class: 'button-1 button-1-hover' %>
           <% end %>
           <button type="button" class=" close btn btn-link" data-action="click->filter-search#hide"> <i class="fa-solid fa-square-xmark"></i> </button>
           </div>
