@@ -17,7 +17,7 @@
             <%= form.label  :size, "size" %>
             <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift(""), selected: params[:size] %>
             <%= form.label  :sex, "sex" %>
-            <%= form.select :sex, ["", "female", "male" ], selected: params[:sex] %>
+            <%= form.select :sex, Pet.select(:sex).distinct.pluck(:sex).unshift(""), selected: params[:sex] %>
             <%= form.label :location, "location" %>
             <%= form.text_field :location, id: "tom-select-it", value: params[:location] %>
             <%= form.submit "Search" %>
