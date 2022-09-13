@@ -132,6 +132,7 @@
 
 
 
+
 // CSS for homepage carousel cards
 
 .card-img, .card-img-bottom {
@@ -157,3 +158,52 @@
 //   object-fit: cover;
 
 // }
+
+.app-card {
+  position: relative;
+  display: block;
+  height: 500px;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: auto;
+  text-decoration: none;
+  border-radius: 5%;
+  box-shadow: 2px 2px 20px #9BBDF9;
+  background-color: #e0e9f9;
+  opacity: 0.9;
+}
+
+.app-card-img-top {
+  text-decoration: none;
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  color: #222934;
+  padding: 0;
+}
+
+.app-card-body {
+  color: #222934;
+  text-decoration: none;
+}
+
+.application-status {
+  color: #343d4c;
+}
+
+.app-icon {
+  width: 60px;
+  position: absolute;
+  left: 80px;
+  bottom: 150px;
+  margin: 20px;
+}
+
+.app-card-text {
+  color: #343d4c;
+  overflow: hidden;
+  padding: 1px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 24px;
+}
+
