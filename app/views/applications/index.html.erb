@@ -11,7 +11,7 @@
             <h3>Your approved applications</h3>
             <%= application.requirements %>
             <br>
-            <%= link_to "See your application", application_path(application) %>
+            <%= link_to "Start messaging!", application_path(application), class: "btn-ghost" %>
             <br>
           <% else %>
             <h3>Your pending applications</h3>

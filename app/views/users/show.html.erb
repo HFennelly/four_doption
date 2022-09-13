@@ -26,7 +26,7 @@
                               <% if pet.photo.attached? %>
                                 <%=cl_image_tag pet.photo.key, class: "my-pet-card-img-top" %>
                               <% else %>
-                                <%= image_tag "#{pet.species}.jpg", class: "my-pet-card-img-top" %>
+                                <%= image_tag "#{pet.species.downcase}.jpg", class: "card-img-top" %>
                               <% end %>
                               <br>
                               <div class="my-pet-card-body">
@@ -81,7 +81,7 @@
                                 <% if favourite.pet.photo.attached? %>
                                 <%=cl_image_tag favourite.pet.photo.key %>
                                 <% else %>
-                                <%= image_tag "#{favourite.pet.species}.jpg", class: "card-img-top" %>
+                                <%= image_tag "#{favourite.pet.species.downcase}.jpg", class: "card-img-top" %>
                                 <% end %>
                                   <div class="card-body">
                                     <h4 class="card-text">Name: <%= favourite.pet.name %></h4>
@@ -120,7 +120,7 @@
                                         <% if pet_app.pet.photo.attached? %>
                                         <%=cl_image_tag pet_app.pet.photo.key %>
                                         <% else %>
-                                        <%= image_tag "#{pet_app.pet.species}.jpg", class: "app-card-img-top" %>
+                                        <%= image_tag "#{pet_app.pet.species.downcase}.jpg", class: "app-card-img-top" %>
                                         <% end %>
                                         <div class="app-card-body">
                                           <h4 class="app-card-text">Name: <%= pet_app.pet.name %></h4>
@@ -144,7 +144,7 @@
                                         <% if pet_app.pet.photo.attached? %>
                                         <%=cl_image_tag pet_app.pet.photo.key %>
                                         <% else %>
-                                        <%= image_tag "#{pet_app.pet.species}.jpg", class: "app-card-img-top" %>
+                                        <%= image_tag "#{pet_app.pet.species.downcase}.jpg", class: "app-card-img-top" %>
                                         <% end %>
                                           <span class="application-status">
                                             <% if pet_app.validated %>

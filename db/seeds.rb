@@ -36,7 +36,7 @@ html_doc.search(".c-pet-card").first(24).each do |element|
     dog_info = dog_html_doc.search(".c-hero--pet-single-details li").children.first(3)
     breed = dog_info[0]
     age = dog_info[1].text.strip.split[0].to_i
-    sex = dog_info[2]
+    sex = dog_info[2].text.downcase
     description = dog_html_doc.search(".c-hero--pet-single-details p").text.strip
     dog_image = dog_html_doc.search(".swiper-slide img").attribute("src")
     pet = Pet.create(age: age, breed: breed, location: "Kings Bush Farm, Godmanchester, UK", sex: sex, species: "dog", name: name, needs_garden: true, size: ["small", "medium", "large"].sample, adopted: adopted, description: description, user: woodgreen)
@@ -66,18 +66,62 @@ cat_first_html_doc.search(".c-pet-card").first(15).each do |element|
     # gets the breed
     cat_age = cat_info[1].text.strip.split[0].to_i
     # gets the age and extracts just the number from "2 years" returning as an interga
-    cat_sex = cat_info[2]
+    cat_sex = cat_info[2].text.downcase
     # gets the sex of the cat
     description = cat_html_doc.search(".c-pet-detail > p").text.strip
     # takes a description from the bottom of the page, it's in a different place the one used in dog scrape.
     cat_image = cat_html_doc.search(".swiper-slide img").attribute("src")
     # takes the first image from the webpage
-    pet = Pet.create(age: cat_age, breed: cat_breed, location: "Kings Bush Farm, Godmanchester, UK", sex: cat_sex, species: "cat", name: cat_name, needs_garden: true, size: ["small", "medium", "large"].sample, description: description, adopted: adopted, user: woodgreen)
+    cat = Pet.create(age: cat_age, breed: cat_breed, location: "Kings Bush Farm, Godmanchester, UK", sex: cat_sex, species: "cat", name: cat_name, needs_garden: true, size: ["small", "medium", "large"].sample, description: description, adopted: adopted, user: woodgreen)
     file = URI.open(cat_image)
-    pet.photo.attach(io: file, filename: "#{cat_name}.png", content_type: "image/png")
-    puts pet.name
+    cat.photo.attach(io: file, filename: "#{cat_name}.png", content_type: "image/png")
+    puts cat.name
   end
 end
+
+
+animal_rescue_and_care = User.create(email: "ARC@animalrescuecare.com", password: "123456", name: "Animal Rescue and Care", address: "Twickenham, London, TW1 1WG", domain: "https://animalrescueandcare.org.uk/", rescue: true, description: "Animal Rescue and Care center")
+
+animal_rescue_and_care_rabbit = "https://animalrescueandcare.org.uk/adopt-a-rabbit/"
+rabbit_html_file = URI.open(animal_rescue_and_care_rabbit).read
+rabbit_html_doc = Nokogiri::HTML(rabbit_html_file)
+rabbit_html_doc.search(".entry-title  > a").first(15).each_with_index do |link, index|
+  unless index == 0
+    rabbit_inner_link = link.attribute("href").value
+    rabbit_inner_html_file = URI.open(rabbit_inner_link).read
+    rabbit_inner_html_doc = Nokogiri::HTML(rabbit_inner_html_file)
+    rabbit_name = rabbit_inner_html_doc.search(".project-info h3").text.strip.split(" (")[0]
+    check = rabbit_inner_html_doc.search(".project-info h3").text.strip.split(" (")[1]
+    age_array = check.split(/\W/).pop(3)
+    rabbit_age = age_array.select {|num| num.to_i != 0}.first.to_i
+    p rabbit_age
+    rabbit_hash = rabbit_inner_html_doc.search(".project-info-box")
+    hash = {}
+    rabbit_hash.each do |info|
+      hash[info.search("h4").text.strip] = info.search(".project-terms").text.strip
+    end
+    rabbit_sex = hash["Sex:"].downcase
+    if hash["Breed:"] == nil
+      rabbit_breed = "unknown"
+    else
+      rabbit_breed = hash["Breed:"]
+    end
+    if hash["Status:"] == "Available"
+      rabbit_adopted = false
+    else
+      rabbit_adopted == true
+    end
+    rabbit_description = rabbit_inner_html_doc.search(".project-description p").text.strip
+    rabbit_img = rabbit_inner_html_doc.search(".fusion-flexslider img").attribute("src")
+
+    rabbit = Pet.create(age: rabbit_age, breed: rabbit_breed, location: "Twickenham, London, Uk,
+      TW1 1WG", sex: rabbit_sex.downcase, species: "rabbit", name: rabbit_name, needs_garden: true, size: ["small", "medium", "large"].sample, adopted: rabbit_adopted, description: rabbit_description, user: animal_rescue_and_care)
+      file = URI.open(rabbit_img)
+    rabbit.photo.attach(io: file, filename: "#{rabbit_name}.png", content_type: "image/png")
+    puts rabbit.name
+    end
+  end
+
 
 User.create!(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address) # 1st fake user created
  Pet.create!(
@@ -95,7 +139,7 @@ User.create!(email: Faker::Internet.email, password: "123456", name: Faker::Funn
 
 5.times do
 u = User.create!(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address) # 10 fake users created
-  2.times do # 20 times per each fake user
+  2.times do # 10 times per each fake user
     pet = Pet.create!(
       user: u,
       sex: ['male', 'female'].sample,
