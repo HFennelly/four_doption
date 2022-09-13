@@ -18,7 +18,7 @@ User.delete_all
 
 woodgreen_dog = "https://woodgreen.org.uk/pets/?species=dog&pPage=1#038;pPage=2"
 
-woodgreen = User.create(email: "woodgreen@woodgreen.com", password: "123456", name: "Woodgreen", address: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", domain: "https://www.woodgreen.org.uk/", rescue: true, description: "woodgreen rescue center for animals" )
+woodgreen = User.create(email: "default@woodgreen.org.uk", password: "123456", name: "Woodgreen", address: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", domain: "https://www.woodgreen.org.uk/", rescue: true, description: "woodgreen rescue center for animals" )
 
 html_file = URI.open(woodgreen_dog).read
 html_doc = Nokogiri::HTML(html_file)

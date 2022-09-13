@@ -29,7 +29,7 @@
             <p> Description: <%= @pet.description %></p>
 
             <div>
-                  <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
+                  <% if @pet.applications.where(user: current_user).count == 0 && current_user.can_edit_pet?(@pet) == false %>
                         <% if current_user.favourites.where(pet: @pet).count > 0 %>
                           <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
                           <br>
@@ -126,7 +126,7 @@
 
 <%# <%= "outside of main show details div also outside of mapbox html rendering currently" %>
 <%# <%= "Adopter applied show: if the pet shown is not the current user's, but they have previously applied to adopt it" %>
-<% elsif @pet.user != current_user %>
+<% elsif current_user.can_edit_pet?(@pet) == false %>
   <p>You have already applied to adopt <%= @pet.name %></p>
   <%= link_to "Available pets", pets_path %>
   <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.first) %>
