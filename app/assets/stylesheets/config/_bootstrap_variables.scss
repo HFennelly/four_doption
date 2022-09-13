@@ -109,7 +109,13 @@ a:hover {
   text-decoration: none;
   height: 300px;
   width: 300px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 15px;
   padding: 10px;
+}
+
+.favourite-img-top {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
