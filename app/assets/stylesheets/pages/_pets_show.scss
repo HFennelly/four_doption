@@ -176,12 +176,11 @@
   width: 90%;
   display: flex;
   justify-content: flex-end;
-  // width: 200px !important;
 }
 
 .button-1:after {
   background-clip: padding-box;
-  background-color: #9BBDF9;
+  background-color: #102542 !important;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -239,7 +238,7 @@
 
   button:after {
     background-clip: padding-box;
-    background-color: #9BBDF9;
+    background-color: #102542;
     border: solid transparent;
     border-radius: 16px;
     border-width: 0 0 4px;
@@ -334,4 +333,9 @@
 
 .adoption-form {
   box-shadow: 1px 1px 3px #a7b4cb;
+}
+
+
+.price-button span:after {
+  background-color: #102542;
 }
