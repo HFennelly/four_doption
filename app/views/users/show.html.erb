@@ -35,7 +35,7 @@
                                           <%= image_tag "waiting-apps.png", class: "my-pet-app-icon" %>
                                         <% else %>
                                         <%# ADD ALTERNATIVE BADGE FOR PENDING APPS INSTEAD OF THE LINE BELOW %>
-                                          <p> <%= "#{pet.applications.count} APPLICATION(S) PENDING" %></p> <%= link_to "Click here to review!", application_path(@user.owned_pet_applications) %>
+                                          <p> <%= "#{pet.applications.count} APPLICATION(S) PENDING" %></p> <%= link_to "Click here to review!", pet_path(pet) %>
                                         <% end %>
                                       </span>
                                     <br>
@@ -124,9 +124,10 @@
                                           <h4 class="app-card-text">Name: <%= pet_app.pet.name %></h4>
                                             <div align="center">
                                               <% if pet_app.approved %>
+                                                <h3><%= "You have approved #{pet_app.user.name}'s application!" %></h3>
                                                 <%= link_to "Start messaging!", application_path(pet_app), class: 'btn-ghost' %>
                                               <% else %>
-                                                <%= link_to "Review this application", "#", class: 'btn-ghost' %>
+                                                <%= link_to "Review this application", pet_path(pet_app.pet), class: 'btn-ghost' %>
                                               <% end %>
                                             </div>
                                         </div>
