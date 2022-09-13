@@ -145,7 +145,7 @@
 
 .button-1 {
   appearance: button;
-  background-color: #67AAF9;
+  background-color: #67AAF9 !important;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
@@ -174,6 +174,7 @@
   width: 90%;
   display: flex;
   justify-content: flex-end;
+  // width: 200px !important;
 }
 
 .button-1:after {
@@ -231,7 +232,7 @@
     vertical-align: middle;
     white-space: nowrap;
     width: 90%;
-    background-color: #9BBDF9;
+    background-color: transparent;
   }
 
   button:after {
