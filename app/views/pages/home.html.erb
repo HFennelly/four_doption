@@ -32,7 +32,7 @@
           <div class="row justify-content-center">
             <% 4.times do |i| %>
               <div class="col-md-3 my-3 landing-page-card">
-                <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
+                <%= link_to pet_path(pet[i]), class: 'text-decoration-none' do %>
                   <div class="card">
                   <% if pet[i].photo.attached? %>
                     <%= cl_image_tag pet[i].photo.key, class: "card-img" %>
