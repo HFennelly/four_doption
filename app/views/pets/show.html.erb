@@ -133,7 +133,8 @@
   <% if @pet.applications.where(user: current_user).first.validated %>
 
     <% if @pet.applications.where(user: current_user).first.approved %>
-      <h3>Your application has been accepted!!! Please click here to talk to the owner and discuss collection dates etc</h3>
+      <h3>Your application has been accepted!!! Please click below to talk to the owner and discuss collection dates etc</h3>
+      <%= link_to "Start Messaging", application_path(@pet.applications.where(approved: true).first), class: "btn-ghost" %>
     <% else %>
       <h3>We are sorry, but your application has not been accepted by the pet's owner, thank for your interest</h3>
     <% end %>
@@ -175,6 +176,10 @@
             <br>
             <br>
             <p>Click here to start messaging your pet's future owner!</p>
+            <%= link_to "Start Messaging", application_path(application), class: "btn-ghost" %>
+            <br>
+            <br>
+            <br>
             <br>
             <p>Let us know when this pet has been adopted!</p>
             <br>
