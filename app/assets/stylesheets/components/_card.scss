@@ -207,3 +207,67 @@
   font-size: 24px;
 }
 
+
+.my-pet-card {
+  position: relative;
+  display: block;
+  height: 500px;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: auto;
+  text-decoration: none;
+  border-radius: 5%;
+  box-shadow: 2px 2px 20px #9BBDF9;
+  background-color: #e0e9f9;
+  opacity: 0.9;
+}
+
+.my-pet-card-img-top {
+  text-decoration: none;
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  color: #222934;
+  padding: 0;
+}
+
+.my-pet-btn-ghost {
+  color: #343d4c;
+  background-color: #9BBDF9;
+  border: 2px solid #9BBDF9;
+  padding: 8px 24px;
+  border-radius: 50px;
+  opacity: 0.9;
+  transition: 0.3s ease;
+  margin: 4px;
+  max-width: 10px;
+  font-size: smaller;
+}
+
+.my-pet-card-body {
+  color: #222934;
+  text-decoration: none;
+}
+
+.my-pet-card-text {
+  color: #343d4c;
+  overflow: hidden;
+  padding: 1px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 24px;
+}
+
+.my-pet-app-icon {
+  height: 100px;
+  position: absolute;
+  left: 80px;
+  bottom: 150px;
+}
+
+.my-pet-name {
+  color: #343d4c;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
