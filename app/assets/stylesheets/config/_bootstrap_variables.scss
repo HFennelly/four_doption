@@ -119,3 +119,9 @@ a:hover {
   width: 100%;
   object-fit: contain;
 }
+
+
+.row {
+  display:flex;
+  justify-content: space-evenly;
+}

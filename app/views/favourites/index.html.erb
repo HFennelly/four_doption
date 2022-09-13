@@ -5,18 +5,43 @@
       <h1>All Favourites</h1>
       <ul class="list-group mb-3">
         <% @favourites.each do |fav| %>
-          <li class="list-group-item">
-            <%= fav.pet.name %>
-            <li class="list-group-item" >
+          <div class="card-product">
+            <div align="center">
+              <% if fav.pet.photo.attached? %>
+                <%= cl_image_tag fav.pet.photo.key, class: "img" %>
+              <% else %>
+                <%= image_tag "#{fav.pet.species.downcase}.jpg", class: "img" %>
+              <% end %>
+            </div>
+          <li class="fav-list-group-item set-max-width-location">
+            <strong><%= fav.pet.name %></strong>
+            <p><%= fav.pet.location %></p>
+            <li class="fav-list-group-item add-description-margin" >
+              <%= fav.pet.description %>
+            <li class="fav-list-group-item delete-section" >
               <%= link_to "Go to your favourite pet", pet_path(fav.pet) %>
-              <%= button_to("Delete favourite", favourite_path(fav) ,  method: "delete", :class => "btn-ghost") %>
+              <%= button_to("Delete favourite!", favourite_path(fav) ,  method: "delete", :class => "btn-ghost button-1") %>
             </li>
           </li>
+          </div>
         <% end %>
       </ul>
     </div>
   </div>
 </div>
+
+<%# new favourites page html %>
+<%# <% if @favourites.count >= 1 %>
+<%# <h1>All Favourites</h1>
+<div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <%# <h2><%= fav.pet.name</h2>
+    <%# <p><%= fav.pet.description %>
+  <%# </div>
+</div> %>
+
+
 <% else %>
 <div class="container">
   <div class="row">
