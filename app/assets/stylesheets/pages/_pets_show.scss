@@ -17,6 +17,7 @@
   overflow-y: scroll;
   flex: 2 2 auto;
   align-items: stretch;
+  box-shadow: 1px 1px 3px #a7b4cb;
   // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
 }
@@ -33,10 +34,11 @@
   height: 650px;
   border-radius: 30px;
   display: flex;
+  justify-content: center;
   padding: 30px;
   overflow-y: scroll;
-  flex: 1 1 0;
-  align-items: stretch;
+  min-width: 550px;
+  box-shadow: 1px 1px 3px #a7b4cb;
 }
 
 .adoption-details-map {
@@ -69,7 +71,7 @@
 
 .pet-infos p {
   padding: 0px;
-  max-width: 60ch;
+  max-width: 95ch;
   line-height: 1.5rem;
 }
 
@@ -327,4 +329,9 @@
 .break {
   flex-basis: 100%;
   height: 0;
+}
+
+
+.adoption-form {
+  box-shadow: 1px 1px 3px #a7b4cb;
 }
