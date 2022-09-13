@@ -12,7 +12,7 @@
             <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).unshift(""), prompt: "Breed", id: "tom-select-it", selected: params[:breed] %>
             <%= form.select :age, Pet.select(:age).distinct.pluck(:age).compact.sort.unshift(""), prompt: "Age", selected: params[:age] %>
             <%= form.select :size, Pet.select(:size).distinct.pluck(:size).unshift(""), prompt: "Size", selected: params[:size] %>
-            <%= form.select :sex, ["", "female", "male" ], prompt: "Sex", selected: params[:sex] %>
+            <%= form.select :sex, Pet.select(:sex).distinct.pluck(:sex).unshift(""), prompt: "Sex", selected: params[:sex] %>
             <%= form.text_field :location, placeholder: "Location", id: "tom-select-it", value: params[:location] %>
             <%= form.button "Search", class: 'button-1 button-1-hover' %>
           <% end %>
