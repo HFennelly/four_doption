@@ -19,6 +19,7 @@
                   <p>You currently have the following pets listed for adoption:</p>
                   <ul class="list-group mb-3">
                       <div class="row">
+                      <div align="center">
                         <% @user.pets.each do |pet| %>
                         <div class="col-md-3 my-3 landing-page-card">
                           <%= link_to pet_path(pet) do%>
@@ -53,6 +54,7 @@
                         <% end %>
                       <% end %>
                       </div>
+                    </div>
                 </ul>
             <% else %>
                 <p> You currently don't have any pets listed for adoption!</p>
@@ -140,6 +142,7 @@
                     <p>Thank you for your interest! You have submitted adoption applications for the following pets:</p>
                           <ul class="list-group mb-3">
                               <div class="row">
+                                <div align="center">
                                 <% @user.applications.each do |pet_app| %>
                                     <div class="col-md-3 my-3 landing-page-card">
                                     <%= link_to pet_path(pet_app.pet) do%>
@@ -187,13 +190,11 @@
                                   </div>
                                 <% end %>
                               </div>
+                              </div>
                             </ul>
             <% else %>
               <p> You currently don't have any applications pending!</p>
             <% end %>
-
-            <br>
-            <br>
           </div>
         </div>
       </div>

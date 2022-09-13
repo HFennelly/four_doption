@@ -193,7 +193,7 @@
 .app-icon {
   width: 60px;
   position: absolute;
-  left: 80px;
+  left: 94px;
   bottom: 150px;
   margin: 20px;
 }
@@ -260,7 +260,7 @@
 .my-pet-app-icon {
   height: 100px;
   position: absolute;
-  left: 80px;
+  left: 95px;
   bottom: 150px;
 }
 
@@ -317,4 +317,70 @@
 .favourite-btn-ghost:hover {
   opacity: 0.8;
   background-color: rgb(217, 236, 247);
+}
+
+
+//for Application index page below:
+
+.app-page-card {
+  position: relative;
+  display: block;
+  height: 500px;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: auto;
+  text-decoration: none;
+  border-radius: 5%;
+  box-shadow: 2px 2px 20px #9BBDF9;
+  background-color: #e0e9f9;
+  opacity: 0.9;
+}
+
+.app-page-card-img-top {
+  text-decoration: none;
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  color: #222934;
+  padding: 0;
+}
+
+.app-page-card-body {
+  color: #222934;
+  text-decoration: none;
+}
+
+.application-page-status {
+  color: #343d4c;
+}
+
+.app-page-icon {
+  width: 60px;
+  position: absolute;
+  left: 93px;
+  bottom: 150px;
+  margin: 20px;
+}
+
+.app-page-card-text {
+  color: #343d4c;
+  overflow: hidden;
+  padding: 1px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 24px;
+}
+
+.user-application-details{
+  background-color: #DDE7F9;
+  margin: 20px;
+  width: 1000px;
+  height: 750px;
+  border-radius: 30px;
+  padding: 20px;
+  text-decoration: none;
+  background-color: #e0e9f9;
+  overflow-y: scroll;
+  flex: 2 2 auto;
+  align-items: stretch;
+  flex-basis: auto;
 }
