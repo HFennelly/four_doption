@@ -17,15 +17,16 @@ $info:       $frenchskyblue;
 $danger:     $capri;
 $warning:    $mulberry;
 
-$mulberry: #B95F89;
+$oxfordblue: #102542;
 $capri: #2EC0F9;
-$frenchskyblue: #67AAF9;
+$grannysmithapple: #9DE18C;
 $babyblueeyes: #9BBDF9;
 $beaublue: #c4e0f9;
 $gray: #222934;
 $light-gray: #f7d2db;
 // $gray: #343d4c;
 // $light-gray: #d2e6f7;
+// 67AAF9
 
 // Buttons & inputs' radius
 $border-radius:    15px;
@@ -79,7 +80,6 @@ a:hover {
   border: 2px solid #9BBDF9;
   padding: 8px 24px;
   border-radius: 50px;
-  opacity: 0.9;
   transition: 0.3s ease;
   margin: 4px;
 }
@@ -111,5 +111,6 @@ a:hover {
   width: 300px;
   object-fit: cover;
   border-radius: 15px;
-  padding: 10px;
+  box-shadow: 1px 1px 3px #9BBDF9;
+  margin-bottom: 2rem;
 }
