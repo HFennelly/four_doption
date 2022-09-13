@@ -125,7 +125,10 @@
                                         <div class="app-card-body">
                                           <h4 class="app-card-text">Name: <%= pet_app.pet.name %></h4>
                                             <div align="center">
-                                              <%= link_to "Review this application", application_path(@user.owned_pet_applications), class: 'btn-ghost' %>
+                                              <% if pet_app.approved %>
+                                                <%= link_to "Start messaging!", application_path(pet_app), class: 'btn-ghost' %>
+                                              <% else %>
+                                                <%= link_to "Review this application", "#", class: 'btn-ghost' %>
                                             </div>
                                         </div>
                                       </div>
@@ -153,6 +156,7 @@
                                                   <br>
                                                     <br>
                                                     <p>APPLICATION APPROVED</p>
+                                                    <%= link_to "Start Messaging the owner", application_path(pet_app) %>
                                                 <% else %>
                                                   <%= image_tag "app-denied.png", class: "app-icon" %>
                                                     <br>
