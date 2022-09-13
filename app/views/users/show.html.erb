@@ -1,31 +1,50 @@
 <div  align="center">
-  <div class="profile-container">
+  <div class="main-container">
   <br>
-  <div class="text-body">
+  <div class="main-show-details">
+    <div class="text-body">
     <h1>Welcome, <%= current_user.name %>!</h1>
       <p> <%= button_to("Edit your details", edit_user_registration_path(current_user), method: :get, :class => "btn-ghost") %>
         </p>
           <br>
+      <div class="user-details-container">
+            <div class="user-details">
+            <h2>YOUR PETS</h2>
             <% if @user.owned_pets_listed_for_adoption.any? %>
-              <h2>Your pets listed for adoption:</h2>
+                  <div align="center">
+                    <%= link_to "Add a new pet for adoption", new_pet_path, class: 'btn-ghost' %>
+                  </div>
                 <br>
+                <br>
+                  <p>You currently have the following pets listed for adoption:</p>
                   <ul class="list-group mb-3">
                       <div class="row">
                         <% @user.pets.each do |pet| %>
                         <div class="col-md-3 my-3 landing-page-card">
                           <%= link_to pet_path(pet) do%>
-                            <div class="card">
+                            <div class="my-pet-card">
                               <% if pet.photo.attached? %>
-                                <%=cl_image_tag pet.photo.key, class: "card-img-top" %>
+                                <%=cl_image_tag pet.photo.key, class: "my-pet-card-img-top" %>
                               <% else %>
-                                <%= image_tag "#{pet.species}.jpg", class: "card-img-top" %>
+                                <%= image_tag "#{pet.species}.jpg", class: "my-pet-card-img-top" %>
                               <% end %>
-                              <div class="card-body">
-                                <h4 class="card-text">Name: <%= pet.name %></h4>
-                                  <div align="right">
-                                    <%= link_to pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"} do %>
-                                        <i class="fa-solid fa-trash-can" ></i>
-                                    <% end %>
+                              <br>
+                              <div class="my-pet-card-body">
+                                <span class="application-status">
+                                        <% if pet.applications.count == 0 %>
+                                          <%= image_tag "waiting-apps.png", class: "my-pet-app-icon" %>
+                                        <% else %>
+                                          <p> <%= "#{pet.applications.count} APPLICATION(S) PENDING" %></p> <%= link_to "Click here to review!", application_path(@user.owned_pet_applications) %>
+                                        <% end %>
+                                      </span>
+                                    <br>
+                                <h2 class="my-pet-name"><%= pet.name %></h2>
+                                  <div align="center">
+                                    <%= link_to "Edit #{pet.name}'s profile", edit_pet_path(pet), class: "my-pet-btn-ghost" %>
+                                  </div>
+                                  <br>
+                                  <div align="center">
+                                    <%= link_to "Remove #{pet.name} from 4Doption", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "my-pet-btn-ghost" %>
                                   </div>
                               </div>
                             </div>
@@ -35,17 +54,24 @@
                       </div>
                 </ul>
             <% else %>
-                <h2> You currently don't have any pets listed for adoption!</h2>
+                <p> You currently don't have any pets listed for adoption!</p>
+                  <br>
+                  <div align="center">
+                    <%= link_to "Add a new pet for adoption", new_pet_path, class: 'btn-ghost' %>
+                  </div>
             <% end %>
-            <br>
-            <div align="center">
-              <%= link_to "Add a new pet for adoption", new_pet_path, class: 'btn-ghost' %>
-            </div>
+          </div>
             <br>
         <br>
+          <div class="user-details">
+            <h2>YOUR FAVOURITES</h2>
             <% if @user.favourites.any? %>
-              <h2>Your favourite pets:</h2>
-                <br>
+                    <div align="center">
+                      <%= link_to "Still looking? Add more favourites!", pets_path, class: 'btn-ghost' %>
+                    </div>
+                    <br>
+                    <br>
+                  <p>Here's a list of your favourite pets:</p>
                   <ul class="list-group mb-3">
                       <div class="row">
                         <% @user.favourites.each do |favourite| %>
@@ -72,18 +98,21 @@
                       </div>
                     </ul>
             <% else %>
-              <h2> You currently don't have any favourite pets!</h2>
+              <br>
+              <p> You currently don't have any favourite pets!</p>
+              <br>
+              <br>
+              <div align="center">
+                <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'btn-ghost' %>
+              </div>
             <% end %>
-            <br>
-            <div align="center">
-              <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'btn-ghost' %>
-            </div>
-            <br>
+          </div>
+          <br>
     <br>
+      <div class="user-details">
+          <h2>APPLICATIONS</h2>
             <% if @user.pets.count > 0 && @user.owned_pet_applications.any? %>
-              <h2>Good news! You have adoption applications waiting for your review:</h2>
-                <br>
-                <h2>The following pets have applications for your review:</h2>
+                <p>Good news! You have adoption applications waiting for your review:</p>
                   <% @user.owned_pet_applications.each do | pet_app | %>
                     <div class="col-md-3 my-3 landing-page-card">
                                     <%= link_to pet_path(pet_app.pet) do%>
@@ -105,7 +134,7 @@
                           <% end %>
                 <% end %>
                   <% if @user.applications.any? %>
-                    <h2>You have submitted adoption applications for the following pets:</h2>
+                    <p>Thank you for your interest! You have submitted adoption applications for the following pets:</p>
                           <ul class="list-group mb-3">
                               <div class="row">
                                 <% @user.applications.each do |pet_app| %>
@@ -156,12 +185,15 @@
                               </div>
                             </ul>
             <% else %>
-              <h2> You currently don't have any applications pending!</h2>
+              <p> You currently don't have any applications pending!</p>
             <% end %>
 
             <br>
             <br>
           </div>
+        </div>
+      </div>
+    </div>
     </div>
  </div>
 </div>
