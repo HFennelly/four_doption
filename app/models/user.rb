@@ -28,7 +28,7 @@ class User < ApplicationRecord
     return true if pet.user == self
     rescue_email = email.split("@")[1]
     # robot_rescue = User.where("email ILIKE ?", "%@#{rescue_email}%").and(User.where(robot_user: true))
-    if pet.user.domain.include?(rescue_email)
+    if pet.user.domain != nil && pet.user.domain.include?(rescue_email)
       return true
     end
     return false

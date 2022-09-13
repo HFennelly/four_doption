@@ -34,6 +34,7 @@
                                         <% if pet.applications.count == 0 %>
                                           <%= image_tag "waiting-apps.png", class: "my-pet-app-icon" %>
                                         <% else %>
+                                        <%# ADD ALTERNATIVE BADGE FOR PENDING APPS INSTEAD OF THE LINE BELOW %>
                                           <p> <%= "#{pet.applications.count} APPLICATION(S) PENDING" %></p> <%= link_to "Click here to review!", pet_path(pet) %>
                                         <% end %>
                                       </span>
@@ -75,23 +76,20 @@
                   <ul class="list-group mb-3">
                       <div class="row">
                         <% @user.favourites.each do |favourite| %>
-                          <div class="col-md-3 my-3 landing-page-card">
+                          <div class="col-md-6 my-6" >
                             <%= link_to pet_path(favourite.pet) do%>
-                              <div class="card">
+                              <div class="favourite-card">
                                 <% if favourite.pet.photo.attached? %>
-                                <%=cl_image_tag favourite.pet.photo.key %>
+                                <%=cl_image_tag favourite.pet.photo.key, class: "favourite-img-top" %>
                                 <% else %>
-                                <%= image_tag "#{favourite.pet.species.downcase}.jpg", class: "card-img-top" %>
+                                <%= image_tag "#{favourite.pet.species.downcase}.jpg", class: "favourite-img-top" %>
                                 <% end %>
                                   <div class="card-body">
-                                    <h4 class="card-text">Name: <%= favourite.pet.name %></h4>
-                                    <div align="right">
-                                      <%= link_to pet_path(favourite.pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} do %>
-                                          <i class="fa-solid fa-trash-can card-text" ></i>
-                                      <% end %>
+                                    <div align="center">
+                                      <%= link_to "Un-favourite #{favourite.pet.name}", favourite_path(favourite), class: 'favourite-btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
                                     </div>
                                   </div>
-                                 </div>
+                                </div>
                             <% end %>
                           </div>
                         <% end %>
