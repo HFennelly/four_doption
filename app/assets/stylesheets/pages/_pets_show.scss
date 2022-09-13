@@ -238,7 +238,7 @@
 
   button:after {
     background-clip: padding-box;
-    background-color: #102542;
+    background-color: #119D9D;
     border: solid transparent;
     border-radius: 16px;
     border-width: 0 0 4px;
@@ -337,5 +337,9 @@
 
 
 .price-button span:after {
-  background-color: #102542;
+  background-color: #119D9D;
+}
+
+.align-check {
+  margin-left: 6px;
 }

@@ -13,20 +13,20 @@
         <% end %>
         </div>
           <strong><p> <%= @pet.breed.capitalize %></p></strong>
+          <p> <%= @pet.description %></p>
           <p> Age: <%= @pet.age %></p>
           <p> Location: <%= @pet.location %></p>
 
 
             <div class="align-needs-garden-items" style="display: flex;">
-              <p> Needs a garden? </p>
+              <p> Needs a garden?     </p>
                 <% if @pet.needs_garden == true %>
-                  <i class="fa-solid fa-circle-check"></i>
+                  <i class="fa-solid fa-circle-check align-check"></i>
                 <% else %>
-                  <i class="fa-solid fa-circle-xmark"></i>
+                  <i class="fa-solid fa-circle-xmark align-check"></i>
                 <% end %>
             </div>
             <p> Size: <%= @pet.size.capitalize %></p>
-            <p> Description: <%= @pet.description %></p>
 
             <div>
                   <% if @pet.applications.where(user: current_user).count == 0 && @pet.user != current_user %>
