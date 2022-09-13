@@ -30,7 +30,7 @@
           <%= cl_image_tag pet.photo.key, class: "card-img" %>
 
         <% else %>
-          <%= image_tag "#{pet.species}.jpg", class: "card-img" %>
+          <%= image_tag "#{pet.species.downcase}.jpg", class: "card-img" %>
         <% end %>
         <div class="card__overlay">
           <div class="card__header">

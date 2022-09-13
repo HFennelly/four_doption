@@ -25,9 +25,12 @@
         <%= link_to "See All Of Your Applications", applications_path %>
       </li>
 
+      <% if @application.approved %>
       <%# <% "Approved application chatbox" %>
       <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
+        <h1>Congratulations On Your Succesful application!</h1>
         <h1>#<%= "Application id: #{@application.id}" %></h1>
+        <h2>Start Chatting below!</h2>
 
         <div class="messages"  data-application-subscription-target="messages">
           <% @application.messages.each do |message| %>
@@ -47,6 +50,8 @@
           <%= f.submit "Send", class: "btn btn-primary mb-3" %>
         <% end %>
       </div>
-
+      <% else %>
+      <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
+      <% end %>
     </div>
 </div>
