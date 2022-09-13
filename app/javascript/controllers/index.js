@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ApplicationSubscriptionController from "./application_subscription_controller"
+application.register("application-subscription", ApplicationSubscriptionController)
+
 import FilterSearchController from "./filter_search_controller"
 application.register("filter-search", FilterSearchController)
 
