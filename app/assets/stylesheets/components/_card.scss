@@ -271,3 +271,50 @@
   margin-left: 10px;
   margin-bottom: 10px;
 }
+
+.favourite-card {
+  display: block;
+  height: 220px;
+  width: 220px;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: auto;
+  text-decoration: none;
+  border-radius: 5%;
+  box-shadow: 2px 2px 20px #9BBDF9;
+  background-color: #e0e9f9;
+  opacity: 0.9;
+  margin: 5px;
+  position: relative;
+}
+
+.favourite-img-top {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.favourite-card:hover {
+  transform: scale(1.05);
+  transition: all 1s ease;
+}
+
+.favourite-btn-ghost {
+  color: #151e1d;
+  background-color: #9BBDF9;
+  padding: 4px 14px;
+  border-radius: 50px;
+  opacity: 0.85;
+  transition: 0.3s ease;
+  margin: 4px;
+  width: 200px;
+  font-size: small;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  border: 2px solid #9BBDF9;
+}
+
+.favourite-btn-ghost:hover {
+  opacity: 0.8;
+  background-color: rgb(217, 236, 247);
+}
