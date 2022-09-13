@@ -21,24 +21,43 @@
     <div align=center>
       <br>
         <h2>Take a look at some of our pets available for adoption...</h2>
-          </div>
-            <% @pets.each do |pet| %>
+      </div>
+</div>
+
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+      <% @pets.each_slice(4).with_index do |pet, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <div class="row justify-content-center">
+            <% 4.times do |i| %>
               <div class="col-md-3 my-3 landing-page-card">
-                <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
+                <%= link_to pet_path(pet[i]), class: 'text-decoration-none' do %>
                   <div class="card">
-                  <% if pet.photo.attached? %>
-                    <%= cl_image_tag pet.photo.key, class: "card-img" %>
+                  <% if pet[i].photo.attached? %>
+                    <%= cl_image_tag pet[i].photo.key, class: "card-img" %>
                   <% else %>
-                    <%= image_tag "#{pet.species.downcase}.jpg", class: "card-img-top" %>
+                    <%= image_tag "#{pet[i].species.downcase}.jpg", class: "card-img" %>
                   <% end %>
                     <div class="card-body">
-                      <h4 class="card-text"> <%= pet.name %></h4>
-                      <p class="card-text">Species: <%= pet.species %></p>
+                      <h4 class="card-text"> <%= pet[i].name %></h4>
+                      <p class="card-text"><%= pet[i].breed %></p>
                       <p class="card-text">
                     </div>
                   </div>
-              <% end %>
-            </div>
-          <% end %>
-      </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+     <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>

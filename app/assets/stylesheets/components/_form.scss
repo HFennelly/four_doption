@@ -51,16 +51,17 @@
 
 
 .adoption-form {
-  position: relative;
-  display: block;
+  display: flex;
   text-decoration: none;
   border-radius: 30px;
+  height: 500px;
   width: 50%;
-  height: 25%;
   background-color: #e0e9f9;
   margin: 20px;
   padding: 20px;
   overflow-y: scroll;
+  align-items: stretch;
+  flex-direction: column;
 }
 
 .mg {

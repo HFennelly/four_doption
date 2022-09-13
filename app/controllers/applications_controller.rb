@@ -29,6 +29,7 @@ class ApplicationsController < ApplicationController
 
   def show
     @application = Application.find(params[:id])
+    @message = Message.new
   end
 
   def destroy
