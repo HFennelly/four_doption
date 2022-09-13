@@ -18,7 +18,7 @@ User.delete_all
 
 woodgreen_dog = "https://woodgreen.org.uk/pets/?species=dog&pPage=1#038;pPage=2"
 
-woodgreen = User.create(email: "default@woodgreen.org.uk", password: "123456", name: "Woodgreen", address: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", domain: "https://www.woodgreen.org.uk/", rescue: true, description: "woodgreen rescue center for animals" )
+woodgreen = User.create(email: "default@woodgreen.org.uk", password: "123456", name: "Woodgreen", address: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", domain: "https://www.woodgreen.org.uk/", rescue: true, description: "Every year, Woodgreen’s dedicated teams work tirelessly to provide safe shelter, specialist care, and a brighter future for thousands of pets. And we’re here for owners in need of advice and support too, every step of the way." )
 
 html_file = URI.open(woodgreen_dog).read
 html_doc = Nokogiri::HTML(html_file)
@@ -80,7 +80,7 @@ cat_first_html_doc.search(".c-pet-card").first(15).each do |element|
 end
 
 
-animal_rescue_and_care = User.create(email: "ARC@animalrescuecare.com", password: "123456", name: "Animal Rescue and Care", address: "Twickenham, London, TW1 1WG", domain: "https://animalrescueandcare.org.uk/", rescue: true, description: "Animal Rescue and Care center")
+animal_rescue_and_care = User.create(email: "ARC@animalrescuecare.com", password: "123456", name: "Animal Rescue and Care", address: "Twickenham, London, TW1 1WG", domain: "https://animalrescueandcare.org.uk/", rescue: true, description: "With the number of animals in need of help growing every day, there is more and more pressure on animal charities like A.R.C. By adopting one of our furry friends, you’re not only helping one animal by giving it a loving home, you’re helping us make room to accept another animal into our care.")
 
 animal_rescue_and_care_rabbit = "https://animalrescueandcare.org.uk/adopt-a-rabbit/"
 rabbit_html_file = URI.open(animal_rescue_and_care_rabbit).read
