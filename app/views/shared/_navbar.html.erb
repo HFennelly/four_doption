@@ -24,7 +24,7 @@
           <li class="nav-item">
             <% if current_user.applications.count > 0 %>
               <%= link_to "Messages", application_path(current_user.applications.first), class: "nav-link" %>
-            <% elsif current_user.pets > 0 && current_user.pets.first.applications.where(approved: true).count > 0 %>
+            <% elsif current_user.pets.count > 0 && current_user.pets.first.applications.where(approved: true).count > 0 %>
               <%= link_to "Messages", application_path(current_user.pets.first.applications.where(approved: true).first), class: "nav-link" %>
             <% else %>
               <%= link_to "Messages", "#", class: "nav-link" %>
