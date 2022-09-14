@@ -415,3 +415,38 @@
   margin: auto;
   flex-wrap: wrap;
 }
+
+.delete-fav-btn {
+  appearance: button;
+  background-color: #119D9D;
+  border: solid #1BD1CC;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF !important;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round,sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 20px 20px 15px 20px;
+  outline: none;
+  overflow: visible;
+  padding: 6px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.noHover{
+  pointer-events: none;
+}

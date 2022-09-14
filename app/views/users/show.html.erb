@@ -4,14 +4,14 @@
       <div class="main-show-details">
         <div class="text-body">
           <h1>Welcome, <%= current_user.name %>!</h1>
-            <p> <%= button_to("Edit your details", edit_user_registration_path(current_user), method: :get, :class => "btn-ghost") %></p>
+            <p> <%= button_to("Edit your details", edit_user_registration_path(current_user), method: :get, :class => "delete-fav-btn") %></p>
               <br>
                 <div class="user-details-container">
                       <div class="user-details">
                         <h2>YOUR PETS</h2>
                           <% if @user.owned_pets_listed_for_adoption.any? %>
                             <div align="center">
-                              <%= link_to "Add a new pet for adoption", new_pet_path, class: 'btn-ghost' %>
+                              <%= button_to("Add a new pet for adoption", new_pet_path, class: 'delete-fav-btn noHover') %>
                             </div>
                               <br>
                                 <br>
@@ -41,11 +41,11 @@
                                                     <br>
                                                     <h2 class="my-pet-name"><%= pet.name %></h2>
                                                       <div align="center">
-                                                        <%= link_to "Edit #{pet.name}'s profile", edit_pet_path(pet), class: "my-pet-btn-ghost" %>
+                                                        <%= link_to "Edit #{pet.name}'s profile", edit_pet_path(pet), class: "delete-fav-btn" %>
                                                       </div>
                                                           <br>
                                                             <div align="center">
-                                                              <%= link_to "Remove #{pet.name} from 4Doption", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "my-pet-btn-ghost" %>
+                                                              <%= link_to "Remove #{pet.name} from 4Doption", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "delete-fav-btn" %>
                                                             </div>
                                                   </div>
                                                 </div>
@@ -59,7 +59,7 @@
                                 <p> You currently don't have any pets listed for adoption!</p>
                                   <br>
                                     <div align="center">
-                                      <%= link_to "Add a new pet for adoption", new_pet_path, class: 'btn-ghost' %>
+                                      <%= link_to "Add a new pet for adoption", new_pet_path, class: 'delete-fav-btn' %>
                                     </div>
                             <% end %>
                       </div>
@@ -69,7 +69,7 @@
                         <h2>YOUR FAVOURITES</h2>
                             <% if @user.favourites.any? %>
                               <div align="center">
-                                <%= link_to "Still looking? Add more favourites!", pets_path, class: 'btn-ghost' %>
+                                <%= link_to "Still looking? Add more favourites!", pets_path, class: 'delete-fav-btn' %>
                               </div>
                                   <br>
                                   <br>
@@ -86,7 +86,7 @@
                                                     <%= image_tag "#{favourite.pet.species.downcase}.jpg", class: "favourite-img-top" %>
                                                   <% end %>
                                                     <div align="center">
-                                                      <%= link_to "Un-favourite #{favourite.pet.name}", favourite_path(favourite), class: 'favourite-btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
+                                                      <%= link_to "Un-favourite #{favourite.pet.name}", favourite_path(favourite), class: 'delete-fav-btn', data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
                                                     </div>
                                                 </div>
                                               <% end %>
@@ -100,7 +100,7 @@
                                   <br>
                                   <br>
                                     <div align="center">
-                                      <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'btn-ghost' %>
+                                      <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'delete-fav-btn' %>
                                     </div>
                             <% end %>
                       </div>
@@ -125,9 +125,9 @@
                                             <div align="center">
                                               <% if pet_app.approved %>
                                                 <h3><%= "You have approved #{pet_app.user.name}'s application!" %></h3>
-                                                  <%= link_to "Start messaging!", application_path(pet_app), class: 'btn-ghost' %>
+                                                  <%= link_to "Start messaging!", application_path(pet_app), class: 'delete-fav-btn' %>
                                               <% else %>
-                                                <%= link_to "Review this application", pet_path(pet_app.pet), class: 'btn-ghost' %>
+                                                <%= link_to "Review this application", pet_path(pet_app.pet), class: 'delete-fav-btn' %>
                                               <% end %>
                                             </div>
                                         </div>
@@ -158,14 +158,14 @@
                                                                       <br>
                                                                         <p>APPLICATION APPROVED</p>
                                                                           <h2 class="app-card-text"><%= pet_app.pet.name %></h2>
-                                                                            <%= button_to("Message #{pet_app.pet.name}'s owner", application_path(pet_app), :class => "btn-ghost") %>
+                                                                            <%= button_to("Message #{pet_app.pet.name}'s owner", application_path(pet_app), :class => "delete-fav-btn") %>
                                                                   <% else %>
                                                                     <%= image_tag "app-denied.png", class: "app-icon" %>
                                                                       <br>
                                                                         <br>
                                                                           <p>SORRY - NOT A MATCH</p>
                                                                             <h2 class="app-card-text"><%= pet_app.pet.name %></h2>
-                                                                              <%= button_to("See other pets waiting for homes", pets_path, class: 'btn-ghost') %>
+                                                                              <%= button_to("See other pets waiting for homes", pets_path, class: 'delete-fav-btn') %>
                                                                   <% end %>
                                                               <% else %>
                                                                 <%= image_tag "app-pending.png", class: "app-icon" %>
@@ -174,11 +174,11 @@
                                                                       <p>APPLICATION PENDING</p>
                                                                         <h3 class="app-card-text"><%= pet_app.pet.name %></h3>
                                                                           <div align="center">
-                                                                            <%= link_to "Review your application", application_path(@user.submitted_application), method: "get", :class => "app-btn-ghost" %>
+                                                                            <%= link_to "Review your application", application_path(@user.submitted_application), method: "get", :class => "delete-fav-btn" %>
                                                                           </div>
                                                                             <br>
                                                                               <div align="center">
-                                                                                <%= link_to "Cancel your application", application_path(@user.submitted_application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "app-btn-ghost" %>
+                                                                                <%= link_to "Cancel your application", application_path(@user.submitted_application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn" %>
                                                                               </div>
                                                                 <% end %>
                                                             </span>

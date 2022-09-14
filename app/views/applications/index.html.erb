@@ -26,14 +26,14 @@
                                             <br>
                                               <p>APPLICATION APPROVED</p>
                                                 <h2 class="app-card-text"><%= application.pet.name %></h2>
-                                                  <%= button_to("Message #{application.pet.name}'s owner", application_path(application), :class => "btn-ghost") %>
+                                                  <%= button_to("Message #{application.pet.name}'s owner", application_path(application), :class => "delete-fav-btn") %>
                                         <% else %>
                                           <%= image_tag "app-denied.png", class: "app-icon" %>
                                             <br>
                                               <br>
                                                 <p>SORRY - NOT A MATCH</p>
                                                   <h2 class="app-card-text"><%= application.pet.name %></h2>
-                                                      <%= button_to("See other pets waiting for homes", pets_path, class: 'btn-ghost' ) %>
+                                                      <%= button_to("See other pets waiting for homes", pets_path, class: 'delete-fav-btn' ) %>
                                         <% end %>
                                     <% else %>
                                       <%= image_tag "app-pending.png", class: "app-icon" %>
@@ -42,11 +42,11 @@
                                             <p>APPLICATION PENDING</p>
                                               <h3 class="app-card-text"><%= application.pet.name %></h3>
                                                 <div align="center">
-                                                  <%= link_to "Review your application", application_path(application), method: "get", :class => "app-btn-ghost" %>
+                                                  <%= link_to "Review your application", application_path(application), method: "get", :class => "delete-fav-btn" %>
                                                 </div>
                                                   <br>
                                                     <div align="center">
-                                                      <%= link_to "Cancel your application", application_path(application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "app-btn-ghost" %>
+                                                      <%= link_to "Cancel your application", application_path(application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn" %>
                                                     </div>
                                       <% end %>
                                   </span>

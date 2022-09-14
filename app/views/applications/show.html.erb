@@ -55,13 +55,13 @@
                     </tbody>
                   </table>
       <li class="list-group-item" >
-        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn-ghost", notice: "your application has been cancelled" %>
+        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn", notice: "your application has been cancelled" %>
           <br>
           <br>
-        <%= link_to "Edit your application here", edit_pet_application_path(@application.pet, @application), :class => "btn-ghost" %>
+        <%= link_to "Edit your application here", edit_pet_application_path(@application.pet, @application), :class => "delete-fav-btn" %>
           <br>
           <br>
-        <%= link_to "See All Of Your Applications", applications_path, :class => "btn-ghost" %>
+        <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn" %>
         <br>
       </li>
 
