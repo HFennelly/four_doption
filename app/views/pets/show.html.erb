@@ -167,8 +167,45 @@
           <% end %>
         <% else %> <%# current user has applied for the pet, but is not an editor %>
           <h3>You have already applied to adopt <%= @pet.name %></h3>
-          <%= link_to "Available pets", pets_path %>
-          <%= link_to "Edit your application here", edit_pet_application_path(@pet, @pet.applications.where(user: current_user).first) %>
+            <ul class="list-group mb-3">
+              <% @pet.applications.each do |application| %>
+                <li class="list-group-item">
+                  <% if application.validated && application.approved %>
+                      <%= image_tag "app-approved.png", class: "app-icon" %>
+                      <br>
+                        <br>
+                          <p>APPLICATION APPROVED</p>
+                            <h2 class="app-card-text"><%= @pet.name %></h2>
+                              <%= button_to("Message #{@pet.name}'s owner", application_path(application), :class => "btn-ghost") %>
+                  <% elsif application.validated && application.approved === false %>
+                      <%= image_tag "app-denied.png", class: "app-icon" %>
+                        <br>
+                          <br>
+                            <p>SORRY - NOT A MATCH</p>
+                              <h2 class="app-card-text"><%= @pet.name %></h2>
+                                <%= button_to("See other pets waiting for homes", pets_path, class: 'btn-ghost') %>
+                  <% else %>
+                    <%  unless application.validated && application.approved %>
+                        <%= image_tag "app-pending.png", class: "app-icon" %>
+                          <br>
+                            <br>
+                              <p>APPLICATION PENDING</p>
+                                <h3 class="app-card-text"><%= @pet.name %></h3>
+                                  <div align="center">
+                                    <%= link_to "Review your application", application_path(application), method: "get", :class => "app-btn-ghost" %>
+                                  </div>
+                                    <br>
+                                      <div align="center">
+                                        <%= link_to "Cancel your application", application_path(application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "app-btn-ghost" %>
+                                      </div>
+                                        <div>
+                                          <%= link_to "Available pets", pets_path, class: 'btn-ghost' %>
+                                        </div>
+                        <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
         <% end %>
       <% end %>
     </div>
