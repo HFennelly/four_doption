@@ -34,12 +34,14 @@ html_doc.search(".c-pet-card").first(24).each do |element|
     end
     name = dog_html_doc.search(".c-hero--pet-single-details__pet-name").text.strip
     dog_info = dog_html_doc.search(".c-hero--pet-single-details li").children.first(3)
-    breed = dog_info[0]
+    breed = dog_info[0].text.titleize
+    puts breed
     age = dog_info[1].text.strip.split[0].to_i
-    sex = dog_info[2].text.downcase
+    sex = dog_info[2].text.titleize
+    puts sex
     description = dog_html_doc.search(".c-hero--pet-single-details p").text.strip
     dog_image = dog_html_doc.search(".swiper-slide img").attribute("src")
-    pet = Pet.create(age: age, breed: breed, location: "Kings Bush Farm, Godmanchester, UK", sex: sex, species: "dog", name: name, needs_garden: true, size: ["small", "medium", "large"].sample, adopted: adopted, description: description, user: woodgreen)
+    pet = Pet.create(age: age, breed: breed, location: "Kings Bush Farm, Godmanchester, UK", sex: sex, species: "Dog", name: name, needs_garden: true, size: ["Small", "Medium", "Large"].sample, adopted: adopted, description: description, user: woodgreen)
     file = URI.open(dog_image)
     pet.photo.attach(io: file, filename: "#{name}.png", content_type: "image/png")
     puts pet.name
@@ -62,17 +64,19 @@ cat_first_html_doc.search(".c-pet-card").first(15).each do |element|
     cat_name = cat_html_doc.search(".c-hero--pet-single-details__pet-name").text.strip
     # gets the cat's name
     cat_info = cat_html_doc.search(".c-hero--pet-single-details li").children.first(3)
-    cat_breed = cat_info[0]
+    cat_breed = cat_info[0].text.titleize
+    puts cat_breed
     # gets the breed
     cat_age = cat_info[1].text.strip.split[0].to_i
     # gets the age and extracts just the number from "2 years" returning as an interga
-    cat_sex = cat_info[2].text.downcase
+    cat_sex = cat_info[2].text.titleize
+    puts cat_sex
     # gets the sex of the cat
     description = cat_html_doc.search(".c-pet-detail > p").text.strip
     # takes a description from the bottom of the page, it's in a different place the one used in dog scrape.
     cat_image = cat_html_doc.search(".swiper-slide img").attribute("src")
     # takes the first image from the webpage
-    cat = Pet.create(age: cat_age, breed: cat_breed, location: "Kings Bush Farm, Godmanchester, UK", sex: cat_sex, species: "cat", name: cat_name, needs_garden: true, size: ["small", "medium", "large"].sample, description: description, adopted: adopted, user: woodgreen)
+    cat = Pet.create(age: cat_age, breed: cat_breed, location: "Kings Bush Farm, Godmanchester, UK", sex: cat_sex, species: "Cat", name: cat_name, needs_garden: true, size: ["Small", "Medium", "Large"].sample, description: description, adopted: adopted, user: woodgreen)
     file = URI.open(cat_image)
     cat.photo.attach(io: file, filename: "#{cat_name}.png", content_type: "image/png")
     puts cat.name
@@ -100,11 +104,13 @@ rabbit_html_doc.search(".entry-title  > a").first(15).each_with_index do |link, 
     rabbit_hash.each do |info|
       hash[info.search("h4").text.strip] = info.search(".project-terms").text.strip
     end
-    rabbit_sex = hash["Sex:"].downcase
+    rabbit_sex = hash["Sex:"].titleize
+    puts rabbit_sex
     if hash["Breed:"] == nil
       rabbit_breed = "unknown"
     else
-      rabbit_breed = hash["Breed:"]
+      rabbit_breed = hash["Breed:"].titleize
+      puts rabbit_breed
     end
     if hash["Status:"] == "Available"
       rabbit_adopted = false
@@ -114,8 +120,8 @@ rabbit_html_doc.search(".entry-title  > a").first(15).each_with_index do |link, 
     rabbit_description = rabbit_inner_html_doc.search(".project-description p").text.strip
     rabbit_img = rabbit_inner_html_doc.search(".fusion-flexslider img").attribute("src")
 
-    rabbit = Pet.create(age: rabbit_age, breed: rabbit_breed, location: "Twickenham, London, Uk,
-      TW1 1WG", sex: rabbit_sex.downcase, species: "rabbit", name: rabbit_name, needs_garden: true, size: ["small", "medium", "large"].sample, adopted: rabbit_adopted, description: rabbit_description, user: animal_rescue_and_care)
+    rabbit = Pet.create(age: rabbit_age, breed: rabbit_breed, location: "Twickenham, London, UK,
+      TW1 1WG", sex: rabbit_sex, species: "Rabbit", name: rabbit_name, needs_garden: true, size: ["Small", "Medium", "Large"].sample, adopted: rabbit_adopted, description: rabbit_description, user: animal_rescue_and_care)
       file = URI.open(rabbit_img)
     rabbit.photo.attach(io: file, filename: "#{rabbit_name}.png", content_type: "image/png")
     puts rabbit.name
@@ -127,10 +133,10 @@ User.create!(email: Faker::Internet.email, password: "123456", name: Faker::Funn
  Pet.create!(
   user: User.last,
   name: Faker::TvShows::BojackHorseman.character,
-  species: ['cat', 'dog'].sample,
+  species: ['Cat', 'Dog'].sample,
   age: [1, 2, 3, 4, 5, 6, 7].sample,
-  breed: ['chow chow', 'labrador'].sample,
-  size: ['big', 'medium', 'small'].sample,
+  breed: ['Chow Chow', 'Labrador'].sample,
+  size: ['Big', 'Medium', 'Small'].sample,
   needs_garden: [true, false].sample,
   adopted: false,
   adoption_fee: [100, 200, 300, 400, 500].sample,
@@ -142,12 +148,12 @@ u = User.create!(email: Faker::Internet.email, password: "123456", name: Faker::
   2.times do # 10 times per each fake user
     pet = Pet.create!(
       user: u,
-      sex: ['male', 'female'].sample,
+      sex: ['Male', 'Female'].sample,
       name: Faker::TvShows::BojackHorseman.character,
-      species: ['cat', 'dog', 'bird', 'hamster','rabbit'].sample,
+      species: ['Cat', 'Dog', 'Bird', 'Hamster','Rabbit'].sample,
       age: [1, 2, 3, 4, 5, 6, 7].sample,
-      breed: ['chow chow', 'labrador'].sample,
-      size: ['big', 'medium', 'small'].sample,
+      breed: ['Chow Chow', 'Labrador'].sample,
+      size: ['Big', 'Medium', 'Small'].sample,
       needs_garden: [true, false].sample,
       adopted: false,
       adoption_fee: [100, 200, 300, 400, 500].sample,
