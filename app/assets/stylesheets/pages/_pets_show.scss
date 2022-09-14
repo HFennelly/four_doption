@@ -6,18 +6,17 @@
 }
 
 .pet-details {
-  background-color: #DDE7F9;
+  background-color: #F5F8FC;
   margin: 20px;
   height: 650px;
   border-radius: 30px;
   padding: 20px;
   text-decoration: none;
-  background-color: #e0e9f9;
   flex-direction: row;
   overflow-y: scroll;
   // flex: 2 2 auto;
   align-items: stretch;
-  box-shadow: 1px 1px 3px #a7b4cb;
+  box-shadow: 0 0 15px #9BBDF9;
   width: calc(60% - 40px);
 
 }
@@ -29,7 +28,7 @@
 }
 
 .adoption-details {
-  background-color: #DDE7F9;
+  background-color: #F5F8FC;
   margin: 20px;
   height: 650px;
   border-radius: 30px;
@@ -38,7 +37,7 @@
   padding: 30px;
   overflow-y: scroll;
   width: calc(40% - 40px);
-  box-shadow: 1px 1px 3px #a7b4cb;
+  box-shadow: 0 0 15px #9BBDF9;
   flex-direction: column;
 }
 
@@ -337,8 +336,9 @@
 
 
 .adoption-form {
-  box-shadow: 1px 1px 3px #a7b4cb;
   width: calc(60% - 40px);
+  background-color: #F5F8FC;
+  box-shadow: 0 0 15px #9BBDF9;
 }
 
 
