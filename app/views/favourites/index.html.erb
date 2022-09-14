@@ -19,8 +19,8 @@
             <li class="fav-list-group-item add-description-margin" >
               <%= fav.pet.description %>
             <li class="fav-list-group-item delete-section" >
-              <%= link_to "Go to your favourite pet", pet_path(fav.pet) %>
-              <%= button_to("Delete favourite!", favourite_path(fav) ,  method: "delete", :class => "btn-ghost button-1") %>
+              <%= link_to "Go to favourite", pet_path(fav.pet) %>
+              <%= button_to("Delete favourite", favourite_path(fav) ,  method: "delete", :class => "delete-fav-btn") %>
             </li>
           </li>
           </div>
