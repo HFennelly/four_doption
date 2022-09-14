@@ -49,7 +49,12 @@
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
+          <li>
+            <%= current_user.message_count if current_user %>
+          </li>
       </ul>
+
+      <%# <% raise %>
     </div>
   </div>
 </div>
