@@ -80,7 +80,7 @@ cat_first_html_doc.search(".c-pet-card").first(15).each do |element|
 end
 
 
-animal_rescue_and_care = User.create(email: "ARC@animalrescuecare.com", password: "123456", name: "Animal Rescue and Care", address: "Twickenham, London, TW1 1WG", domain: "https://animalrescueandcare.org.uk/", rescue: true, description: "With the number of animals in need of help growing every day, there is more and more pressure on animal charities like A.R.C. By adopting one of our furry friends, you’re not only helping one animal by giving it a loving home, you’re helping us make room to accept another animal into our care.")
+animal_rescue_and_care = User.create(email: "default@animalrescueandcare.org.uk", password: "123456", name: "Animal Rescue and Care", address: "Twickenham, London, TW1 1WG", domain: "https://animalrescueandcare.org.uk/", rescue: true, description: "With the number of animals in need of help growing every day, there is more and more pressure on animal charities like A.R.C. By adopting one of our furry friends, you’re not only helping one animal by giving it a loving home, you’re helping us make room to accept another animal into our care.")
 
 animal_rescue_and_care_rabbit = "https://animalrescueandcare.org.uk/adopt-a-rabbit/"
 rabbit_html_file = URI.open(animal_rescue_and_care_rabbit).read
