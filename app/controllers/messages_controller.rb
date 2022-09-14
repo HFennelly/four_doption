@@ -4,7 +4,11 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.application = @application
     @message.sender = current_user
-    @message.receiver = @application.pet.user
+    if @application.user == current_user
+      @message.reciever = @application.pet.user
+    else
+      @message.receiver = @application.user
+    end
     if @message.save
       ApplicationChannel.broadcast_to(
         @application,

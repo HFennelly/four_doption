@@ -46,21 +46,18 @@ class User < ApplicationRecord
 
   def message_count
     # @messages = Message.where(receiver_id: self.id)
-    @rescue = User.select do |user|
-      rescue_email = user.email.split("@")[1]
-      user.domain != nil && user.domain.include?(rescue_email)
-        # return true
-      end
-      # rescue_email = email.split("@")[1]
-      # @rescue = User.where("email ILIKE ?", "%@#{rescue_email}%").and(User.where.not(id: self.id)).and(User.where("domain ILIKE ?", "%#{rescue_email}"))
-    if @rescue == []
-      @messages = Message.select { |mes| mes.receiver_id = self }
-    else
+
+
+      rescue_email = email.split("@")[1]
+      @rescue = User.where("email ILIKE ?", "%@#{rescue_email}%").and(User.where.not(domain: nil))
+    unless @rescue.empty?
       @messages = []
       @messages = Message.select { |mes| mes.receiver_id == @rescue.first.id && mes.sender_id != self.id } + Message.select { |mes| mes.receiver_id == self.id}
 
+    else
+      @messages = Message.select { |mes| mes.receiver_id == self.id }
+
     end
-    # raise
     return @messages.count
   end
 
