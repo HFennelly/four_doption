@@ -33,6 +33,7 @@
                                               <br>
                                                 <p>SORRY - NOT A MATCH</p>
                                                   <h2 class="app-card-text"><%= application.pet.name %></h2>
+                                                      <%= button_to("See other pets waiting for homes", pets_path, class: 'btn-ghost' ) %>
                                         <% end %>
                                     <% else %>
                                       <%= image_tag "app-pending.png", class: "app-icon" %>
