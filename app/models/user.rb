@@ -33,4 +33,13 @@ class User < ApplicationRecord
     end
     return false
   end
+
+  # def can_approve_application?(pet)
+  #   return true if pet.user == self
+  # rescue_email = email.split("@")[1]
+  # if pet.user.domain != && pet.user.domain.include?(rescue_email)
+  #   return true
+  # end
+
+  # end
 end
