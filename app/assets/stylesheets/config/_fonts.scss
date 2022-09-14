@@ -1,12 +1,12 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Londrina+Solid&family=M+PLUS+Rounded+1c:wght@100;300;400&family=Nanum+Pen+Script&family=Pangolin&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600;700&family=Righteous&display=swap');
 
 
 // Define fonts for body and headers
-$body-font: "M PLUS Rounded 1c", "Helvetica", "sans-serif";
-$headers-font: "Nanum Pen Script", "Helvetica", "sans-serif";
+$body-font: 'Mulish', sans-serif;
+$headers-font: 'Righteous', cursive;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
