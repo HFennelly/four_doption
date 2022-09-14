@@ -15,10 +15,10 @@
   background-color: #e0e9f9;
   flex-direction: row;
   overflow-y: scroll;
-  flex: 2 2 auto;
+  // flex: 2 2 auto;
   align-items: stretch;
   box-shadow: 1px 1px 3px #a7b4cb;
-  // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+  width: calc(60% - 40px);
 
 }
 
@@ -37,8 +37,9 @@
   justify-content: center;
   padding: 30px;
   overflow-y: scroll;
-  min-width: 550px;
+  width: calc(40% - 40px);
   box-shadow: 1px 1px 3px #a7b4cb;
+  flex-direction: column;
 }
 
 .adoption-details-map {
@@ -47,8 +48,8 @@
   border-radius: 30px;
   display: flex;
   padding: 30px;
+  width: calc(40% - 40px);
   height: 500px;
-  width: 50%;
   overflow-y: scroll;
   flex: 1 1 0;
   align-items: stretch;
@@ -293,6 +294,10 @@
   }
 }
 
+.apply-button {
+  margin-top: auto;
+  align-self: center;
+}
 
 .apply-btn-map {
   display: flex;
@@ -333,6 +338,7 @@
 
 .adoption-form {
   box-shadow: 1px 1px 3px #a7b4cb;
+  width: calc(60% - 40px);
 }
 
 
