@@ -33,7 +33,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Applications", applications_path, class: "dropdown-item" %>
-              <%# <% if current_user.applications.count > 0 %> %>
+              <%# <% if current_user.applications.count > 0 %>
                 <%# <%= link_to "Messages", application_path(current_user.applications.first), class: "dropdown-item" %>
               <%# <% elsif current_user.pets.count > 0 && current_user.pets.first.applications.where(approved: true).count > 0 %>
                 <%# <%= link_to "Messages", application_path(current_user.pets.first.applications.where(approved: true).first), class: "dropdown-item" %>
