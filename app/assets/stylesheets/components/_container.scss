@@ -19,19 +19,18 @@
 }
 
 .user-details {
-  background-color: #DDE7F9;
+  background-color: #F5F8FC;
+  box-shadow: 0 0 15px #9BBDF9 !important;
   margin: 20px;
   width: 400px;
   height: 750px;
   border-radius: 30px;
   padding: 20px;
   text-decoration: none;
-  background-color: #e0e9f9;
   overflow-y: scroll;
   flex: 2 2 auto;
   align-items: stretch;
   flex-basis: auto;
-  // box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
 
 }
 
