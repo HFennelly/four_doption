@@ -42,6 +42,11 @@ class PetsController < ApplicationController
     else
       @searching = false
     end
+
+    @breeds_hash = {}
+    Pet.select(:species).distinct.pluck(:species).map do |species|
+      @breeds_hash[species] = Pet.where(species: species).select(:breed).distinct.pluck(:breed).to_a
+    end
   end
 
   def show

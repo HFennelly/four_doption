@@ -1,4 +1,4 @@
-<div data-controller="filter-search">
+<div data-controller="filter-search" data-filter-search-dictionary-value="<%= @breeds_hash.to_json %>">
   <h1 class="index_title">Check out our available pets...</h1>
 
       <button type="button" class="formButton btn btn-light <%= @searching ? "d-none" : "" %>" data-action="click->filter-search#show" data-filter-search-target="hideButton"> Filter Search </button>
@@ -8,8 +8,8 @@
 
           <div class="filter">
           <%= form_with url: "/pets", class:"form", method: :get do |form| %>
-            <%= form.select :species, Pet.select(:species).distinct.pluck(:species).reject(&:blank?), prompt: "Species", id: "tom-select-it", selected: params[:species]  %>
-            <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).reject(&:blank?), prompt: "Breed", id: "tom-select-it", selected: params[:breed] %>
+            <%= form.select :species, Pet.select(:species).distinct.pluck(:species).reject(&:blank?), {prompt: "Species", id: "tom-select-it", selected: params[:species]}, {data: {filter_search_target: "species", action: "change->filter-search#selectBreedBySpecies"}} %>
+            <%= form.select :breed, Pet.select(:breed).distinct.pluck(:breed).reject(&:blank?), { prompt: "Breed", id: "tom-select-it", selected: params[:breed]}, {data: {filter_search_target: "breed"}} %>
             <%= form.select :age, Pet.select(:age).distinct.pluck(:age).compact.sort.reject(&:blank?), prompt: "Age", selected: params[:age] %>
             <%= form.select :size, Pet.select(:size).distinct.pluck(:size).reject(&:blank?), prompt: "Size", selected: params[:size] %>
             <%= form.select :sex, Pet.select(:sex).distinct.pluck(:sex).reject(&:blank?), prompt: "Sex", selected: params[:sex] %>
