@@ -176,7 +176,7 @@
                         <br>
                           <p>APPLICATION APPROVED</p>
                             <h2 class="app-card-text"><%= @pet.name %></h2>
-                              <%= button_to("Message #{@pet.name}'s owner", application_path(application), :class => "delete-fav-btn") %>
+                              <%= link_to "Message #{@pet.name}'s owner", application_path(application), :class => "delete-fav-btn" %>
                   <% elsif application.validated && application.approved === false %>
                       <%= image_tag "app-denied.png", class: "app-icon" %>
                         <br>
