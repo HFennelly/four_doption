@@ -108,7 +108,7 @@
                   <br>
                     <div class="user-details">
                       <h2>APPLICATIONS</h2>
-                        <% if @pets.count > 0 && @user.can_see_applications?(@rescue.first) %>
+                        <% if @pets.count > 0 && @user.can_see_applications?(@rescue.first) && @user.owned_pet_applications.any? %>
                             <p>Good news! You have adoption applications waiting for your review:</p>
                               <% @pets.each do | pet | %>
                                 <% pet.applications.each do |pet_app| %>
@@ -165,6 +165,7 @@
                                                                         <br>
                                                                           <p>SORRY - NOT A MATCH</p>
                                                                             <h2 class="app-card-text"><%= pet_app.pet.name %></h2>
+                                                                              <%= button_to("See other pets waiting for homes", pets_path, class: 'btn-ghost') %>
                                                                   <% end %>
                                                               <% else %>
                                                                 <%= image_tag "app-pending.png", class: "app-icon" %>
