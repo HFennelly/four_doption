@@ -10,7 +10,7 @@ class FavouritesController < ApplicationController
     if request.referrer.include?("/favourites") # if on favourites index page
       redirect_to favourites_path, status: :see_other
     else
-      redirect_to pet_path(@pet), status: :see_other
+      redirect_to user_path(current_user), status: :see_other
     end
   end
 
