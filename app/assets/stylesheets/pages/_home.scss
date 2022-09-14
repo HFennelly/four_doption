@@ -113,14 +113,20 @@
 
 }
 
-.search-btn:hover {
-  opacity: 1;
-  color: #2EC0F9;
+.search-btn input {
+    border-right: 1px solid;
+
 }
 
-// .browse-btn:hover {
-//   opacity: 1;
-// }
+.search-btn:hover {
+  opacity: 1;
+  color: #FFF;
+}
+
+.browse-btn:hover {
+  opacity: 1;
+  color: #FFF;
+}
 
 .browse-btn {
   margin: 0;
