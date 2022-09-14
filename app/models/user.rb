@@ -34,6 +34,16 @@ class User < ApplicationRecord
     return false
   end
 
+  def can_see_applications?(pet_rescue)
+    return true if self.owned_pet_applications
+    rescue_email = email.split("@")[1]
+    # robot_rescue = User.where("email ILIKE ?", "%@#{rescue_email}%").and(User.where(robot_user: true))
+    if pet_rescue.domain != nil && pet_rescue.domain.include?(rescue_email)
+      return true
+    end
+    return false
+  end
+
   # def can_approve_application?(pet)
   #   return true if pet.user == self
   # rescue_email = email.split("@")[1]
