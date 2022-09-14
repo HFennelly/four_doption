@@ -10,4 +10,7 @@ class Application < ApplicationRecord
       errors.add(:user_id, "You can't apply for your own pet! You can choose to delete this listing.")
     end
   end
+
+
+
 end

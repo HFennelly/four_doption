@@ -67,6 +67,10 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     @pet.user = current_user
+    @pet.breed = @pet.breed.titleize
+    @pet.sex = @pet.sex.titleize
+    @pet.species = @pet.species.capitalize
+
     if @pet.save
       redirect_to pet_path(@pet)
     else
@@ -80,6 +84,10 @@ class PetsController < ApplicationController
 
   def update
     @pet = Pet.find(params[:id])
+    # @pet.breed = @pet.breed.titleize
+    # @pet.sex = @pet.sex.titleize
+    # @pet.size = @pet.size.capitalize
+    # @pet.species = @pet.species.capitalize
     if @pet.update(pet_params)
       redirect_to pet_path(@pet)
     else
@@ -97,6 +105,6 @@ class PetsController < ApplicationController
 
   def pet_params
     # update to "photos: []"" when doing has many attached photos
-    params.require(:pet).permit(:name, :age, :breed, :age, :location, :sex, :size, :needs_garden, :photo, :species)
+    params.require(:pet).permit(:name, :age, :breed, :age, :location, :sex, :size, :needs_garden, :photo, :species.downcase)
   end
 end

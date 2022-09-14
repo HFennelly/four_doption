@@ -108,9 +108,10 @@
                   <br>
                     <div class="user-details">
                       <h2>APPLICATIONS</h2>
-                        <% if @user.pets.count > 0 && @user.owned_pet_applications.any? %>
+                        <% if @pets.count > 0 && @user.can_see_applications?(@rescue.first) %>
                             <p>Good news! You have adoption applications waiting for your review:</p>
-                              <% @user.owned_pet_applications.each do | pet_app | %>
+                              <% @pets.each do | pet | %>
+                                <% pet.applications.each do |pet_app| %>
                                 <div class="col-md-3 my-3 landing-page-card">
                                   <%= link_to pet_path(pet_app.pet) do%>
                                     <div class="app-card">
@@ -135,6 +136,7 @@
                                 </div>
                             <% end %>
                           <% end %>
+                        <% end %>
                               <% if @user.applications.any? %>
                                   <p>Thank you for your interest! You have submitted adoption applications for the following pets:</p>
                                       <ul class="list-group mb-3">
