@@ -44,6 +44,7 @@
 
 .delete-section {
   margin-right: 20px;
+  display: flex;
 }
 
 .set-max-width-location {
@@ -106,7 +107,7 @@
   margin: 20px 20px 15px 20px;
   outline: none;
   overflow: visible;
-  padding: 6px;
+  padding: 6px 12px;
   text-align: center;
   text-transform: uppercase;
   touch-action: manipulation;
