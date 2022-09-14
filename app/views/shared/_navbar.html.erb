@@ -50,7 +50,15 @@
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
-      </ul>
+          <% if current_user && current_user.message_count.positive? %>
+            <li class="message">
+              <%= current_user.message_count %>
+            </li>
+
+          <% end %>
+        </ul>
+
+      <%# <% raise %>
     </div>
   </div>
 </div>
