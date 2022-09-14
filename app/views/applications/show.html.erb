@@ -1,4 +1,3 @@
-
 <div class='container' >
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <br>
@@ -6,23 +5,64 @@
                   <table class="table">
                     <tbody>
                       <tr>
-                        <th scope="row">User</th>
-                        <td><%= @application.user.name %></td>
+                        <th scope="row"></th>
+                        <td><%if @application.pet.photo.attached? %>
+                                <%= cl_image_tag @application.pet.photo.key, class: "img" %>
+                            <% else %>
+                                <%= image_tag "#{@application.pet.species.downcase}.jpg", class: "img" %>
+                          <% end %> </td>
                       </tr>
                       <tr>
                         <th scope="row">Pet</th>
-                        <td><%= @application.pet.id%></td>
+                        <td><%= @application.pet.name%></td>
                       </tr>
                       <tr>
-                        <th scope="row">More about you</th>
-                        <td><%= @application.requirements %></td>
+                        <th scope="row">Name</th>
+                        <td><%= @application.applicant_name %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Age</th>
+                        <td><%= @application.applicant_age %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Address</th>
+                        <td><%= @application.applicant_address %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Household Overview</th>
+                        <td><%= @application.applicant_household %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Existing Pets</th>
+                        <td><%= @application.applicant_pets %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Home</th>
+                        <td><%= @application.applicant_home %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Working Hours</th>
+                        <td><%= @application.applicant_hours %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Garden</th>
+                        <td><%= @application.applicant_garden %></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Additonal Information</th>
+                        <td><%= @application.additional_information %></td>
                       </tr>
                     </tbody>
                   </table>
       <li class="list-group-item" >
-        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "btn-ghost", notice: "your application has been cancelled" %>
+        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn", notice: "your application has been cancelled" %>
+          <br>
+          <br>
+        <%= link_to "Edit your application here", edit_pet_application_path(@application.pet, @application), :class => "delete-fav-btn" %>
+          <br>
+          <br>
+        <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn" %>
         <br>
-        <%= link_to "See All Of Your Applications", applications_path %>
       </li>
 
       <% if @application.approved && @application.pet.user != current_user %>
@@ -75,6 +115,7 @@
         <% end %>
       </div>
       <% else %>
+      <br>
       <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
       <% end %>
     </div>

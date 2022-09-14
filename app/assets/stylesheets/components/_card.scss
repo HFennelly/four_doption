@@ -86,7 +86,6 @@
 .card__tagline {
   display: block;
   margin: 1em 0;
-  font-family: 'Quicksand', sans-serif;
   font-size: .8em;
   color: #343d4c;
 }
@@ -162,13 +161,14 @@
 .app-card {
   position: relative;
   display: block;
-  height: 500px;
+  height: 550px;
+  width: 280px;
   border-radius: calc(var(--curve) * 1px);
   overflow: auto;
   text-decoration: none;
   border-radius: 5%;
-  box-shadow: 2px 2px 20px #9BBDF9;
-  background-color: #e0e9f9;
+  box-shadow: 1px 1px 10px #c2d7d7;
+  background-color: #DDE7F9;
   opacity: 0.9;
 }
 
@@ -194,7 +194,7 @@
   width: 60px;
   position: absolute;
   left: 94px;
-  bottom: 150px;
+  bottom: 200px;
   margin: 20px;
 }
 
@@ -204,7 +204,7 @@
   padding: 1px;
   margin-top: 5px;
   margin-left: 10px;
-  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 
@@ -216,8 +216,8 @@
   overflow: auto;
   text-decoration: none;
   border-radius: 5%;
-  box-shadow: 2px 2px 20px #9BBDF9;
-  background-color: #e0e9f9;
+  box-shadow: 1px 1px 10px #c2d7d7;
+  background-color: #DDE7F9;
   opacity: 0.9;
 }
 
@@ -231,9 +231,9 @@
 }
 
 .my-pet-btn-ghost {
-  color: #343d4c;
-  background-color: #9BBDF9;
-  border: 2px solid #9BBDF9;
+  color: white !important;
+  background-color: #119D9D;
+  border: 2px solid #1BD1CC;
   padding: 8px 24px;
   border-radius: 50px;
   opacity: 0.9;
@@ -241,6 +241,12 @@
   margin: 4px;
   max-width: 10px;
   font-size: smaller;
+}
+
+.my-pet-btn-ghost:hover {
+  opacity: 0.8;
+  background-color: #1BD1CC;
+  color: #343d4c;
 }
 
 .my-pet-card-body {
@@ -280,8 +286,8 @@
   overflow: auto;
   text-decoration: none;
   border-radius: 5%;
-  box-shadow: 2px 2px 20px #9BBDF9;
-  background-color: #e0e9f9;
+  box-shadow: 1px 1px 10px #c2d7d7;
+  background-color: #DDE7F9;
   opacity: 0.9;
   margin: 5px;
   position: relative;
@@ -299,8 +305,9 @@
 }
 
 .favourite-btn-ghost {
-  color: #151e1d;
-  background-color: #9BBDF9;
+  color: white !important;
+  background-color: #119D9D;
+  border: 2px solid #1BD1CC;
   padding: 4px 14px;
   border-radius: 50px;
   opacity: 0.85;
@@ -311,12 +318,12 @@
   position: absolute;
   left: 10px;
   bottom: 10px;
-  border: 2px solid #9BBDF9;
 }
 
 .favourite-btn-ghost:hover {
   opacity: 0.8;
-  background-color: rgb(217, 236, 247);
+  background-color: #1BD1CC;
+  color: #343d4c;
 }
 
 
@@ -325,13 +332,13 @@
 .app-page-card {
   position: relative;
   display: block;
-  height: 500px;
+  height: 550px;
   border-radius: calc(var(--curve) * 1px);
   overflow: auto;
   text-decoration: none;
   border-radius: 5%;
-  box-shadow: 2px 2px 20px #9BBDF9;
-  background-color: #e0e9f9;
+  box-shadow: 1px 1px 10px #c2d7d7;
+  background-color: #DDE7F9;
   opacity: 0.9;
 }
 
@@ -371,16 +378,75 @@
 }
 
 .user-application-details{
-  background-color: #DDE7F9;
+  background-color: #F5F8FC;
+  box-shadow: 0 0 15px #9BBDF9 !important;
   margin: 20px;
   width: 1000px;
   height: 750px;
   border-radius: 30px;
   padding: 20px;
   text-decoration: none;
-  background-color: #e0e9f9;
   overflow-y: scroll;
   flex: 2 2 auto;
   align-items: stretch;
   flex-basis: auto;
+
+}
+
+.app-btn-ghost {
+  color: white !important;
+  background-color: #119D9D;
+  border: 2px solid #1BD1CC;
+  padding: 8px 24px;
+  border-radius: 50px;
+  transition: 0.3s ease;
+  margin: 10px;
+  font-size: smaller;
+}
+
+.app-btn-ghost:hover {
+  opacity: 0.8;
+  background-color: #1BD1CC;
+  color: #343d4c;
+}
+
+.app-main-show-details {
+  max-width: 1250px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.delete-fav-btn {
+  appearance: button;
+  background-color: #119D9D;
+  border: solid #1BD1CC;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #FFFFFF !important;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round,sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  line-height: 20px;
+  margin: 20px 20px 15px 20px;
+  outline: none;
+  overflow: visible;
+  padding: 6px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.noHover{
+  pointer-events: none;
 }

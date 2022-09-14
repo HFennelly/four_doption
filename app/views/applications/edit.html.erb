@@ -1,11 +1,11 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
+    <div class="col-12 col-md-6 lg-3">
       <div class="bg-white rounded p-3 shadow" style="color: black;">
         <h3>Edit your application!</h3>
         <%= simple_form_for [@pet, @application] do |f| %>
           <%= f.input :requirements, required: true, label: "Please tell us about yourself and why you wish to adopt this pet." %>
-          <%= f.submit "Update my application", class: 'btn-ghost' %>
+          <%= f.submit "Update my application", class: 'delete-fav-btn' %>
         <% end %>
       </div>
     </div>

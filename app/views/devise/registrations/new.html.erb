@@ -1,6 +1,6 @@
 <div class="sign-up-container py-5 center">
   <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3" >
+    <div class="col-12 col-md-6 lg-3" >
       <div class="bg-beaublue rounded p-3" >
         <h2 align="center">Thanks for your interest!</h2>
         <h4 align="center">Please sign up below</h4>
@@ -42,12 +42,12 @@
                           required: true,
                           autofocus: true,
                           input_html: { rows: 8 }%>
-              <div class="btn-ghost" align="center">
+              <div align="center">
               <%= f.button :submit, "Sign up" %>
               </div>
           <% end %>
           <br>
-              <div class='btn-ghost' align="center">
+              <div class='delete-fav-btn' align="center">
           <%= render "devise/shared/links" %>
               </div>
       </div>

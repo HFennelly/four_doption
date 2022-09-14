@@ -1,68 +1,69 @@
-<div  align="center">
+<div align="center">
   <div class="main-container">
-  <br>
-    <div class="text-body">
-    <div class="user-application-details">
-
-    <h2>APPLICATIONS</h2>
-    <% if @applications.count >= 1 %>
-      <p> <%= "You currently have #{@applications.count} application(s)" %></p>
-      <ul class="list-group mb-3">
-        <div align="center">
-        <% @applications.each do |application| %>
-          <div class="col-md-3 my-3 landing-page-card">
-          <%= link_to pet_path(application.pet) do%>
-          <div class="app-page-card">
-            <% if application.pet.photo.attached? %>
-                            <%=cl_image_tag application.pet.photo.key %>
-                            <% else %>
-                            <%= image_tag "#{application.pet.species.downcase}.jpg", class: "app-card-img-top" %>
-                            <% end %>
-                              <span class="application-page-status">
-                                <% if application.validated %>
-                                    <% if application.approved %>
-                                      <%= image_tag "app-approved.png", class: "app-page-icon" %>
-                                      <br>
-                                        <br>
-                                        <p>APPLICATION APPROVED</p>
-                                        <%= "Congratulations! Your application for #{application.pet.name} has been approved!" %>
-                                        <%= link_to "Start Messaging the owner", application_path(application), class: "btn-ghost" %>
+    <div class="app-main-show-details">
+      <div class="text-body">
+        <div class="user-details-container">
+          <div class="user-application-details">
+            <h2>APPLICATIONS</h2>
+              <% if @applications.count >= 1 %>
+                <p> <%= "You currently have #{@applications.count} application(s)" %></p>
+                  <ul class="list-group mb-3">
+                    <div class="row">
+                      <% @applications.each do |application| %>
+                        <div class="col-md-3 my-3 landing-page-card">
+                          <%= link_to pet_path(application.pet) do%>
+                            <div class="app-card">
+                                <% if application.pet.photo.attached? %>
+                                  <%=cl_image_tag application.pet.photo.key, class: "app-card-img-top" %>
+                                <% else %>
+                                  <%= image_tag "#{application.pet.species.downcase}.jpg", class: "app-card-img-top" %>
+                                <% end %>
+                                  <span class="application-status">
+                                    <% if application.validated %>
+                                        <% if application.approved %>
+                                          <%= image_tag "app-approved.png", class: "app-icon" %>
+                                          <br>
+                                            <br>
+                                              <p>APPLICATION APPROVED</p>
+                                                <h2 class="app-card-text"><%= application.pet.name %></h2>
+                                                  <%= button_to("Message #{application.pet.name}'s owner", application_path(application), :class => "delete-fav-btn") %>
+                                        <% else %>
+                                          <%= image_tag "app-denied.png", class: "app-icon" %>
+                                            <br>
+                                              <br>
+                                                <p>SORRY - NOT A MATCH</p>
+                                                  <h2 class="app-card-text"><%= application.pet.name %></h2>
+                                                      <%= button_to("See other pets waiting for homes", pets_path, class: 'delete-fav-btn' ) %>
+                                        <% end %>
                                     <% else %>
-                                      <%= image_tag "app-denied.png", class: "app-page-icon" %>
+                                      <%= image_tag "app-pending.png", class: "app-icon" %>
                                         <br>
                                           <br>
-                                        <p>SORRY - NOT A MATCH</p>
-                                    <% end %>
-                                <% else %>
-                                  <%= image_tag "app-pending.png", class: "app-page-icon" %>
-                                    <br>
-                                      <br>
-                                    <p>APPLICATION PENDING</p>
-                                <% end %>
-                              </span>
-                            <div class="app-page-card-body">
-                              <h4 class="app-page-card-text"><%= application.pet.name %></h4>
-                                <div align="center">
-                                  <%= button_to("See your full application", application_path(application), method: "get", :class => "btn-ghost")%>
-                                  <br>
-                                  <div align="center">
-                                    <%= button_to("Cancel your application", application_path(application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}) %>
-                                      <br>
-                                  </div>
+                                            <p>APPLICATION PENDING</p>
+                                              <h3 class="app-card-text"><%= application.pet.name %></h3>
+                                                <div align="center">
+                                                  <%= link_to "Review your application", application_path(application), method: "get", :class => "delete-fav-btn" %>
+                                                </div>
+                                                  <br>
+                                                    <div align="center">
+                                                      <%= link_to "Cancel your application", application_path(application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn" %>
+                                                    </div>
+                                      <% end %>
+                                  </span>
                                 </div>
-                            </div>
+                            <% end %>
                           </div>
                         <% end %>
                       </div>
-                    <% end %>
-                  </div>
-                </ul>
-    <% else %>
-      <p>You currently don't have any applications</p>
-    <% end %>
-    </div>
+                    </ul>
+              <% else %>
+                <p>You currently don't have any applications</p>
+              <% end %>
+        </div>
     </div>
   </div>
   </div>
+  </div>
+</div>
 </div>
 </div>
