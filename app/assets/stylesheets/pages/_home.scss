@@ -112,7 +112,8 @@
   color: black;
   padding: 20;
   border-color: #6A85B3;
-  margin-right: 15px;
+  margin-left: 11px;
+  font-size: large;
   // border-left: 1px solid;
 
 }
@@ -145,4 +146,15 @@ body {
 
 h2, .h2 {
   margin-bottom: 2rem;
+}
+
+.set-browse-all-pets-width {
+  width: 20%;
+
+}
+
+.increase-btn-font {
+  font-size: large;
+  padding: 20px;
+  margin-bottom: 32px;
 }
