@@ -75,9 +75,9 @@ a:hover {
 }
 
 .btn-ghost {
-  color: white;
-  background-color: #119D9D;
-  border: 2px solid #1BD1CC;
+  color: #343d4c;
+  background-color: #9BBDF9;
+  border: 2px solid #9BBDF9;
   padding: 8px 24px;
   border-radius: 50px;
   transition: 0.3s ease;
@@ -86,8 +86,7 @@ a:hover {
 
 .btn-ghost:hover {
   opacity: 0.8;
-  background-color: #1BD1CC;
-  color: #343d4c;
+  background-color: rgb(217, 236, 247);
 }
 
 .profile-container {
