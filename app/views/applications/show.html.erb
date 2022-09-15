@@ -65,6 +65,7 @@
           <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn" %>
           <br>
         </li>
+        <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
       <% end %>
 
       <% if @application.approved && @application.pet.user != current_user %>
@@ -117,7 +118,6 @@
       </div>
       <% else %>
       <br>
-      <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
       <% end %>
     </div>
 </div>
