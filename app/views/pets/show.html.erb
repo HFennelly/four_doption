@@ -141,10 +141,8 @@
                   <% application.validated ? "true" : "false" %>
                   <h4>Your pending applications</h4>
 
-                  <%= link_to application.user.name, application_path(application) %>
+                  <%= link_to "View #{application.user.name}'s Application", application_path(application), class: 'delete-fav-btn' %>
 
-                  <%# <p><%= application.user.name %></p>
-                  <%= application.requirements %>
 
                   <h5><%= "Approve or deny #{application.user.name}'s application below!" %></h5>
                   <div class="center-btns">
