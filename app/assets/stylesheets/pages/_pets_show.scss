@@ -18,7 +18,7 @@
   align-items: stretch;
   box-shadow: 0 0 15px #9BBDF9;
   width: calc(60% - 40px);
-
+  position: relative;
 }
 
 .pet-details-container {
@@ -309,8 +309,8 @@
   background-color: transparent;
   border: none;
   position: absolute;
-  left: 890px;
-  bottom: 712px;
+  top: 30px;
+  right: 30px;
   font-size: 25px;
 }
 

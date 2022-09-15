@@ -29,8 +29,6 @@
         <% if @pet.applications.where(user: current_user).count == 0 && current_user.can_edit_pet?(@pet) == false %>
           <div>
             <% if current_user.favourites.where(pet: @pet).count > 0 %>
-              <%= link_to "Check out your favourite pets!", favourites_path %> <%# if user has favourites, show links to all favourites and link to delete favourite  %>
-              <br>
               <%= link_to favourite_path(current_user.favourites.where(pet: @pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"}, class: 'favourite-btn' do%>
                 <i class="fa-solid fa-star"></i>
               <% end %>
