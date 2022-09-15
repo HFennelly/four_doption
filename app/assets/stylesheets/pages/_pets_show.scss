@@ -354,10 +354,15 @@
   width: 25%
 }
 
-.review-btn {
+.review-btn-green {
   background-color: #9DE18C !important;
 }
 
-.cancel-app-btn {
+.cancel-btn-red {
   background-color:#E5827C !important ;
+}
+
+.center-btns {
+  display: flex;
+  justify-content: center;
 }
