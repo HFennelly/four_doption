@@ -162,7 +162,7 @@
   position: relative;
   display: block;
   height: 550px;
-  width: 280px;
+  width: 260px;
   border-radius: calc(var(--curve) * 1px);
   overflow: auto;
   text-decoration: none;
@@ -170,6 +170,7 @@
   box-shadow: 1px 1px 10px #c2d7d7;
   background-color: #DDE7F9;
   opacity: 0.9;
+  margin: 10px;
 }
 
 .app-card-img-top {
@@ -445,6 +446,14 @@
   vertical-align: middle;
   white-space: nowrap;
 //  width: 70%;
+}
+
+.review-btn-green {
+  background-color: #9DE18C !important;
+}
+
+.cancel-btn-red {
+  background-color:#E5827C !important ;
 }
 
 .noHover{
