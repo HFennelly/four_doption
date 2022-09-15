@@ -67,32 +67,33 @@
             </table>
           </div>
           <div class="user-details">
-          <% if @application.approved && @application.pet.user != current_user %>
-          <%# <% "Approved application chatbox" %>
-          <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
-            <h1>Congratulations! You have a match!</h1>
-            <h2><%= "Start chatting below"  %></h2>
+                <% if @application.approved && @application.pet.user != current_user %>
+                <%# <% "Approved application chatbox" %>
+                <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
+                  <h1>Congratulations! You have a match!</h1>
+                  <h2><%= "Start chatting below"  %></h2>
 
-            <div class="messages"  data-application-subscription-target="messages">
-              <% @application.messages.each do |message| %>
-                <%= render "messages/message", message: message %>
-              <% end %>
-            </div>
+                  <div class="messages"  data-application-subscription-target="messages">
+                    <% @application.messages.each do |message| %>
+                      <%= render "messages/message", message: message %>
+                    <% end %>
+                  </div>
 
-            <%= simple_form_for [@application, @message],
-              html: { data: { action: "turbo:submit-end->application-subscription#resetForm" },
-              class: "d-flex" } do |f|
-            %>
-              <%= f.input :content,
-                label: false,
-                placeholder: "Write your message here!",
-                wrapper_html: {class: "flex-grow-1"}
-              %>
-              <%= f.submit "Send", class: "delete-fav-btn msg-btn" %>
-            <% end %>
-          <% else %>
-              <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
-          <% end %>
+                  <%= simple_form_for [@application, @message],
+                    html: { data: { action: "turbo:submit-end->application-subscription#resetForm" },
+                    class: "d-flex" } do |f|
+                  %>
+                    <%= f.input :content,
+                      label: false,
+                      placeholder: "Write your message here!",
+                      wrapper_html: {class: "flex-grow-1"}
+                    %>
+                    <%= f.submit "Send", class: "delete-fav-btn msg-btn" %>
+                  <% end %>
+                <% else %>
+                    <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
+                <% end %>
+          </div>
           </div>
           <% if @application.user == current_user && @application.approved === false %>
                     <ul class="list-group">
@@ -103,14 +104,16 @@
                             <br>
                           </div>
                     </ul>
+                  </div>
           <% elsif @application.user == current_user && @application.approved %>
+                <div align="center">
                   <ul class="list-group">
                             <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn app-show-btn" %>
                             <br>
                     </ul>
+                  </div>
              <% end %>
-        </div>
-      </div>
+
      </div>
     </div>
 </div>
