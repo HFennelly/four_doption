@@ -103,19 +103,10 @@
         </div>
       <% else %> <%# current user has applied for this pet / current user is an editor %>
         <% if current_user.can_edit_pet?(@pet) == true %> <%# current user is an editor (show editor options)  %>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
           <div class="center-btns">
             <%= link_to "Edit this pet", edit_pet_path(@pet), class: "delete-fav-btn change-width review-btn-green" %>
             <%= link_to "Remove this pet", pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "delete-fav-btn change-width cancel-btn-red" %>
           </div>
-          <br>
-          <br>
-          <br>
-          <br>
           <br>
           <div align="center">
           <% if @pet.applications.count == 0 %> <%# editor with no applications for their pet %>
@@ -147,20 +138,20 @@
                     <br>
                   <% end %>
                 <% else %>
-                  <%= application.validated ? "true" : "false" %>
-                  <h3>Your pending applications</h3>
-                  <%= application.user.name %>
-                  <br>
-                  <br>
+                  <% application.validated ? "true" : "false" %>
+                  <h4>Your pending applications</h4>
+                  <p><%= application.user.name %></p>
                   <%= application.requirements %>
-                  <h3><%= "Approve or deny #{application.user.name}'s application below!" %></h3>
+                  <h5><%= "Approve or deny #{application.user.name}'s application below!" %></h5>
+                  <div class="center-btns">
                   <%= simple_form_for [@pet, application] do |f| %>
                     <%= f.input :approved, :as => :hidden, required: true, class: 'delete-fav-btn', :input_html=> {:value => true} %>
-                    <%= f.submit class: 'delete-fav-btn', value: "Accept" %>
+                    <%= f.submit class: 'delete-fav-btn review-btn-green', value: "Accept" %>
                   <% end %>
                   <%= simple_form_for [@pet, application] do |f| %>
                     <%= f.input :approved, :as => :hidden, required: true, class: 'delete-fav-btn', :input_html=> {:value => false} %>
-                    <%= f.submit class: 'delete-fav-btn', value: "Decline" %>
+                    <%= f.submit class: 'delete-fav-btn cancel-btn-red', value: "Decline" %>
+                  </div>
                   <% end %>
                 <% end %>
                 </li>
@@ -183,7 +174,7 @@
                 <% else %>
                           <%= image_tag "app-pending.png", class: "pet-show-app-icon" %>
                             <p>APPLICATION PENDING</p>
-                                  <%= link_to "Review your application", application_path(@pet.applications.where(user: current_user).first), method: "get", :class => "delete-fav-btn review-btn" %>
+                                  <%= link_to "Review your application", application_path(@pet.applications.where(user: current_user).first), method: "get", :class => "delete-fav-btn review-btn-green" %>
                                       <%= link_to "Cancel your application", application_path(@pet.applications.where(user: current_user).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn cancel-btn-red" %>
                                           <%= link_to "See all available pets", pets_path, class: 'delete-fav-btn' %>
                 <% end %>
