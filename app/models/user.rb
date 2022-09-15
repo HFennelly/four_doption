@@ -44,6 +44,25 @@ class User < ApplicationRecord
     return false
   end
 
+  def message_count
+    # @messages = Message.where(receiver_id: self.id)
+
+
+      rescue_email = email.split("@")[1]
+      @rescue = User.where("email ILIKE ?", "%@#{rescue_email}%").and(User.where.not(domain: nil))
+    unless @rescue.empty?
+      @messages = []
+      @messages = Message.select { |mes| mes.receiver_id == @rescue.first.id && mes.sender_id != self.id } + Message.select { |mes| mes.receiver_id == self.id}
+
+    else
+      @messages = Message.select { |mes| mes.receiver_id == self.id }
+
+    end
+    return @messages.count
+  end
+
+
+
   # def can_approve_application?(pet)
   #   return true if pet.user == self
   # rescue_email = email.split("@")[1]

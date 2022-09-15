@@ -19,6 +19,7 @@
 .title-navbar {
   margin-left: 135px;
   color: #222934;
+  margin-left: 119px;
 }
 
 .title h1 {
@@ -91,7 +92,7 @@
 .search-bar-btns {
   border: none;
   color: black;
-  background-color: #1BD1CC;
+  background-color: white;
   border-radius: 30px;
   opacity: 0.5;
   padding: 15px 40px;
@@ -112,7 +113,8 @@
   color: black;
   padding: 20;
   border-color: #6A85B3;
-  margin-right: 15px;
+  margin-left: 11px;
+  font-size: large;
   // border-left: 1px solid;
 
 }
@@ -145,4 +147,15 @@ body {
 
 h2, .h2 {
   margin-bottom: 2rem;
+}
+
+.set-browse-all-pets-width {
+  width: 20%;
+
+}
+
+.increase-btn-font {
+  font-size: large;
+  padding: 20px;
+  margin-bottom: 32px;
 }

@@ -166,13 +166,12 @@
             </ul>
           <% end %>
         <% else %> <%# current user has applied for the pet, but is not an editor %>
-        <%# SORT THIS IN AM %>
           <div align="center">
             <h3>You have already applied to adopt <%= @pet.name %></h3>
                 <% if @pet.applications.where(user: current_user).first.validated && @pet.applications.where(user: current_user).first.approved %>
                     <%= image_tag "app-approved.png", class: "pet-show-app-icon" %>
                         <p>APPLICATION APPROVED</p>
-                            <%= button_to("Message #{@pet.name}'s owner", application_path(@pet.applications.where(user: current_user).first), :class => "delete-fav-btn") %>
+                            <%= link_to "Message #{@pet.name}'s owner", application_path(application), :class => "delete-fav-btn" %>
                 <% elsif @pet.applications.where(user: current_user).first.validated && @pet.applications.where(user: current_user).first.approved === false %>
                       <%= image_tag "app-denied.png", class: "pet-show-app-icon" %>
                         <br>
