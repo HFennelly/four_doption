@@ -194,7 +194,7 @@
 .app-icon {
   width: 60px;
   position: absolute;
-  left: 94px;
+  left: 85px;
   bottom: 200px;
   margin: 20px;
 }
@@ -456,6 +456,14 @@
   background-color:#E5827C !important ;
 }
 
+// .msg-btn {
+//   height: 70px;
+//   width: 70px;
+// }
+
+.app-show-btn {
+  width: 300px;
+}
 .noHover{
   pointer-events: none;
 }
