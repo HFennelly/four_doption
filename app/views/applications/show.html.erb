@@ -54,16 +54,6 @@
                       </tr>
                     </tbody>
                   </table>
-      <li class="list-group-item" >
-        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn", notice: "your application has been cancelled" %>
-          <br>
-          <br>
-        <%= link_to "Edit your application here", edit_pet_application_path(@application.pet, @application), :class => "delete-fav-btn" %>
-          <br>
-          <br>
-        <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn" %>
-        <br>
-      </li>
 
       <% if @application.approved && @application.pet.user != current_user %>
       <%# <% "Approved application chatbox" %>
@@ -119,3 +109,14 @@
       <% end %>
     </div>
 </div>
+
+<li class="list-group-item" >
+        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn cancel-btn-red", notice: "your application has been cancelled" %>
+          <br>
+          <br>
+        <%= link_to "Edit your application here", edit_pet_application_path(@application.pet, @application), :class => "delete-fav-btn review-btn-green" %>
+          <br>
+          <br>
+        <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn" %>
+        <br>
+      </li>
