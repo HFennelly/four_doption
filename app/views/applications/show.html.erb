@@ -90,11 +90,11 @@
               %>
               <%= f.submit "Send", class: "delete-fav-btn msg-btn" %>
             <% end %>
-          </div>
-         
+          <% else %>
+              <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
           <% end %>
           </div>
-          <% if @application.user == current_user %>
+          <% if @application.user == current_user && @application.approved === false %>
                     <ul class="list-group">
                         <div class="row">
                             <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn cancel-btn-red app-show-btn", notice: "your application has been cancelled" %>
@@ -102,8 +102,12 @@
                             <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn app-show-btn" %>
                             <br>
                           </div>
-                    </ul>          
-          <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
+                    </ul>
+          <% elsif @application.user == current_user && @application.approved %>
+                  <ul class="list-group">
+                            <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn app-show-btn" %>
+                            <br>
+                    </ul>
              <% end %>
         </div>
       </div>
