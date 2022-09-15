@@ -62,32 +62,8 @@
           <% if @application.approved && @application.pet.user != current_user %>
           <%# <% "Approved application chatbox" %>
           <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
-            <h1>Congratulations! Your application was successful!</h1>
+            <h1>Congratulations! You have a match!</h1>
             <h2><%= "Start chatting with owner: #{@application.pet.user.name} below"  %></h2>
-
-            <div class="messages"  data-application-subscription-target="messages">
-              <% @application.messages.each do |message| %>
-                <%= render "messages/message", message: message %>
-              <% end %>
-            </div>
-
-            <%= simple_form_for [@application, @message],
-              html: { data: { action: "turbo:submit-end->application-subscription#resetForm" },
-              class: "d-flex" } do |f|
-            %>
-              <%= f.input :content,
-                label: false,
-                placeholder: "Message ##{@application.id}",
-                wrapper_html: {class: "flex-grow-1"}
-              %>
-              <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-            <% end %>
-          </div>
-          <% elsif @application.approved %>
-          <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
-            <h1>Congratulations On finding an a new potential owner for your pet!</h1>
-            <h1>#<%= "Application id: #{@application.id}" %></h1>
-            <h2><%= "Start chatting with: #{@application.user.name} below"  %></h2>
 
             <div class="messages"  data-application-subscription-target="messages">
               <% @application.messages.each do |message| %>
