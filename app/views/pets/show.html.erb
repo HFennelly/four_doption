@@ -108,8 +108,10 @@
           <br>
           <br>
           <br>
-          <%= link_to "Edit this pet", edit_pet_path(@pet), class: "delete-fav-btn change-width" %>
-          <%= link_to "Delete this pet", pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "delete-fav-btn change-width" %>
+          <div class="center-btns">
+            <%= link_to "Edit this pet", edit_pet_path(@pet), class: "delete-fav-btn change-width review-btn-green" %>
+            <%= link_to "Remove this pet", pet_path(@pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "delete-fav-btn change-width cancel-btn-red" %>
+          </div>
           <br>
           <br>
           <br>
@@ -117,7 +119,7 @@
           <br>
           <div align="center">
           <% if @pet.applications.count == 0 %> <%# editor with no applications for their pet %>
-              <h3>There are currently no pending applications for this pet</h3>
+              <h3 style="margin-top: -42%">There are currently no pending applications for this pet</h3>
           <% else %> <%# editor with applications for their pet  %>
             <h3> <%= "You currently have #{@pet.applications.count} application(s) for your pet" %></h3>
             <ul class="list-group mb-3">
@@ -158,7 +160,7 @@
                   <% end %>
                   <%= simple_form_for [@pet, application] do |f| %>
                     <%= f.input :approved, :as => :hidden, required: true, class: 'delete-fav-btn', :input_html=> {:value => false} %>
-                    <%= f.submit class: 'delete-fav-btnt', value: "Decline" %>
+                    <%= f.submit class: 'delete-fav-btn', value: "Decline" %>
                   <% end %>
                 <% end %>
                 </li>
@@ -167,7 +169,7 @@
           <% end %>
         <% else %> <%# current user has applied for the pet, but is not an editor %>
           <div align="center">
-            <h3>You have already applied to adopt <%= @pet.name %></h3>
+            <h3 style="margin-top: 50px">You have already applied to adopt <%= @pet.name %></h3>
                 <% if @pet.applications.where(user: current_user).first.validated && @pet.applications.where(user: current_user).first.approved %>
                     <%= image_tag "app-approved.png", class: "pet-show-app-icon" %>
                         <p>APPLICATION APPROVED</p>
@@ -181,8 +183,8 @@
                 <% else %>
                           <%= image_tag "app-pending.png", class: "pet-show-app-icon" %>
                             <p>APPLICATION PENDING</p>
-                                  <%= link_to "Review your application", application_path(@pet.applications.where(user: current_user).first), method: "get", :class => "delete-fav-btn" %>
-                                      <%= link_to "Cancel your application", application_path(@pet.applications.where(user: current_user).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn" %>
+                                  <%= link_to "Review your application", application_path(@pet.applications.where(user: current_user).first), method: "get", :class => "delete-fav-btn review-btn" %>
+                                      <%= link_to "Cancel your application", application_path(@pet.applications.where(user: current_user).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn cancel-btn-red" %>
                                           <%= link_to "See all available pets", pets_path, class: 'delete-fav-btn' %>
                 <% end %>
           </div>
