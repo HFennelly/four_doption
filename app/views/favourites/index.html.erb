@@ -1,34 +1,40 @@
 <% if @favourites.count >= 1 %>
-<div class="sign-up-container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1>All Favourites</h1>
-      <ul class="list-group mb-3">
-        <% @favourites.each do |fav| %>
-          <div class="card-product">
-            <div align="center">
+  <div class="sign-up-container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <h1>All Favourites</h1>
+        <div class="list-group mb-3">
+          <% @favourites.each do |fav| %>
+            <div class="card-product justify-content-start">
               <% if fav.pet.photo.attached? %>
-                <%= cl_image_tag fav.pet.photo.key, class: "img" %>
+                <%= cl_image_tag fav.pet.photo.key, class: "set-max-width-location" %>
               <% else %>
-                <%= image_tag "#{fav.pet.species.downcase}.jpg", class: "img" %>
+                <%= image_tag "#{fav.pet.species.downcase}.jpg", class: "set-max-width-location" %>
               <% end %>
+
+              <div class="fav-list-group-item" >
+                <strong><%= fav.pet.name %></strong>
+                <p><%= fav.pet.location %></p>
+                <p><%= fav.pet.description %></p>
+                <div class="delete-button" >
+
+                  <% if current_user.favourites.where(pet: fav.pet).count > 0 %>
+                    <%= link_to favourite_path(current_user.favourites.where(pet: fav.pet).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} do %>
+                    <span style="color: #119D9D;">
+                      <i class="fa-solid fa-square-xmark fa-2xl"></i>
+                    </span>
+                    <% end %>
+                  <% end %>
+                  <%# <%= link_to "Go to favourite", pet_path(fav.pet) %>
+                  <%# <%= button_to("Delete favourite", favourite_path(fav) ,  method: "delete", :class => "delete-fav-btn") %>
+                </div>
+              </div>
             </div>
-          <li class="fav-list-group-item set-max-width-location">
-            <strong><%= fav.pet.name %></strong>
-            <p><%= fav.pet.location %></p>
-            <li class="fav-list-group-item add-description-margin" >
-              <%= fav.pet.description %>
-            <li class="fav-list-group-item delete-section" >
-              <%= link_to "Go to favourite", pet_path(fav.pet) %>
-              <%= button_to("Delete favourite", favourite_path(fav) ,  method: "delete", :class => "delete-fav-btn") %>
-            </li>
-          </li>
-          </div>
-        <% end %>
-      </ul>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
 <%# new favourites page html %>
 <%# <% if @favourites.count >= 1 %>
@@ -43,18 +49,18 @@
 
 
 <% else %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-  <h1 align="center">You currently don't have any favourite pets! </h1>
-  <br>
-      <div align="center">
-        <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'delete-fav-btn' %>
-      </div>
-      <br>
-   </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <h1 align="center">You currently don't have any favourite pets! </h1>
+    <br>
+        <div align="center">
+          <%= link_to "Have a look at all the pets waiting for homes...", pets_path, class: 'delete-fav-btn' %>
+        </div>
+        <br>
+    </div>
+    </div>
   </div>
-</div>
 <% end %>
 
 <%# data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true} %>

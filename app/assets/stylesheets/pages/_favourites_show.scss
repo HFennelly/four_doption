@@ -10,6 +10,7 @@
   margin-bottom: 25px;
   position: relative;
   border-radius: 15px 50px 30px;
+  position: relative;
 }
 
 .card-product img {
@@ -39,19 +40,23 @@
 
 .fav-list-group-item {
   margin-left: 35px;
-  list-style: none;
+  max-width: 70%;
 }
 
-.delete-section {
+.delete-button {
   margin-right: 20px;
-  display: flex;
+  max-width: fit-content;
+  position: absolute;
+  right: 30px;
+  bottom: 52px;
+  color: #119D9D;
 }
 
 .set-max-width-location {
-  max-width: 100px;
-  position: absolute;
+  min-width: 100px;
+  //position: absolute;
   height: 100px;
-  left: 100px;
+  //left: 100px;
 }
 
 .add-description-margin {
