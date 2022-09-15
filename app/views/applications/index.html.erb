@@ -26,7 +26,7 @@
                                             <br>
                                               <p>APPLICATION APPROVED</p>
                                                 <h2 class="app-card-text"><%= application.pet.name %></h2>
-                                                  <%= button_to("Message #{application.pet.name}'s owner", application_path(application), :class => "delete-fav-btn") %>
+                                                  <%= link_to "Message #{application.pet.name}'s owner", application_path(application), :class => "delete-fav-btn" %>
                                         <% else %>
                                           <%= image_tag "app-denied.png", class: "app-icon" %>
                                             <br>
