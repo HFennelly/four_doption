@@ -426,7 +426,7 @@
   color: #FFFFFF !important;
   cursor: pointer;
   display: inline-block;
-  font-family: din-round,sans-serif;
+  font-family: din-round, sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: .8px;
@@ -434,7 +434,7 @@
   margin: 20px 20px 15px 20px;
   outline: none;
   overflow: visible;
-  padding: 6px;
+  padding: 10px 10px;
   text-align: center;
   text-transform: uppercase;
   touch-action: manipulation;
@@ -444,9 +444,13 @@
   -webkit-user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  width: 90%;
+//  width: 70%;
 }
 
 .noHover{
   pointer-events: none;
+}
+.pet-show-app-icon {
+  width: 60px;
+  margin: 20px;
 }
