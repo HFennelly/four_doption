@@ -107,7 +107,7 @@
                   <br>
                     <div class="user-details">
                       <h2>APPLICATIONS</h2>
-                        <% if @pets.count > 0 && @user.can_see_applications?(@rescue.first) %>
+                        <% if @pets.count > 0 && @user.can_see_applications?(@rescue.first)  %>
                             <p>Good news! You have adoption applications waiting for your review:</p>
                               <% @pets.each do | pet | %>
                                 <% pet.applications.each do |pet_app| %>
