@@ -6,6 +6,7 @@
         <div class="list-group mb-3">
           <% @favourites.each do |fav| %>
             <div class="card-product justify-content-start">
+              <%= link_to pet_path(fav.pet) do%>
               <% if fav.pet.photo.attached? %>
                 <%= cl_image_tag fav.pet.photo.key, class: "set-max-width-location" %>
               <% else %>
@@ -16,6 +17,7 @@
                 <strong><%= fav.pet.name %></strong>
                 <p><%= fav.pet.location %></p>
                 <p><%= fav.pet.description %></p>
+              <% end %>
                 <div class="delete-button" >
 
                   <% if current_user.favourites.where(pet: fav.pet).count > 0 %>
