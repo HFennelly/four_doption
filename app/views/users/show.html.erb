@@ -4,14 +4,14 @@
       <div class="main-show-details">
         <div class="text-body">
           <h1>Welcome, <%= current_user.name %>!</h1>
-            <p> <%= button_to("Edit your details", edit_user_registration_path(current_user), method: :get, :class => "delete-fav-btn") %></p>
+            <p> <%= button_to("Edit your details", edit_user_registration_path(current_user), method: :get, :class => "delete-fav-btn review-btn-green ") %></p>
               <br>
                 <div class="user-details-container">
                       <div class="user-details">
                         <h2>YOUR PETS</h2>
                           <% if @user.owned_pets_listed_for_adoption.any? %>
                             <div align="center">
-                              <%= button_to("Add a new pet for adoption", new_pet_path, class: 'delete-fav-btn noHover') %>
+                              <%= link_to "Add a new pet for adoption", new_pet_path, class: 'delete-fav-btn' %>
                             </div>
                                   <p>You currently have the following pets listed for adoption:</p>
                                     <ul class="list-group mb-3">
@@ -39,11 +39,11 @@
                                                     <br>
                                                     <h2 class="my-pet-name"><%= pet.name %></h2>
                                                       <div align="center">
-                                                        <%= link_to "Edit #{pet.name}'s profile", edit_pet_path(pet), class: "delete-fav-btn" %>
+                                                        <%= link_to "Edit #{pet.name}'s profile", edit_pet_path(pet), class: "delete-fav-btn review-btn-green" %>
                                                       </div>
                                                           <br>
                                                             <div align="center">
-                                                              <%= link_to "Remove #{pet.name} from 4Doption", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "delete-fav-btn" %>
+                                                              <%= link_to "Cancel #{pet.name}'s listing", pet_path(pet), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet for adoption?"}, class: "delete-fav-btn cancel-btn-red" %>
                                                             </div>
                                                   </div>
                                                 </div>
@@ -81,7 +81,7 @@
                                                     <%= image_tag "#{favourite.pet.species.downcase}.jpg", class: "favourite-img-top" %>
                                                   <% end %>
                                                     <div align="center">
-                                                      <%= link_to "Un-favourite #{favourite.pet.name}", favourite_path(favourite), class: 'delete-fav-btn', data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
+                                                      <%= link_to "Un-favourite #{favourite.pet.name}", favourite_path(favourite), class: 'delete-fav-btn cancel-btn-red', data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to remove this pet as a favourite?"} %>
                                                     </div>
                                                 </div>
                                               <% end %>
@@ -103,36 +103,39 @@
                   <br>
                     <div class="user-details">
                       <h2>APPLICATIONS</h2>
-                        <% if @pets.count > 0 && @user.can_see_applications?(@rescue.first)  %>
-                            <p>Good news! You have adoption applications waiting for your review:</p>
-                              <% @pets.each do | pet | %>
-                                <% pet.applications.each do |pet_app| %>
-                                <div class="col-md-3 my-3 landing-page-card">
-                                  <%= link_to pet_path(pet_app.pet) do%>
-                                    <div class="app-card">
-                                      <% if pet_app.pet.photo.attached? %>
-                                        <%=cl_image_tag pet_app.pet.photo.key, class: "app-card-img-top" %>
-                                      <% else %>
-                                        <%= image_tag "#{pet_app.pet.species.downcase}.jpg", class: "app-card-img-top" %>
-                                      <% end %>
-                                        <div class="app-card-body">
-                                          <h4 class="app-card-text"><%= pet_app.pet.name %></h4>
-                                            <div align="center">
-                                              <% if pet_app.approved %>
-                                                <h3><%= "You have approved #{pet_app.user.name}'s application!" %></h3>
-                                                  <div align="center">
-                                                    <%= link_to "Start messaging!", application_path(pet_app), class: 'delete-fav-btn' %>
-                                                  </div>
+                        <% if @pets.count > 0 && @user.can_see_applications?(@rescue.first) %>
+                              <ul class="list-group mb-8">
+                                <div class="row">
+                                      <% @pets.each do | pet | %>
+                                        <% pet.applications.each do |pet_app| %>
+                                        <div class="col-md-3 my-3 landing-page-card">
+                                          <%= link_to pet_path(pet_app.pet) do%>
+                                            <div class="app-card my-10">
+                                              <% if pet_app.pet.photo.attached? %>
+                                                <%=cl_image_tag pet_app.pet.photo.key, class: "app-card-img-top" %>
                                               <% else %>
-                                                <%= link_to "Review this application", pet_path(pet_app.pet), class: 'delete-fav-btn' %>
+                                                <%= image_tag "#{pet_app.pet.species.downcase}.jpg", class: "app-card-img-top" %>
                                               <% end %>
+                                                <div class="app-card-body">
+                                                  <h4 class="app-card-text"><%= pet_app.pet.name %></h4>
+                                                    <div align="center">
+                                                      <% if pet_app.approved %>
+                                                        <h3><%= "You have approved #{pet_app.user.name}'s application!" %></h3>
+                                                          <div align="center">
+                                                            <%= link_to "Start messaging!", application_path(pet_app), class: 'delete-fav-btn' %>
+                                                          </div>
+                                                      <% else %>
+                                                        <%= link_to "Review this application", pet_path(pet_app.pet), class: 'delete-fav-btn review-btn-green' %>
+                                                      <% end %>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                          <% end %>
+                                      </div>
+                                    <% end %>
                                   <% end %>
-                                </div>
-                            <% end %>
-                          <% end %>
+                            </div>
+                          </ul>
                         <% end %>
                               <% if @user.applications.any? %>
                                   <p>Thank you for your interest! You have submitted adoption applications for the following pets:</p>
@@ -174,11 +177,11 @@
                                                                       <p>APPLICATION PENDING</p>
                                                                         <h3 class="app-card-text"><%= pet_app.pet.name %></h3>
                                                                           <div align="center">
-                                                                            <%= link_to "Review your application", application_path(@user.submitted_application), method: "get", :class => "delete-fav-btn" %>
+                                                                            <%= link_to "Review your application", application_path(@user.submitted_application), method: "get", :class => "delete-fav-btn review-btn-green" %>
                                                                           </div>
                                                                             <br>
                                                                               <div align="center">
-                                                                                <%= link_to "Cancel your application", application_path(@user.submitted_application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn" %>
+                                                                                <%= link_to "Cancel your application", application_path(@user.submitted_application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn cancel-btn-red" %>
                                                                               </div>
                                                                 <% end %>
                                                             </span>
