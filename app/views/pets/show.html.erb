@@ -140,8 +140,12 @@
                 <% else %>
                   <% application.validated ? "true" : "false" %>
                   <h4>Your pending applications</h4>
-                  <p><%= application.user.name %></p>
+
+                  <%= link_to application.user.name, application_path(application) %>
+
+                  <%# <p><%= application.user.name %></p>
                   <%= application.requirements %>
+
                   <h5><%= "Approve or deny #{application.user.name}'s application below!" %></h5>
                   <div class="center-btns">
                   <%= simple_form_for [@pet, application] do |f| %>
