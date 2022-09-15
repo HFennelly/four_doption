@@ -63,7 +63,7 @@
           <%# <% "Approved application chatbox" %>
           <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
             <h1>Congratulations! You have a match!</h1>
-            <h2><%= "Start chatting with owner: #{@application.pet.user.name} below"  %></h2>
+            <h2><%= "Start chatting below"  %></h2>
 
             <div class="messages"  data-application-subscription-target="messages">
               <% @application.messages.each do |message| %>
