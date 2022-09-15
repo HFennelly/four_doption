@@ -68,8 +68,7 @@
       <% if @application.approved && @application.pet.user != current_user %>
       <%# <% "Approved application chatbox" %>
       <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
-        <h1>Congratulations On Your Succesful application!</h1>
-        <h1>#<%= "Application id: #{@application.id}" %></h1>
+        <h1>Congratulations! Your application was successful!</h1>
         <h2><%= "Start chatting with owner: #{@application.pet.user.name} below"  %></h2>
 
         <div class="messages"  data-application-subscription-target="messages">
