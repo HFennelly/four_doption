@@ -4,7 +4,15 @@
       <div class="bg-white rounded p-3 shadow" style="color: black;">
         <h3>Edit your application!</h3>
         <%= simple_form_for [@pet, @application] do |f| %>
-          <%= f.input :requirements, required: true, label: "Please tell us about yourself and why you wish to adopt this pet." %>
+          <%= f.input :applicant_name, required: true, label: "Name" %>
+            <%= f.input :applicant_age, required: true, label: "Age" %>
+            <%= f.input :applicant_address, label: "Address" %>
+            <%= f.input :applicant_household, label: "Please provide an overview of your household members." %>
+            <%= f.input :applicant_pets, label: "Do you have any existing pets? If so, please provide details." %>
+            <%= f.input :applicant_home, label: "Are you in rented accommodation or do you own your home? If rented, do you have your landlord's permission to adopt a pet?" %>
+            <%= f.input :applicant_hours, label: "Please confirm your typical working hours, and the amount of time any pet would be left at home unattended." %>
+            <%= f.input :applicant_garden, required: true, label: "Does your home have a private garden? Please provide details." %>
+            <%= f.input :additional_information, label: "You can use the below space to tell us a bit more about yourself and why you wish to adopt this pet.", placeholder: "This is your chance to sell yourself! Any extra information you can give here will help us determine if this is a good match. For example, to increase your changes of being selected for a homecheck, we advise including details of any past experience you have which may help with the animal you are applying to adopt.", input_html: { rows: 8 } %>
           <%= f.submit "Update my application", class: 'delete-fav-btn' %>
         <% end %>
       </div>

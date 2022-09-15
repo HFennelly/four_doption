@@ -89,13 +89,13 @@
           <%= simple_form_for [@pet, @application] do |f| %>
             <%= f.input :applicant_name, required: true, label: "Name" %>
             <%= f.input :applicant_age, required: true, label: "Age" %>
-            <%= f.input :applicant_address, required: true, label: "Address" %>
-            <%= f.input :applicant_household, required: true, label: "Please provide an overview of your household members." %>
-            <%= f.input :applicant_pets, required: true, label: "Do you have any existing pets? If so, please provide details." %>
-            <%= f.input :applicant_home, required: true, label: "Are you in rented accommodation or do you own your home? If rented, do you have your landlord's permission to adopt a pet?" %>
-            <%= f.input :applicant_hours, required: true, label: "Please confirm your typical working hours, and the amount of time any pet would be left at home unattended." %>
+            <%= f.input :applicant_address, label: "Address" %>
+            <%= f.input :applicant_household, label: "Please provide an overview of your household members." %>
+            <%= f.input :applicant_pets, label: "Do you have any existing pets? If so, please provide details." %>
+            <%= f.input :applicant_home, label: "Are you in rented accommodation or do you own your home? If rented, do you have your landlord's permission to adopt a pet?" %>
+            <%= f.input :applicant_hours, label: "Please confirm your typical working hours, and the amount of time any pet would be left at home unattended." %>
             <%= f.input :applicant_garden, required: true, label: "Does your home have a private garden? Please provide details." %>
-            <%= f.input :additional_information, required: false, label: "You can use the below space to tell us a bit more about yourself and why you wish to adopt this pet.", placeholder: "This is your chance to sell yourself! Any extra information you can give here will help us determine if this is a good match. For example, to increase your changes of being selected for a homecheck, we advise including details of any past experience you have which may help with the animal you are applying to adopt.", input_html: { rows: 8 } %>
+            <%= f.input :additional_information, label: "You can use the below space to tell us a bit more about yourself and why you wish to adopt this pet.", placeholder: "This is your chance to sell yourself! Any extra information you can give here will help us determine if this is a good match. For example, to increase your changes of being selected for a homecheck, we advise including details of any past experience you have which may help with the animal you are applying to adopt.", input_html: { rows: 8 } %>
             <div class="d-flex justify-content-center">
               <%= f.button :button, "APPLY TO ADOPT #{@pet.name.capitalize}", class: 'button-1 button-1-hover' %>
             </div>
@@ -166,49 +166,29 @@
             </ul>
           <% end %>
         <% else %> <%# current user has applied for the pet, but is not an editor %>
-          <h3>You have already applied to adopt <%= @pet.name %></h3>
-            <ul class="list-group mb-3">
-              <% @pet.applications.each do |application| %>
-                <li class="list-group-item">
-                  <% if application.validated && application.approved %>
-                      <%= image_tag "app-approved.png", class: "app-icon" %>
-                      <br>
-                        <br>
-                          <p>APPLICATION APPROVED</p>
-                            <h2 class="app-card-text"><%= @pet.name %></h2>
-                              <%= button_to("Message #{@pet.name}'s owner", application_path(application), :class => "delete-fav-btn") %>
-                  <% elsif application.validated && application.approved === false %>
-                      <%= image_tag "app-denied.png", class: "app-icon" %>
+        <%# SORT THIS IN AM %>
+          <div align="center">
+            <h3>You have already applied to adopt <%= @pet.name %></h3>
+                <% if @pet.applications.where(user: current_user).first.validated && @pet.applications.where(user: current_user).first.approved %>
+                    <%= image_tag "app-approved.png", class: "pet-show-app-icon" %>
+                        <p>APPLICATION APPROVED</p>
+                            <%= button_to("Message #{@pet.name}'s owner", application_path(@pet.applications.where(user: current_user).first), :class => "delete-fav-btn") %>
+                <% elsif @pet.applications.where(user: current_user).first.validated && @pet.applications.where(user: current_user).first.approved === false %>
+                      <%= image_tag "app-denied.png", class: "pet-show-app-icon" %>
                         <br>
                           <br>
                             <p>SORRY - NOT A MATCH</p>
-                              <h2 class="app-card-text"><%= @pet.name %></h2>
-                                <%= button_to("See other pets waiting for homes", pets_path, class: 'delete-fav-btn') %>
-                  <% else %>
-                    <%  unless application.validated && application.approved %>
-                        <%= image_tag "app-pending.png", class: "app-icon" %>
-                          <br>
-                            <br>
-                              <p>APPLICATION PENDING</p>
-                                <h3 class="app-card-text"><%= @pet.name %></h3>
-                                  <div align="center">
-                                    <%= link_to "Review your application", application_path(application), method: "get", :class => "delete-fav-btn" %>
-                                  </div>
-                                    <br>
-                                      <div align="center">
-                                        <%= link_to "Cancel your application", application_path(application), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn" %>
-                                      </div>
-                                        <div>
-                                          <%= link_to "Available pets", pets_path, class: 'delete-fav-btn' %>
-                                        </div>
-                        <% end %>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
+                                <%= link_to "See other pets waiting for homes", pets_path, class: 'delete-fav-btn' %>
+                <% else %>
+                          <%= image_tag "app-pending.png", class: "pet-show-app-icon" %>
+                            <p>APPLICATION PENDING</p>
+                                  <%= link_to "Review your application", application_path(@pet.applications.where(user: current_user).first), method: "get", :class => "delete-fav-btn" %>
+                                      <%= link_to "Cancel your application", application_path(@pet.applications.where(user: current_user).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn" %>
+                                          <%= link_to "See all available pets", pets_path, class: 'delete-fav-btn' %>
+                <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>
-
   </div>
 </div>
