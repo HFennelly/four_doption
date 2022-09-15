@@ -18,7 +18,7 @@ User.delete_all
 
 woodgreen_dog = "https://woodgreen.org.uk/pets/?species=dog&pPage=1#038;pPage=2"
 
-woodgreen = User.create(email: "default@woodgreen.org.uk", password: "123456", name: "Woodgreen", address: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", domain: "https://www.woodgreen.org.uk/", rescue: true, description: "Every year, Woodgreen’s dedicated teams work tirelessly to provide safe shelter, specialist care, and a brighter future for thousands of pets. And we’re here for owners in need of advice and support too, every step of the way." )
+woodgreen = User.create(email: "default@woodgreen.org.uk", password: "123456", name: "Woodgreen", address: "King's Bush Farm, London Road, Godmanchester, Huntingdon, United Kingdom", domain: "https://www.woodgreen.org.uk/", rescue: true, description: "Every year, Woodgreen’s dedicated teams work tirelessly to provide safe shelter, specialist care, and a brighter future for thousands of pets. And we’re here for owners in need of advice and support too, every step of the way. Our teams work together to create an individual plan for every pet – from medical treatment to behaviour training. And when the pet is ready, we find them a loving home where they can live a happy, fulfilling life." )
 
 html_file = URI.open(woodgreen_dog).read
 html_doc = Nokogiri::HTML(html_file)
@@ -80,7 +80,7 @@ cat_first_html_doc.search(".c-pet-card").first(15).each do |element|
 end
 
 
-animal_rescue_and_care = User.create(email: "default@animalrescueandcare.org.uk", password: "123456", name: "Animal Rescue and Care", address: "Twickenham, London, TW1 1WG", domain: "https://animalrescueandcare.org.uk/", rescue: true, description: "With the number of animals in need of help growing every day, there is more and more pressure on animal charities like A.R.C. By adopting one of our furry friends, you’re not only helping one animal by giving it a loving home, you’re helping us make room to accept another animal into our care.")
+animal_rescue_and_care = User.create(email: "default@animalrescueandcare.org.uk", password: "123456", name: "Animal Rescue and Care", address: "Twickenham, London, TW1 1WG", domain: "https://animalrescueandcare.org.uk/", rescue: true, description: "When five women got together in 2001, their vision was that every animal in the Richmond Upon Thames area should be loved and cared for. Animal Rescue and Care (A.R.C.) has grown from small beginnings to a local charity that has helped over 8,000 animals. Our priority is to rescue, foster and rehome animals in the Richmond Upon Thames area. We work mainly with cats, rabbits and guinea pigs, but also with dogs and ‘small furries’ such as hamsters and chinchillas.")
 
 animal_rescue_and_care_rabbit = "https://animalrescueandcare.org.uk/adopt-a-rabbit/"
 rabbit_html_file = URI.open(animal_rescue_and_care_rabbit).read
@@ -101,7 +101,7 @@ rabbit_html_doc.search(".entry-title  > a").first(15).each_with_index do |link, 
     end
     rabbit_sex = hash["Sex:"].titleize
     if hash["Breed:"] == nil
-      rabbit_breed = "unknown"
+      rabbit_breed = ""
     else
       rabbit_breed = hash["Breed:"].titleize
     end
@@ -123,17 +123,6 @@ rabbit_html_doc.search(".entry-title  > a").first(15).each_with_index do |link, 
 
 
 User.create!(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address) # 1st fake user created
- Pet.create!(
-  user: User.last,
-  name: Faker::TvShows::BojackHorseman.character,
-  species: ['Cat', 'Dog'].sample,
-  age: [1, 2, 3, 4, 5, 6, 7].sample,
-  breed: ['Chow Chow', 'Labrador'].sample,
-  size: ['Big', 'Medium', 'Small'].sample,
-  needs_garden: [true, false].sample,
-  adopted: false,
-  adoption_fee: [100, 200, 300, 400, 500].sample,
-  location: Faker::Address.city)
 # one pet created, belonging to this user (no applications, no favourites belonging to this user
 
 5.times do
