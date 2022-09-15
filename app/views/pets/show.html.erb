@@ -160,7 +160,7 @@
                   <% end %>
                   <%= simple_form_for [@pet, application] do |f| %>
                     <%= f.input :approved, :as => :hidden, required: true, class: 'delete-fav-btn', :input_html=> {:value => false} %>
-                    <%= f.submit class: 'delete-fav-btnt', value: "Decline" %>
+                    <%= f.submit class: 'delete-fav-btn', value: "Decline" %>
                   <% end %>
                 <% end %>
                 </li>
