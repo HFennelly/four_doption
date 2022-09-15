@@ -45,6 +45,7 @@ class ApplicationsController < ApplicationController
 
   def index
     @applications = current_user.applications
+    # @rescue = User.where.not(domain: nil)
   end
 
 
