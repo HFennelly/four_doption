@@ -35,10 +35,8 @@ html_doc.search(".c-pet-card").first(24).each do |element|
     name = dog_html_doc.search(".c-hero--pet-single-details__pet-name").text.strip
     dog_info = dog_html_doc.search(".c-hero--pet-single-details li").children.first(3)
     breed = dog_info[0].text.titleize
-    puts breed
     age = dog_info[1].text.strip.split[0].to_i
     sex = dog_info[2].text.titleize
-    puts sex
     description = dog_html_doc.search(".c-hero--pet-single-details p").text.strip
     dog_image = dog_html_doc.search(".swiper-slide img").attribute("src")
     pet = Pet.create(age: age, breed: breed, location: "Kings Bush Farm, Godmanchester, UK", sex: sex, species: "Dog", name: name, needs_garden: true, size: ["Small", "Medium", "Large"].sample, adopted: adopted, description: description, user: woodgreen)
@@ -65,12 +63,10 @@ cat_first_html_doc.search(".c-pet-card").first(15).each do |element|
     # gets the cat's name
     cat_info = cat_html_doc.search(".c-hero--pet-single-details li").children.first(3)
     cat_breed = cat_info[0].text.titleize
-    puts cat_breed
     # gets the breed
     cat_age = cat_info[1].text.strip.split[0].to_i
     # gets the age and extracts just the number from "2 years" returning as an interga
     cat_sex = cat_info[2].text.titleize
-    puts cat_sex
     # gets the sex of the cat
     description = cat_html_doc.search(".c-pet-detail > p").text.strip
     # takes a description from the bottom of the page, it's in a different place the one used in dog scrape.
@@ -98,19 +94,16 @@ rabbit_html_doc.search(".entry-title  > a").first(15).each_with_index do |link, 
     check = rabbit_inner_html_doc.search(".project-info h3").text.strip.split(" (")[1]
     age_array = check.split(/\W/).pop(3)
     rabbit_age = age_array.select {|num| num.to_i != 0}.first.to_i
-    p rabbit_age
     rabbit_hash = rabbit_inner_html_doc.search(".project-info-box")
     hash = {}
     rabbit_hash.each do |info|
       hash[info.search("h4").text.strip] = info.search(".project-terms").text.strip
     end
     rabbit_sex = hash["Sex:"].titleize
-    puts rabbit_sex
     if hash["Breed:"] == nil
       rabbit_breed = "unknown"
     else
       rabbit_breed = hash["Breed:"].titleize
-      puts rabbit_breed
     end
     if hash["Status:"] == "Available"
       rabbit_adopted = false
@@ -146,20 +139,6 @@ User.create!(email: Faker::Internet.email, password: "123456", name: Faker::Funn
 5.times do
 u = User.create!(email: Faker::Internet.email, password: "123456", name: Faker::FunnyName.name, address: Faker::Address.street_address) # 10 fake users created
   2.times do # 10 times per each fake user
-    pet = Pet.create!(
-      user: u,
-      sex: ['Male', 'Female'].sample,
-      name: Faker::TvShows::BojackHorseman.character,
-      species: ['Cat', 'Dog', 'Bird', 'Hamster','Rabbit'].sample,
-      age: [1, 2, 3, 4, 5, 6, 7].sample,
-      breed: ['Chow Chow', 'Labrador'].sample,
-      size: ['Big', 'Medium', 'Small'].sample,
-      needs_garden: [true, false].sample,
-      adopted: false,
-      adoption_fee: [100, 200, 300, 400, 500].sample,
-      location: ["16 Villa Gaudelet, Paris", "97-99 Kings Rd, Brighton", "200 Santa Monica Pier, Santa Monica"].sample
-    ) # 10 pets are created and attached per fake user
-
     application = Application.create!(
       user: u,
       pet: Pet.where.not(user: u).sample,
@@ -169,6 +148,5 @@ u = User.create!(email: Faker::Internet.email, password: "123456", name: Faker::
       user: u,
       pet: Pet.where.not(user: u).sample
     ) # 10 favourites are created and attached per fake user
-    puts pet.name
   end
 end
