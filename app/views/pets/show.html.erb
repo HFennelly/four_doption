@@ -183,7 +183,7 @@
                 <% else %>
                           <%= image_tag "app-pending.png", class: "pet-show-app-icon" %>
                             <p>APPLICATION PENDING</p>
-                                  <%= link_to "Review your application", application_path(@pet.applications.where(user: current_user).first), method: "get", :class => "delete-fav-btn review-btn" %>
+                                  <%= link_to "Review your application", application_path(@pet.applications.where(user: current_user).first), method: "get", :class => "delete-fav-btn review-btn-green" %>
                                       <%= link_to "Cancel your application", application_path(@pet.applications.where(user: current_user).first), data: {turbo_method: :delete, turbo_confirm: "Are you sure you wish to cancel your application for this pet?"}, :class => "delete-fav-btn cancel-btn-red" %>
                                           <%= link_to "See all available pets", pets_path, class: 'delete-fav-btn' %>
                 <% end %>

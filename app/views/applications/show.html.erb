@@ -1,18 +1,27 @@
-<div class='container' >
+<%# <div class='container' >
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <br>
         <div class='flex-container'>
-          <div class='flex-child application-details'>
+          <div class='flex-child application-details'> %>
+<div  align="center">
+  <div class="main-container">
+    <br>
+      <div class="main-show-details">
+        <div class="text-body">
+        <div class="user-details-container">
+            <div class="user-details">
             <h1>Your Application</h1>
             <table class="table">
               <tbody>
                 <tr>
                   <th scope="row"></th>
-                  <td><%if @application.pet.photo.attached? %>
+                    <div align="center">
+                  <%if @application.pet.photo.attached? %>
                           <%= cl_image_tag @application.pet.photo.key, class: "img" %>
                       <% else %>
                           <%= image_tag "#{@application.pet.species.downcase}.jpg", class: "img" %>
-                    <% end %> </td>
+                    <% end %>
+                    </div>
                 </tr>
                 <tr>
                   <th scope="row">Pet</th>
@@ -58,7 +67,7 @@
             </table>
           </div>
 
-          <div class="flex-child messaging">
+          <div class="user-details">
           <% if @application.approved && @application.pet.user != current_user %>
           <%# <% "Approved application chatbox" %>
           <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
@@ -77,10 +86,10 @@
             %>
               <%= f.input :content,
                 label: false,
-                placeholder: "Message ##{@application.id}",
+                placeholder: "Write your message here!",
                 wrapper_html: {class: "flex-grow-1"}
               %>
-              <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+              <%= f.submit "Send", class: "delete-fav-btn msg-btn" %>
             <% end %>
           </div>
           <% else %>
@@ -88,19 +97,16 @@
           <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
           <% end %>
           </div>
-
+                    <ul class="list-group">
+                        <div class="row">
+                            <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn cancel-btn-red app-show-btn", notice: "your application has been cancelled" %>
+                            <%= link_to "Edit your application here", edit_pet_application_path(@application.pet, @application), :class => "delete-fav-btn review-btn-green app-show-btn" %>
+                            <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn app-show-btn" %>
+                            <br>
+                          </div>
+                    </ul>
         </div>
-
+      </div>
+     </div>
     </div>
 </div>
-
-      <li class="list-group-item" >
-        <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn cancel-btn-red", notice: "your application has been cancelled" %>
-          <br>
-          <br>
-        <%= link_to "Edit your application here", edit_pet_application_path(@application.pet, @application), :class => "delete-fav-btn review-btn-green" %>
-          <br>
-          <br>
-        <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn" %>
-        <br>
-      </li>
