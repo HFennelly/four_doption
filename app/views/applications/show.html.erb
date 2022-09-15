@@ -1,59 +1,123 @@
 <div class='container' >
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <br>
-        <h1>Your Application</h1>
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <th scope="row"></th>
-                        <td><%if @application.pet.photo.attached? %>
-                                <%= cl_image_tag @application.pet.photo.key, class: "img" %>
-                            <% else %>
-                                <%= image_tag "#{@application.pet.species.downcase}.jpg", class: "img" %>
-                          <% end %> </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Pet</th>
-                        <td><%= @application.pet.name%></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Name</th>
-                        <td><%= @application.applicant_name %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Age</th>
-                        <td><%= @application.applicant_age %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Address</th>
-                        <td><%= @application.applicant_address %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Household Overview</th>
-                        <td><%= @application.applicant_household %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Existing Pets</th>
-                        <td><%= @application.applicant_pets %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Home</th>
-                        <td><%= @application.applicant_home %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Working Hours</th>
-                        <td><%= @application.applicant_hours %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Garden</th>
-                        <td><%= @application.applicant_garden %></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Additonal Information</th>
-                        <td><%= @application.additional_information %></td>
-                      </tr>
-                    </tbody>
-                  </table>
+        <div class='flex-container'>
+          <div class='flex-child application-details'>
+            <h1>Your Application</h1>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row"></th>
+                  <td><%if @application.pet.photo.attached? %>
+                          <%= cl_image_tag @application.pet.photo.key, class: "img" %>
+                      <% else %>
+                          <%= image_tag "#{@application.pet.species.downcase}.jpg", class: "img" %>
+                    <% end %> </td>
+                </tr>
+                <tr>
+                  <th scope="row">Pet</th>
+                  <td><%= @application.pet.name%></td>
+                </tr>
+                <tr>
+                  <th scope="row">Name</th>
+                  <td><%= @application.applicant_name %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Age</th>
+                  <td><%= @application.applicant_age %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Address</th>
+                  <td><%= @application.applicant_address %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Household Overview</th>
+                  <td><%= @application.applicant_household %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Existing Pets</th>
+                  <td><%= @application.applicant_pets %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Home</th>
+                  <td><%= @application.applicant_home %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Working Hours</th>
+                  <td><%= @application.applicant_hours %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Garden</th>
+                  <td><%= @application.applicant_garden %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Additonal Information</th>
+                  <td><%= @application.additional_information %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="flex-child messaging">
+          <% if @application.approved && @application.pet.user != current_user %>
+          <%# <% "Approved application chatbox" %>
+          <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
+            <h1>Congratulations! Your application was successful!</h1>
+            <h2><%= "Start chatting with owner: #{@application.pet.user.name} below"  %></h2>
+
+            <div class="messages"  data-application-subscription-target="messages">
+              <% @application.messages.each do |message| %>
+                <%= render "messages/message", message: message %>
+              <% end %>
+            </div>
+
+            <%= simple_form_for [@application, @message],
+              html: { data: { action: "turbo:submit-end->application-subscription#resetForm" },
+              class: "d-flex" } do |f|
+            %>
+              <%= f.input :content,
+                label: false,
+                placeholder: "Message ##{@application.id}",
+                wrapper_html: {class: "flex-grow-1"}
+              %>
+              <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+            <% end %>
+          </div>
+          <% elsif @application.approved %>
+          <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
+            <h1>Congratulations On finding an a new potential owner for your pet!</h1>
+            <h1>#<%= "Application id: #{@application.id}" %></h1>
+            <h2><%= "Start chatting with: #{@application.user.name} below"  %></h2>
+
+            <div class="messages"  data-application-subscription-target="messages">
+              <% @application.messages.each do |message| %>
+                <%= render "messages/message", message: message %>
+              <% end %>
+            </div>
+
+            <%= simple_form_for [@application, @message],
+              html: { data: { action: "turbo:submit-end->application-subscription#resetForm" },
+              class: "d-flex" } do |f|
+            %>
+              <%= f.input :content,
+                label: false,
+                placeholder: "Message ##{@application.id}",
+                wrapper_html: {class: "flex-grow-1"}
+              %>
+              <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+            <% end %>
+          </div>
+          <% else %>
+          <br>
+          <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
+          <% end %>
+          </div>
+
+        </div>
+
+    </div>
+</div>
+
       <li class="list-group-item" >
         <%= link_to "Delete application", application_path(@application) ,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?", turbo: true}, :class => "delete-fav-btn", notice: "your application has been cancelled" %>
           <br>
@@ -64,58 +128,3 @@
         <%= link_to "See All Of Your Applications", applications_path, :class => "delete-fav-btn" %>
         <br>
       </li>
-
-      <% if @application.approved && @application.pet.user != current_user %>
-      <%# <% "Approved application chatbox" %>
-      <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
-        <h1>Congratulations! Your application was successful!</h1>
-        <h2><%= "Start chatting with owner: #{@application.pet.user.name} below"  %></h2>
-
-        <div class="messages"  data-application-subscription-target="messages">
-          <% @application.messages.each do |message| %>
-            <%= render "messages/message", message: message %>
-          <% end %>
-        </div>
-
-        <%= simple_form_for [@application, @message],
-          html: { data: { action: "turbo:submit-end->application-subscription#resetForm" },
-          class: "d-flex" } do |f|
-        %>
-          <%= f.input :content,
-            label: false,
-            placeholder: "Message ##{@application.id}",
-            wrapper_html: {class: "flex-grow-1"}
-          %>
-          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-        <% end %>
-      </div>
-      <% elsif @application.approved %>
-      <div class="container chatroom" data-controller="application-subscription" data-application-subscription-application-id-value="<%= @application.id %>">
-        <h1>Congratulations On finding an a new potential owner for your pet!</h1>
-        <h1>#<%= "Application id: #{@application.id}" %></h1>
-        <h2><%= "Start chatting with: #{@application.user.name} below"  %></h2>
-
-        <div class="messages"  data-application-subscription-target="messages">
-          <% @application.messages.each do |message| %>
-            <%= render "messages/message", message: message %>
-          <% end %>
-        </div>
-
-        <%= simple_form_for [@application, @message],
-          html: { data: { action: "turbo:submit-end->application-subscription#resetForm" },
-          class: "d-flex" } do |f|
-        %>
-          <%= f.input :content,
-            label: false,
-            placeholder: "Message ##{@application.id}",
-            wrapper_html: {class: "flex-grow-1"}
-          %>
-          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-        <% end %>
-      </div>
-      <% else %>
-      <br>
-      <h3>Once your application has been approved you can start messaging the pet's owner!</h3>
-      <% end %>
-    </div>
-</div>
